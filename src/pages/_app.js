@@ -5,7 +5,7 @@ import "normalize.css";
 import "../styles/globals.css";
 
 import Layout from "../components/Layout";
-import client from "../components/graphql";
+import client from "../graphql";
 
 function MyApp({ Component, pageProps }) {
   return (
