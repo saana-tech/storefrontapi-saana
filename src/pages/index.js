@@ -60,9 +60,10 @@ export default function Home() {
   `;
 
   const { data = null, loading = false, error = null } = useQuery(GET_PRODUCTS);
-  console.log("data => ", data);
+  console.log("data products => ", data?.shop?.products?.edges);
   console.log("loading => ", loading);
   console.log("error => ", error);
+
   return (
     <div>
       <h1>Hello</h1>
