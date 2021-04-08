@@ -1,0 +1,75 @@
+.headerProduct {
+  display: flex;
+  align-items: center;
+}
+.col1 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.col2 {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.col3 {
+  flex: 4;
+}
+.col1 img {
+  width: 75.9px;
+  height: 75.9px;
+  object-fit: contain;
+  margin: 20px 0;
+}
+.col2 img {
+  width: 388px;
+  height: 388px;
+  cursor: zoom-in;
+  object-fit: contain;
+}
+.col1 img:hover {
+  background-color: rgba(0, 0, 0, 0.199);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.title {
+  font-size: 36px;
+  font-weight: bold;
+  color: #111820;
+}
+.price {
+  font-size: 35px;
+  font-weight: bold;
+  color: #242424;
+}
+.btnAdd {
+  margin: 19px 167.2px 50.2px 2px;
+  border-radius: 6px;
+  background-color: #314790;
+  outline: none;
+  border: 0;
+  cursor: pointer;
+  width: 457.8px;
+  height: 37.8px;
+  font-size: 16px;
+  line-height: 1.56;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btnAdd:hover {
+  transition: all 0.3s all;
+  background-color: #ffffff;
+  color: #314790;
+  border: 1px solid #314790;
+}
+.titleInformation {
+  font-size: 21px;
+  font-weight: 600;
+  color: #242424;
+}

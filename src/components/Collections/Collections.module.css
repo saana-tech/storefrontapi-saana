@@ -1,0 +1,39 @@
+.containerCollection h2 {
+  width: 136px;
+  height: 33px;
+  margin: 40px 59px 40px 199px;
+  font-family: Poppins;
+  font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.46;
+  letter-spacing: normal;
+  text-align: center;
+  color: #111820;
+}
+.cards {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+.cards h4 {
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #111820;
+  margin: 0 0.5rem;
+}
+.card {
+  width: 164px;
+  height: 197px;
+  padding: 0 0 172px;
+  border-radius: 5px;
+  background-color: #00f0b0;
+  margin: 0 0.5rem;
+}
