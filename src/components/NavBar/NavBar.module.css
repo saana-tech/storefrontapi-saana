@@ -16,6 +16,7 @@
   height: auto;
   width: 100%;
   max-width: 160px;
+  cursor: pointer;
 }
 .inputSearch {
   width: 362px;
@@ -63,8 +64,24 @@
   cursor: pointer;
   margin: 0 1rem;
 }
+.contCart {
+  position: relative;
+}
 .contCart svg {
   cursor: pointer;
+}
+.badge {
+  position: absolute;
+  background-color: red;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  top: -8px;
+  right: -12px;
 }
 .buttonLogin button {
   width: 136px;

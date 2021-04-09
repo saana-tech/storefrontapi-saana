@@ -73,3 +73,13 @@
   font-weight: 600;
   color: #242424;
 }
+.containerRating {
+  display: flex;
+  align-items: center;
+}
+.visits {
+  height: 15px;
+  font-size: 15px;
+  color: #969696;
+  margin-left: 0.5rem;
+}

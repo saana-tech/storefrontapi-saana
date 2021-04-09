@@ -6,13 +6,16 @@ import "../styles/globals.css";
 
 import Layout from "../components/Layout";
 import client from "../graphql";
+import Store from "../core";
 
 function MyApp({ Component, pageProps }) {
   return (
     <ApolloProvider client={client}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Store>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Store>
     </ApolloProvider>
   );
 }
