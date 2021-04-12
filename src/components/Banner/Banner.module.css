@@ -41,3 +41,34 @@
   color: #314790;
   font-size: 20px;
 }
+@media only screen and (max-width: 768px) {
+  .banner {
+    background-color: #fde7ef;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-top: 1rem;
+    border-radius: 9px;
+    height: 149px;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+  }
+  .information h2 {
+    color: #314790;
+    font-weight: 700;
+    margin: 0;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .information span {
+    color: #314790;
+    font-size: 12px;
+    margin-top: 0.2rem;
+    margin-left: 0.5rem;
+  }
+  .subtitle {
+    margin-top: 0.5rem !important;
+  }
+}

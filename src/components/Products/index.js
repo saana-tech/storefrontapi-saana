@@ -9,7 +9,7 @@ import ArrowRight from "../../../public/static/svg/ArrowRight";
 import CardProduct from "./CardProduct";
 import IconCategory from "../../../public/static/svg/IconCategory";
 
-const Products = ({ title = "Ofertas" }) => {
+const Products = ({ title = "Ofertas", extend = true }) => {
   const router = useRouter();
   const collectionRef = useRef(null);
 
@@ -131,24 +131,27 @@ const Products = ({ title = "Ofertas" }) => {
               />
             );
           })}
+        {extend && (
+          <>
+            <div className={styles.cardShowCategory}>
+              <div className={styles.iconCategory}>
+                <IconCategory />
+              </div>
 
-        <div className={styles.cardShowCategory}>
-          <div className={styles.iconCategory}>
-            <IconCategory />
-          </div>
-
-          <span>Quieres ver todos los productos de </span>
-          <h4>{title}</h4>
-          <button>Ver mas</button>
-        </div>
-
-        <div className={styles.shadowRight} />
+              <span>Quieres ver todos los productos de </span>
+              <h4>{title}</h4>
+              <button>Ver mas</button>
+            </div>
+            <div className={styles.shadowRight} />
+          </>
+        )}
       </div>
     </div>
   );
 };
 Products.propTypes = {
   title: PropTypes.string,
+  extend: PropTypes.bool,
 };
 
 export default Products;

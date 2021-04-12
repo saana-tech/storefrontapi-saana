@@ -35,6 +35,7 @@
   border: solid 1px #edf1ff;
   min-width: 195px;
   margin-right: 1rem;
+  z-index: 2;
 }
 .imgProduct {
   display: flex;
@@ -81,9 +82,10 @@
   width: 120px;
   position: absolute;
   right: 0;
-  background: linear-gradient(90deg, hsla(0, 0%, 100%, 0), #fff);
+  background: linear-gradient(90deg, hsla(0, 0%, 100%, 0), rgb(255, 255, 255));
   max-height: 100%;
   height: 62%;
+  z-index: 3;
 }
 .cardShowCategory {
   min-width: 300px;
@@ -92,7 +94,7 @@
   align-items: center;
   flex-direction: column;
   border-radius: 5px;
-  z-index: 99;
+  z-index: 40;
 }
 .cardShowCategory span {
   font-size: 16px;
@@ -118,4 +120,24 @@
 }
 .iconCategory {
   margin: 0.5rem 0;
+}
+@media only screen and (max-width: 768px) {
+  .containerProducts {
+    margin: 0px;
+  }
+  .contentProducts {
+    overflow: scroll;
+    white-space: nowrap;
+    display: flex;
+    width: 100%;
+    margin: 0 10px;
+  }
+  .shadowRight {
+    width: 120px;
+    position: absolute;
+    right: 0;
+    background: linear-gradient(90deg, hsla(0, 0%, 100%, 0), #fff);
+    max-height: 60%;
+    height: 450px;
+  }
 }

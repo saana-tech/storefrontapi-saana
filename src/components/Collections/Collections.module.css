@@ -82,3 +82,14 @@
   justify-content: center;
   align-items: center;
 }
+@media only screen and (max-width: 768px) {
+  .containerCollection {
+    margin: 0 10px;
+  }
+  .cards {
+    overflow: scroll;
+    white-space: nowrap;
+    display: flex;
+    width: 100%;
+  }
+}

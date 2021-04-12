@@ -14,7 +14,6 @@ const Layout = ({ children }) => {
     <div>
       {showCart && <ModalCart />}
       <NavBar />
-
       <div className="container-principal">{children}</div>
       <Footer />
     </div>

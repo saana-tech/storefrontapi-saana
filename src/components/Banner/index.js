@@ -10,7 +10,7 @@ const Banner = () => {
         <div className={styles.information}>
           <h2>ENSURE ADVANCE</h2>
           <span>Mantente fuerte, mantente bien</span>
-          <span style={{ marginTop: 25 }}>
+          <span style={{ marginTop: 25 }} className={styles.subtitle}>
             OFERTA ENSURE ADVANCE X 237 PAGUE 6 LLEVE 8
           </span>
         </div>

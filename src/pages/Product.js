@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useRouter } from "next/router";
 import Rating from "react-rating";
+import { gql, useMutation } from "@apollo/client";
 
 import { StoreContext } from "../core";
 import {
@@ -9,8 +10,9 @@ import {
 } from "../core/global/actions";
 
 import styles from "../styles/Product.module.css";
-import { gql, useMutation } from "@apollo/client";
 import { CheckoutFragment } from "../graphql/gql";
+import util from "../util";
+import Products from "../components/Products";
 
 const Product = () => {
   const checkoutLineItemsAdd = gql`
@@ -42,14 +44,6 @@ const Product = () => {
   const { title, price, description, imageUrl, variantId } = productSelect;
 
   const handleAddProduct = async () => {
-    /*     const totalCart = [
-      ...cart,
-      Object.assign(productSelect, {
-        count: 1,
-      }),
-    ];
-    await handleAddCartDispatch(totalCart, globalDispatch); */
-
     try {
       const res = await checkoutItemsAdd({
         variables: {
@@ -58,7 +52,6 @@ const Product = () => {
         },
       });
       const dataCart = res.data.checkoutLineItemsAdd.checkout;
-      console.log("datacart ==>", dataCart);
       handleCreateCheckoutDispatch(dataCart, globalDispatch);
     } catch (error) {
       console.log("error add product =>", error);
@@ -66,7 +59,7 @@ const Product = () => {
     handleShowCartDispatch(!showCart, globalDispatch);
   };
   return (
-    <div className="container">
+    <>
       <div className={styles.headerProduct}>
         <div className={styles.col1}>
           <img src={imageUrl} alt={title} /> <img src={imageUrl} alt={title} />
@@ -81,7 +74,7 @@ const Product = () => {
             <Rating initialRating={5} />
             <span className={styles.visits}>232 Visitas</span>
           </div>
-          <h3 className={styles.price}>${price}</h3>
+          <h3 className={styles.price}>{util.formatCOP(price)}</h3>
 
           <button
             className={styles.btnAdd}
@@ -90,11 +83,13 @@ const Product = () => {
           >
             Agregar al carrito
           </button>
-          <h3 className={styles.titleInformation}>Información nutricional</h3>
+          <h3 className={styles.titleInformation}>Información nutritional</h3>
           <p>{description}</p>
         </div>
       </div>
-    </div>
+      <Products title={"También te puede interesar"} extend={false} />
+      <Products title={"Otros productos"} extend={false} />
+    </>
   );
 };
 

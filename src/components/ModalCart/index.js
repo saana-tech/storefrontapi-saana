@@ -53,7 +53,7 @@ const ModalCart = () => {
             <div className={styles.contItemPay}>
               <div>Impuestos</div>
               <div>{util.formatCOP(0)}</div>
-            </div>{" "}
+            </div>
             <div
               className={styles.contItemPay}
               style={{ border: 0, margin: "1rem 0" }}

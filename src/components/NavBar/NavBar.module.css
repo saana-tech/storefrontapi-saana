@@ -225,6 +225,7 @@
   }
   .iconBar {
     display: block;
+    margin-left: 0.8rem;
   }
   .containerCollection ul li a {
     cursor: pointer;
@@ -248,5 +249,8 @@
     position: absolute;
     right: 0;
     bottom: 10px;
+  }
+  .contCart {
+    margin: 0 0.5rem;
   }
 }
