@@ -15,3 +15,6 @@ body {
 ul {
   list-style: none;
 }
+button {
+  outline: none;
+}

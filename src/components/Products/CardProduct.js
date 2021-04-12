@@ -6,7 +6,7 @@ import util from "../../util";
 const CardProduct = ({ product, handleProduct }) => {
   const { imageUrl, title, price } = product;
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={() => handleProduct(product)}>
       <div className={styles.imgProduct}>
         <img src={imageUrl} alt={title} />
       </div>

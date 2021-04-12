@@ -3,7 +3,7 @@ import Head from "next/head";
 import PropTypes from "prop-types";
 
 const Seo = ({
-  title = "Saana farma",
+  title = "Saanafarma | salud para todos",
   description = "Saana farma productos farma al alcanza de la palma de tu mano",
   keywords = "saaan farma, farmacia, delivery,domicilio",
   author = "saana salud",
@@ -12,7 +12,6 @@ const Seo = ({
   return (
     <Head>
       <title>{title}</title>
-      <meta charset="utf-8" />
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta name="author" content={author} />

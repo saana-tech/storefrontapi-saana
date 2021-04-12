@@ -9,16 +9,25 @@ import ArrowRight from "../../../public/static/svg/ArrowRight";
 import CardProduct from "./CardProduct";
 import IconCategory from "../../../public/static/svg/IconCategory";
 
-const Products = ({ title = "Ofertas", extend = true }) => {
+const Products = ({
+  title = "Ofertas",
+  extend = true,
+  tag1 = "jarabe",
+  tag2 = "Oral",
+}) => {
   const router = useRouter();
   const collectionRef = useRef(null);
+  console.log("tag1 =>", tag1);
+  console.log("tag2 =>", tag2);
+
+  /*products(first: 10, query: "tag:${tag1} AND tag:${tag2}") { */
 
   const GET_PRODUCTS = gql`
-    query query {
+    query GetProductsByTag {
       shop {
         name
         description
-        products(first: 250) {
+        products(first: 10) {
           pageInfo {
             hasNextPage
             hasPreviousPage
@@ -126,6 +135,7 @@ const Products = ({ title = "Ofertas", extend = true }) => {
                   variantId,
                   title,
                   description,
+                  id,
                 }}
                 handleProduct={handleProduct}
               />
@@ -151,6 +161,8 @@ const Products = ({ title = "Ofertas", extend = true }) => {
 };
 Products.propTypes = {
   title: PropTypes.string,
+  tag1: PropTypes.string,
+  tag2: PropTypes.string,
   extend: PropTypes.bool,
 };
 

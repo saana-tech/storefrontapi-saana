@@ -41,6 +41,15 @@
   color: #314790;
   font-size: 20px;
 }
+/* RESPONSIVE */
+/* TABLET */
+@media only screen and (max-width: 1024px) {
+  .banner {
+    padding: 1rem;
+  }
+}
+
+/* PHONE */
 @media only screen and (max-width: 768px) {
   .banner {
     background-color: #fde7ef;

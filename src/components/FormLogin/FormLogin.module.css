@@ -1,0 +1,154 @@
+.containerFormContainer {
+  display: flex;
+  height: 100%;
+}
+.containerForm {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.banner {
+  flex: 1;
+  background-position: center;
+  background-size: cover;
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+}
+.form h2 {
+  color: #314790;
+  font-size: 40px;
+  margin-bottom: 0.5rem;
+}
+.form input {
+  background-color: #f6f6f6;
+  padding: 0.5rem 1rem;
+  border: 0;
+  margin: 0.5rem 0;
+  outline: none;
+  border-radius: 6px;
+}
+.form input::placeholder {
+  font-size: 16px;
+  color: #c1c3c4;
+}
+.link {
+  color: #314790;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+.link:hover {
+  color: #3b3b3b;
+}
+.buttons {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.buttons button {
+  background-color: #314790;
+  color: white;
+  border: 0;
+  height: 45px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 200px;
+  font-size: 17px;
+}
+.buttons button:hover {
+  background-color: white;
+  color: #314790;
+  border: 1px solid #314790;
+}
+.buttons button:last-child {
+  margin-top: 0.5rem;
+  background-color: white;
+  color: #314790;
+  border: 1px solid #314790;
+}
+.buttons button:last-child:hover {
+  background-color: #314790;
+  color: white;
+}
+.containerFormRegistre {
+  flex: 0.1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem;
+}
+.formRegistre {
+  display: flex;
+  flex-direction: column;
+}
+.formRegistre input {
+  background-color: #f6f6f6;
+  padding: 0.5rem 1rem;
+  border: 0;
+  margin: 0.5rem 0;
+  outline: none;
+  border-radius: 6px;
+}
+.formRegistre button {
+  background-color: #314790;
+  color: white;
+  border: 0;
+  height: 45px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 200px;
+  font-size: 17px;
+}
+.formRegistre button:hover {
+  background-color: white;
+  color: #314790;
+  border: 1px solid #314790;
+}
+.userName {
+  display: flex;
+}
+.userName input {
+  margin-right: 0.5rem;
+}
+
+.contentRegistre h2 {
+  color: #314790;
+  font-size: 40px;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+.check {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.check input {
+  margin-right: 1rem;
+}
+.buttonLeft {
+  background-color: white;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+.linkTyC {
+  color: #314790;
+  cursor: pointer;
+}

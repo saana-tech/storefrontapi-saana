@@ -20,6 +20,7 @@
 }
 .containerBody {
   display: flex;
+  width: 100%;
 }
 .col1 {
   flex: 1;
@@ -30,7 +31,8 @@
   flex-direction: column;
 }
 .col3 {
-  flex: 3;
+  flex: 1;
+  margin-left: 2rem;
 }
 .col1 h3 {
   margin: 0;
@@ -75,6 +77,18 @@
 .containerUl {
   display: flex;
 }
+/* RESPONSIVE */
+/* TABLET */
+@media only screen and (max-width: 1024px) {
+  .form button {
+    margin-top: 1rem;
+  }
+  .col3 {
+    margin: 0;
+  }
+}
+
+/* PHONE */
 @media only screen and (max-width: 768px) {
   .containerBody {
     flex-direction: column;

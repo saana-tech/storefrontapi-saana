@@ -2,11 +2,8 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
-import ArrowDown from "../../../public/static/svg/ArrowDown";
 import CartIcon from "../../../public/static/svg/CartIcon";
-import PinIcon from "../../../public/static/svg/PinIcon";
 import SearchIcon from "../../../public/static/svg/SearchIcon";
-import IconService from "../../../public/static/svg/IconService";
 import IconMenuBar from "../../../public/static/svg/IconMenuBar";
 
 import { LOGO } from "../../constants";
@@ -17,6 +14,10 @@ import {
   handleShowCartDispatch,
 } from "../../core/global/actions";
 import { CheckoutFragment } from "../../graphql/gql";
+import Modal from "../Modal";
+import FormLogin from "../FormLogin";
+import SelectServices from "./SelectServices";
+import SelectAddress from "./SelectAddress";
 
 const NavBar = () => {
   const { state, globalDispatch } = useContext(StoreContext);
@@ -54,6 +55,7 @@ const NavBar = () => {
     }
   `;
   const [valueSearch, setValueSearch] = useState("");
+  const [showModal, setShowModal] = useState(false);
   const { data = null, loading = false, error = null } = useQuery(
     GET_COLLECTIONS
   );
@@ -83,77 +85,74 @@ const NavBar = () => {
   }, [handleCreateCheckout]);
 
   return (
-    <div className={styles.containerNav}>
-      <header className={styles.header}>
-        <nav className={styles.navPrincipal}>
-          <div>
-            <img
-              className={styles.logoImage}
-              src={LOGO}
-              alt={"Saanafarma logo"}
-              onClick={() => router.push("/")}
-            />
-          </div>
-          <div className={styles.inputSearchProducts}>
-            <input
-              className={styles.inputSearch}
-              type={"text"}
-              value={valueSearch}
-              onChange={(e) => setValueSearch(e.target.value)}
-              placeholder={"Buscar producto"}
-            />
-            <div className={styles.iconSearch}>
-              <SearchIcon />
+    <>
+      <div className={styles.containerNav}>
+        <header className={styles.header}>
+          <nav className={styles.navPrincipal}>
+            <div>
+              <img
+                className={styles.logoImage}
+                src={LOGO}
+                alt={"Saanafarma logo"}
+                onClick={() => router.push("/")}
+              />
             </div>
-          </div>
-          <div className={styles.selectNav}>
-            <PinIcon />
-            Bogota
-            <ArrowDown />
-          </div>{" "}
-          <div className={(styles.selectNav, styles.servicesInput)}>
-            <IconService />
-            Más Servicios
-            <ArrowDown />
-          </div>
-          <div className={styles.btnSearchResponsive}>
-            <button>
-              <SearchIcon />
-            </button>
-          </div>
-          <div className={styles.contCart} onClick={() => handleOpenCart()}>
-            {checkout.lineItems.edges.length > 0 && (
-              <div className={styles.badge}>
-                {checkout.lineItems.edges.length}
+            <div className={styles.inputSearchProducts}>
+              <input
+                className={styles.inputSearch}
+                type={"text"}
+                value={valueSearch}
+                onChange={(e) => setValueSearch(e.target.value)}
+                placeholder={"Buscar producto"}
+              />
+              <div className={styles.iconSearch}>
+                <SearchIcon />
               </div>
-            )}
-            <CartIcon />
-          </div>
-          <div className={styles.iconBar}>
-            <IconMenuBar />
-          </div>
-          <div className={styles.buttonLogin}>
-            <button>Iniciar sesión</button>
-          </div>
-        </nav>
+            </div>
+            <SelectAddress />
+            <SelectServices />
+            <div className={styles.btnSearchResponsive}>
+              <button>
+                <SearchIcon />
+              </button>
+            </div>
+            <div className={styles.contCart} onClick={() => handleOpenCart()}>
+              {checkout.lineItems.edges.length > 0 && (
+                <div className={styles.badge}>
+                  {checkout.lineItems.edges.length}
+                </div>
+              )}
+              <CartIcon />
+            </div>
+            <div className={styles.iconBar}>
+              <IconMenuBar />
+            </div>
+            <div className={styles.buttonLogin}>
+              <button onClick={() => setShowModal(true)}>Iniciar sesión</button>
+            </div>
+          </nav>
 
-        {/* CATEGORY */}
-      </header>
-      <div className={styles.containerCollection}>
-        <ul>
-          {data &&
-            data?.collections?.edges.map(({ node }, index) => {
-              const { title } = node;
-              return (
-                <li key={index}>
-                  <a>{title}</a>
-                </li>
-              );
-            })}
-        </ul>
-        <div className={styles.shadow} />
+          {/* CATEGORY */}
+        </header>
+        <div className={styles.containerCollection}>
+          <ul>
+            {data &&
+              data?.collections?.edges.map(({ node }, index) => {
+                const { title } = node;
+                return (
+                  <li key={index}>
+                    <a>{title}</a>
+                  </li>
+                );
+              })}
+          </ul>
+          <div className={styles.shadow} />
+        </div>
       </div>
-    </div>
+      <Modal open={showModal} close={setShowModal}>
+        <FormLogin />
+      </Modal>
+    </>
   );
 };
 

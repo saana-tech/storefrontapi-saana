@@ -13,6 +13,9 @@ import styles from "../styles/Product.module.css";
 import { CheckoutFragment } from "../graphql/gql";
 import util from "../util";
 import Products from "../components/Products";
+import Seo from "../components/Seo";
+import IconStart from "../../public/static/svg/IconStart";
+import IconEmpty from "../../public/static/svg/IconEmpty";
 
 const Product = () => {
   const checkoutLineItemsAdd = gql`
@@ -41,7 +44,7 @@ const Product = () => {
   let { product } = router.query;
 
   const productSelect = product ? JSON.parse(product) : null;
-  const { title, price, description, imageUrl, variantId } = productSelect;
+  const { title, price, description, imageUrl, variantId, id } = productSelect;
 
   const handleAddProduct = async () => {
     try {
@@ -58,8 +61,10 @@ const Product = () => {
     }
     handleShowCartDispatch(!showCart, globalDispatch);
   };
+  console.log("id =>", id);
   return (
     <>
+      <Seo title={title} description={description} />
       <div className={styles.headerProduct}>
         <div className={styles.col1}>
           <img src={imageUrl} alt={title} /> <img src={imageUrl} alt={title} />
@@ -71,7 +76,11 @@ const Product = () => {
         <div className={styles.col3}>
           <h2 className={styles.title}>{title}</h2>
           <div className={styles.containerRating}>
-            <Rating initialRating={5} />
+            <Rating
+              initialRating={5}
+              fullSymbol={<IconStart />}
+              emptySymbol={<IconEmpty />}
+            />
             <span className={styles.visits}>232 Visitas</span>
           </div>
           <h3 className={styles.price}>{util.formatCOP(price)}</h3>

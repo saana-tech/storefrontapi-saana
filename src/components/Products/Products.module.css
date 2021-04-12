@@ -121,6 +121,26 @@
 .iconCategory {
   margin: 0.5rem 0;
 }
+/* RESPONSIVE */
+
+/*TABLET */
+@media only screen and (max-width: 1024px) {
+  .shadowRight {
+    width: 120px;
+    position: absolute;
+    right: 0;
+    background: linear-gradient(
+      90deg,
+      hsla(0, 0%, 100%, 0),
+      rgb(255, 255, 255)
+    );
+    max-height: 100%;
+    height: 450px;
+    z-index: 3;
+  }
+}
+
+/* PHONE */
 @media only screen and (max-width: 768px) {
   .containerProducts {
     margin: 0px;
