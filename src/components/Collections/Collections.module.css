@@ -1,39 +1,84 @@
+.containerCollection {
+  margin: 0 40px;
+}
 .containerCollection h2 {
-  width: 136px;
-  height: 33px;
-  margin: 40px 59px 40px 199px;
-  font-family: Poppins;
   font-size: 24px;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.46;
   letter-spacing: normal;
-  text-align: center;
   color: #111820;
 }
 .cards {
+  overflow: hidden;
+  white-space: nowrap;
   display: flex;
-  justify-content: center;
-  overflow-x: auto;
+  width: 100%;
 }
 .cards h4 {
-  font-family: Poppins;
   font-size: 14px;
   font-weight: 600;
-  font-stretch: normal;
-  font-style: normal;
   line-height: 1.5;
-  letter-spacing: normal;
-  text-align: left;
-  color: #111820;
-  margin: 0 0.5rem;
+  color: #fff;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  background-color: #11182094;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 .card {
-  width: 164px;
   height: 197px;
-  padding: 0 0 172px;
   border-radius: 5px;
-  background-color: #00f0b0;
   margin: 0 0.5rem;
+  width: 164px;
+  min-width: 164px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.card:hover {
+  transform: scale(0.9);
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.buttonArrow {
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgb(238, 238, 238);
+  border-radius: 25px;
+  background-color: transparent;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  outline: none;
+}
+.containerCard {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.shadowRight {
+  height: 100%;
+  width: 70px;
+  position: absolute;
+  right: 0;
+  background: linear-gradient(90deg, hsla(0, 0%, 100%, 0), #fff);
+}
+
+.containerLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

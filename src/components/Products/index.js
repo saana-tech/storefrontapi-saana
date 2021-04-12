@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useRef } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 
 import styles from "./Products.module.css";
+import ArrowLeft from "../../../public/static/svg/ArrowLeft";
+import ArrowRight from "../../../public/static/svg/ArrowRight";
+import CardProduct from "./CardProduct";
+import IconCategory from "../../../public/static/svg/IconCategory";
 
 const Products = ({ title = "Ofertas" }) => {
   const router = useRouter();
+  const collectionRef = useRef(null);
+
   const GET_PRODUCTS = gql`
     query query {
       shop {
@@ -75,14 +81,35 @@ const Products = ({ title = "Ofertas" }) => {
       query: { product: JSON.stringify(product) },
     });
   };
+  const handleDirection = (direction) => {
+    if (direction === "left") {
+      collectionRef ? (collectionRef.current.scrollLeft -= 200) : null;
+    } else {
+      collectionRef ? (collectionRef.current.scrollLeft += 200) : null;
+    }
+  };
 
   console.log("products =>", data);
   return (
     <div className={styles.containerProducts}>
       <div className={styles.header}>
         <h2>{title}</h2>
+        <div className={styles.buttonsDirections}>
+          <button
+            className={styles.buttonArrow}
+            onClick={() => handleDirection("left")}
+          >
+            <ArrowLeft />
+          </button>
+          <button
+            className={styles.buttonArrow}
+            onClick={() => handleDirection("right")}
+          >
+            <ArrowRight />
+          </button>
+        </div>
       </div>
-      <div className={styles.contentProducts}>
+      <div className={styles.contentProducts} ref={collectionRef}>
         {products &&
           products.map(({ node }) => {
             const { id, title, images, variants, description } = node;
@@ -91,31 +118,31 @@ const Products = ({ title = "Ofertas" }) => {
             let variantId = variants.edges[0].node.id;
 
             return (
-              <div key={id} className={styles.cardProduct}>
-                <img src={imageUrl} alt={title} />
-                <div className={styles.body}>
-                  <h4 className={styles.title}>{title}</h4>
-                  <p className={styles.description}>{description}</p>
-                  <h3 className={styles.price}>${price}</h3>
-                </div>
-                <button
-                  type={"button"}
-                  onClick={() =>
-                    handleProduct({
-                      imageUrl,
-                      price,
-                      title,
-                      id,
-                      description,
-                      variantId,
-                    })
-                  }
-                >
-                  AGREGAR
-                </button>
-              </div>
+              <CardProduct
+                key={id}
+                product={{
+                  imageUrl,
+                  price,
+                  variantId,
+                  title,
+                  description,
+                }}
+                handleProduct={handleProduct}
+              />
             );
           })}
+
+        <div className={styles.cardShowCategory}>
+          <div className={styles.iconCategory}>
+            <IconCategory />
+          </div>
+
+          <span>Quieres ver todos los productos de </span>
+          <h4>{title}</h4>
+          <button>Ver mas</button>
+        </div>
+
+        <div className={styles.shadowRight} />
       </div>
     </div>
   );

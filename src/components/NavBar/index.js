@@ -6,9 +6,11 @@ import ArrowDown from "../../../public/static/svg/ArrowDown";
 import CartIcon from "../../../public/static/svg/CartIcon";
 import PinIcon from "../../../public/static/svg/PinIcon";
 import SearchIcon from "../../../public/static/svg/SearchIcon";
+import IconService from "../../../public/static/svg/IconService";
+import IconMenuBar from "../../../public/static/svg/IconMenuBar";
+
 import { LOGO } from "../../constants";
 import styles from "./NavBar.module.css";
-import IconService from "../../../public/static/svg/IconService";
 import { StoreContext } from "../../core";
 import {
   handleCreateCheckoutDispatch,
@@ -81,7 +83,7 @@ const NavBar = () => {
   }, [handleCreateCheckout]);
 
   return (
-    <>
+    <div className={styles.containerNav}>
       <header className={styles.header}>
         <nav className={styles.navPrincipal}>
           <div>
@@ -109,10 +111,15 @@ const NavBar = () => {
             Bogota
             <ArrowDown />
           </div>{" "}
-          <div className={styles.selectNav}>
+          <div className={(styles.selectNav, styles.servicesInput)}>
             <IconService />
             Más Servicios
             <ArrowDown />
+          </div>
+          <div className={styles.btnSearchResponsive}>
+            <button>
+              <SearchIcon />
+            </button>
           </div>
           <div className={styles.contCart} onClick={() => handleOpenCart()}>
             {checkout.lineItems.edges.length > 0 && (
@@ -121,6 +128,9 @@ const NavBar = () => {
               </div>
             )}
             <CartIcon />
+          </div>
+          <div className={styles.iconBar}>
+            <IconMenuBar />
           </div>
           <div className={styles.buttonLogin}>
             <button>Iniciar sesión</button>
@@ -141,8 +151,9 @@ const NavBar = () => {
               );
             })}
         </ul>
+        <div className={styles.shadow} />
       </div>
-    </>
+    </div>
   );
 };
 

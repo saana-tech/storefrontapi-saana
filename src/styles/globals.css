@@ -9,3 +9,9 @@ body {
 * {
   box-sizing: border-box;
 }
+.container-principal {
+  margin-top: 9rem;
+}
+ul {
+  list-style: none;
+}

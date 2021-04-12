@@ -6,6 +6,7 @@ import { handleCreateCheckoutDispatch } from "../../core/global/actions";
 import { CheckoutFragment } from "../../graphql/gql";
 import styles from "./ModalCart.module.css";
 import { StoreContext } from "../../core";
+import util from "../../util";
 
 const ProductItem = ({ product = null }) => {
   const { state, globalDispatch } = useContext(StoreContext);
@@ -101,7 +102,7 @@ const ProductItem = ({ product = null }) => {
       </div>
       <div className={styles.contDescription}>
         <h4>{product.title}</h4>
-        <h3>${variant.price}</h3>
+        <h3>{util.formatCOP(variant.price)}</h3>
       </div>
       <div className={styles.handleItems}>
         <div className={styles.btnCounts}>
