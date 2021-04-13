@@ -18,6 +18,8 @@ import Modal from "../Modal";
 import FormLogin from "../FormLogin";
 import SelectServices from "./SelectServices";
 import SelectAddress from "./SelectAddress";
+import MenuResponsive from "../MenuResponsive";
+import Search from "./Search";
 
 const NavBar = () => {
   const { state, globalDispatch } = useContext(StoreContext);
@@ -54,8 +56,8 @@ const NavBar = () => {
       }
     }
   `;
-  const [valueSearch, setValueSearch] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [showNav, setShowNav] = useState(false);
   const { data = null, loading = false, error = null } = useQuery(
     GET_COLLECTIONS
   );
@@ -84,6 +86,9 @@ const NavBar = () => {
     handleCreateCheckout();
   }, [handleCreateCheckout]);
 
+  const closeMenuResponsive = () => {
+    setShowNav(false);
+  };
   return (
     <>
       <div className={styles.containerNav}>
@@ -97,18 +102,7 @@ const NavBar = () => {
                 onClick={() => router.push("/")}
               />
             </div>
-            <div className={styles.inputSearchProducts}>
-              <input
-                className={styles.inputSearch}
-                type={"text"}
-                value={valueSearch}
-                onChange={(e) => setValueSearch(e.target.value)}
-                placeholder={"Buscar producto"}
-              />
-              <div className={styles.iconSearch}>
-                <SearchIcon />
-              </div>
-            </div>
+            <Search />
             <SelectAddress />
             <SelectServices />
             <div className={styles.btnSearchResponsive}>
@@ -124,7 +118,7 @@ const NavBar = () => {
               )}
               <CartIcon />
             </div>
-            <div className={styles.iconBar}>
+            <div className={styles.iconBar} onClick={() => setShowNav(true)}>
               <IconMenuBar />
             </div>
             <div className={styles.buttonLogin}>
@@ -152,6 +146,11 @@ const NavBar = () => {
       <Modal open={showModal} close={setShowModal}>
         <FormLogin />
       </Modal>
+      <MenuResponsive
+        open={showNav}
+        close={closeMenuResponsive}
+        openModalRegister={setShowModal}
+      />
     </>
   );
 };

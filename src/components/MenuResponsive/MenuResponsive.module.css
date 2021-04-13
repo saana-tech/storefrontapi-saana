@@ -1,0 +1,104 @@
+.backdrop {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.425);
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.modal {
+  background-color: white;
+  position: fixed;
+  height: 100%;
+  max-width: 80vw;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 308px;
+}
+.header {
+  background-color: #314790;
+  flex: 1;
+  padding-bottom: 0.5rem;
+  padding: 1rem;
+}
+.body {
+  flex: 3;
+}
+.imgProfile img {
+  width: 80px;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+.containerButtons {
+  display: flex;
+  margin-top: 1rem;
+}
+.containerButtons button {
+  width: 156px;
+  height: 40px;
+  font-size: 16px;
+  color: #191919;
+  border: 0;
+  background-color: white;
+  border-radius: 5px;
+  margin: 0 0.4rem;
+}
+.header h4 {
+  margin-top: 0.1rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+.header span {
+  margin-top: 0.1rem;
+  margin-bottom: 0.5rem;
+  font-weight: lighter;
+}
+.body {
+  padding: 1rem;
+  font-size: 16px;
+}
+.link {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.link a {
+  margin-left: 0.5rem;
+}
+.separator {
+  border-bottom: 1px solid #cecece;
+  margin: 1rem 0;
+}
+.subMenu ul {
+  background-color: #cecece;
+  padding: 0.5rem;
+  border: 5px;
+  width: 300px;
+  margin-left: 2rem;
+  border: 10px;
+  height: 80px;
+  border-radius: 5px;
+}
+.subMenu ul li {
+  margin-bottom: 1rem;
+}
+.iconClose {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 1000000;
+}

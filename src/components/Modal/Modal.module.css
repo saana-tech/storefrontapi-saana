@@ -2,7 +2,7 @@
   background-color: rgba(0, 0, 0, 0.349);
   height: 100%;
   width: 100%;
-  z-index: 999;
+  z-index: 9999999999;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -34,4 +34,10 @@
   align-items: center;
   background-color: transparent;
   outline: none;
+}
+@media only screen and (max-width: 767px) {
+  .modal {
+    max-width: 100%;
+    margin: 0 0.5rem;
+  }
 }
