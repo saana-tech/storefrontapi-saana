@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useRouter } from "next/router";
 import Rating from "react-rating";
-import { gql, useMutation } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 
 import { StoreContext } from "../core";
 import {
@@ -17,7 +17,7 @@ import Seo from "../components/Seo";
 import IconStart from "../../public/static/svg/IconStart";
 import IconEmpty from "../../public/static/svg/IconEmpty";
 
-const Product = () => {
+const ProductSearch = () => {
   const checkoutLineItemsAdd = gql`
     mutation checkoutLineItemsAdd(
       $checkoutId: ID!
@@ -35,23 +35,60 @@ const Product = () => {
     }
     ${CheckoutFragment}
   `;
+
   const [checkoutItemsAdd] = useMutation(checkoutLineItemsAdd);
+
   const router = useRouter();
 
   const { state, globalDispatch } = useContext(StoreContext);
   const { globalState } = state;
   const { checkout, showCart } = globalState;
-  let { product, idProduct } = router.query;
+  let { product } = router.query;
 
   const productSelect = product ? JSON.parse(product) : null;
   const { title, price, description, imageUrl, variantId, id } = productSelect;
+
+  const GET_PRODUCTS_BY_ID = gql`
+    query getProducts($ids: [ID!]!) {
+      nodes(ids: $ids) {
+        ... on Product {
+          title
+          handle
+          id
+          images(first: 1) {
+            edges {
+              node {
+                originalSrc
+                altText
+              }
+            }
+          }
+          variants(first: 1) {
+            edges {
+              node {
+                price
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+  const { data = null, loading = false, error = null } = useQuery(
+    GET_PRODUCTS_BY_ID
+  );
+  console.log("productSelect =>", productSelect);
+  console.log("ProductById =>", data);
 
   const handleAddProduct = async () => {
     try {
       const res = await checkoutItemsAdd({
         variables: {
           checkoutId: checkout.id,
-          lineItems: [{ variantId, quantity: parseInt(1, 10) }],
+          lineItems: [
+            { variantId: "39517385883822=", quantity: parseInt(1, 10) },
+          ],
         },
       });
       const dataCart = res.data.checkoutLineItemsAdd.checkout;
@@ -62,8 +99,6 @@ const Product = () => {
     handleShowCartDispatch(!showCart, globalDispatch);
   };
   console.log("id =>", id);
-  console.log("idProduct =>", idProduct);
-
   return (
     <>
       <Seo title={title} description={description} />
@@ -104,4 +139,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default ProductSearch;

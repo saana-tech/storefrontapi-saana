@@ -87,7 +87,7 @@ const Products = ({
   const handleProduct = (product) => {
     router.push({
       pathname: "/Product",
-      query: { product: JSON.stringify(product) },
+      query: { product: JSON.stringify(product), idProduct: product.id },
     });
   };
   const handleDirection = (direction) => {
