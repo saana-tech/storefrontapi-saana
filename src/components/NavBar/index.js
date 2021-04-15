@@ -111,11 +111,13 @@ const NavBar = () => {
               </button>
             </div>
             <div className={styles.contCart} onClick={() => handleOpenCart()}>
-              {checkout.lineItems.edges.length > 0 && (
-                <div className={styles.badge}>
-                  {checkout.lineItems.edges.length}
-                </div>
-              )}
+              {checkout &&
+                checkout.lineItems &&
+                checkout.lineItems.edges.length > 0 && (
+                  <div className={styles.badge}>
+                    {checkout.lineItems.edges.length}
+                  </div>
+                )}
               <CartIcon />
             </div>
             <div className={styles.iconBar} onClick={() => setShowNav(true)}>

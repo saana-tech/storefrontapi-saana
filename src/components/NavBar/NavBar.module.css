@@ -336,6 +336,16 @@
 .priceSearch {
   font-size: 0.8rem;
 }
+.iconClose {
+  position: absolute;
+  right: 35px;
+  top: 10px;
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+.iconClose svg {
+  transform: scale(0.8);
+}
 /* RESPONSIVE DESIGN */
 /* TABLET */
 @media only screen and (max-width: 1024px) {

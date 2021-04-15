@@ -31,8 +31,8 @@ const ModalCart = () => {
         <div className={styles.body}>
           {checkout &&
           checkout.lineItems &&
-          checkout.lineItems.edges.length > 0 ? (
-            checkout.lineItems.edges.map(({ node }) => {
+          checkout.lineItems?.edges?.length > 0 ? (
+            checkout.lineItems?.edges.map(({ node }) => {
               console.log("item =>", node);
               return <ProductItem key={node.id} product={node} />;
             })
@@ -44,7 +44,7 @@ const ModalCart = () => {
             </div>
           )}
         </div>
-        {checkout.lineItems.edges.length > 0 && (
+        {checkout && checkout.lineItems && checkout.lineItems.edges.length > 0 && (
           <div className={styles.footer}>
             <div className={styles.contItemPay}>
               <div>Subtotal</div>

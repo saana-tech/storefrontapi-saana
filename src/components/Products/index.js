@@ -17,8 +17,6 @@ const Products = ({
 }) => {
   const router = useRouter();
   const collectionRef = useRef(null);
-  console.log("tag1 =>", tag1);
-  console.log("tag2 =>", tag2);
 
   /*products(first: 10, query: "tag:${tag1} AND tag:${tag2}") { */
 
@@ -98,7 +96,6 @@ const Products = ({
     }
   };
 
-  console.log("products =>", data);
   return (
     <div className={styles.containerProducts}>
       <div className={styles.header}>

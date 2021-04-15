@@ -53,16 +53,17 @@ const ProductItem = ({ product = null }) => {
 
   const updateProductsCart = async (quantity) => {
     try {
-      console.log("product.id =>", product.id);
-      const res = await checkoutLineItemsUpdate({
-        variables: {
-          checkoutId: checkout.id,
-          lineItems: [{ id: product.id, quantity: parseInt(quantity, 10) }],
-        },
-      });
+      if (product && product.id) {
+        const res = await checkoutLineItemsUpdate({
+          variables: {
+            checkoutId: checkout.id,
+            lineItems: [{ id: product.id, quantity: parseInt(quantity, 10) }],
+          },
+        });
 
-      const dataCart = res.data.checkoutLineItemsUpdate.checkout;
-      handleCreateCheckoutDispatch(dataCart, globalDispatch);
+        const dataCart = res.data.checkoutLineItemsUpdate.checkout;
+        handleCreateCheckoutDispatch(dataCart, globalDispatch);
+      }
     } catch (error) {
       console.log("error  add product=>", error);
     }
@@ -70,15 +71,16 @@ const ProductItem = ({ product = null }) => {
 
   const removeLineItemInCart = async () => {
     try {
-      const res = await checkoutProductRemove({
-        variables: {
-          checkoutId: checkout.id,
-          lineItemIds: [product.id],
-        },
-      });
-      console.log("res =>", res);
-      const dataCart = res.data.checkoutLineItemsRemove.checkout;
-      handleCreateCheckoutDispatch(dataCart, globalDispatch);
+      if (product) {
+        const res = await checkoutProductRemove({
+          variables: {
+            checkoutId: checkout.id,
+            lineItemIds: [product.id],
+          },
+        });
+        const dataCart = res.data.checkoutLineItemsRemove.checkout;
+        handleCreateCheckoutDispatch(dataCart, globalDispatch);
+      }
     } catch (error) {
       console.log("error =>", error);
     }
@@ -87,11 +89,12 @@ const ProductItem = ({ product = null }) => {
   const handleAddCount = () => {
     updateProductsCart(quantity + 1);
   };
-  const handleRemoveCount = () => {
+  const handleRemoveCount = async () => {
     if (quantity === 1) {
-      removeLineItemInCart();
+      await removeLineItemInCart();
       return;
     }
+    console.log("si coge");
     updateProductsCart(quantity - 1);
   };
 
