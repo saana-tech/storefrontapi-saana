@@ -346,6 +346,59 @@
 .iconClose svg {
   transform: scale(0.8);
 }
+.modalSearch {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  background-color: white;
+}
+.modalInputSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+}
+.modalInputSearch input {
+  background-color: #f8f8f8;
+  border: 0;
+  border-radius: 7px;
+  height: 50px;
+  width: 90%;
+  padding: 0 1rem;
+  outline: none;
+}
+.iconCloseModalSearch {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.productResponsive {
+  display: flex;
+  margin: 0 1rem;
+  margin-top: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.082);
+  align-items: center;
+}
+.productResponsive:last-child {
+  border-bottom: 0;
+}
+.productResponsive img {
+  width: 50px;
+  height: auto;
+  margin-right: 0.5rem;
+}
+.informationResponsiveProduct {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: auto;
+}
+.smallImg {
+  flex: 1;
+}
+
 /* RESPONSIVE DESIGN */
 /* TABLET */
 @media only screen and (max-width: 1024px) {
@@ -418,6 +471,9 @@
   }
   .contCart {
     margin: 0 0.5rem;
+  }
+  .inputSearch {
+    padding-right: 45px;
   }
 }
 

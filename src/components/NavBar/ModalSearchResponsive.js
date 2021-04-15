@@ -1,28 +1,14 @@
 import React, { useState } from "react";
 import { useQuery, gql } from "@apollo/client";
+import { useRouter } from "next/router";
+import PropTypes from "prop-types";
 
-import SearchIcon from "../../../public/static/svg/SearchIcon";
 import CloseIcon from "../../../public/static/svg/CloseIcon";
 import styles from "./NavBar.module.css";
 import util from "../../util";
-import { useRouter } from "next/router";
-
-const Search = () => {
+const ModalSearchResponsive = ({ open, close }) => {
   const router = useRouter();
   const [valueSearch, setValueSearch] = useState("");
-
-  const clearInput = () => {
-    setValueSearch("");
-  };
-
-  const handleProduct = (product) => {
-    clearInput();
-    router.push({
-      pathname: "/Product",
-      query: { product: JSON.stringify(product) },
-    });
-  };
-
   const QUERY_PRODUCT = gql`  {
   products(query: "title: ${valueSearch}", first: 10) {
     edges {
@@ -53,31 +39,40 @@ const Search = () => {
   const { data = null, loading = false, error = null } = useQuery(
     QUERY_PRODUCT
   );
-
   console.log("loading =>", loading);
   console.log("error =>", error);
+  const clearInput = () => {
+    setValueSearch("");
+  };
+
+  const handleProduct = (product) => {
+    close(false);
+    clearInput();
+    router.push({
+      pathname: "/Product",
+      query: { product: JSON.stringify(product) },
+    });
+  };
+
   return (
-    <div className={styles.containerSearch}>
-      <div className={styles.inputSearchProducts}>
-        <input
-          className={styles.inputSearch}
-          type={"text"}
-          value={valueSearch}
-          onChange={(e) => setValueSearch(e.target.value)}
-          placeholder={"Escribe el nombre de tu producto"}
-        />
-        <div className={styles.iconSearch}>
-          <SearchIcon />
-        </div>
-      </div>
-      {!loading && valueSearch.length > 0 && data?.products?.edges.length > 0 && (
-        <>
-          <div className={styles.iconClose} onClick={() => clearInput()}>
+    <>
+      {open && (
+        <div className={styles.modalSearch}>
+          <div
+            className={styles.iconCloseModalSearch}
+            onClick={() => close(false)}
+          >
             <CloseIcon />
           </div>
-          <div className={styles.contResult}>
-            {data?.products?.edges &&
-              data?.products?.edges.map(({ node }, index) => {
+          <div className={styles.modalInputSearch}>
+            <input
+              placeholder={"Escribe el nombre de tu producto"}
+              onChange={(e) => setValueSearch(e.target.value)}
+            />
+          </div>
+          {valueSearch.length > 0 && (
+            <div>
+              {data?.products?.edges.map(({ node }, index) => {
                 const { description, title, images, variants } = node;
                 const imageUrl = images.edges[0].node.src;
                 const price = variants.edges[0].node.price;
@@ -85,7 +80,7 @@ const Search = () => {
                 return (
                   <div
                     key={index}
-                    className={styles.productSearch}
+                    className={styles.productResponsive}
                     onClick={() =>
                       handleProduct({
                         imageUrl,
@@ -97,23 +92,25 @@ const Search = () => {
                       })
                     }
                   >
-                    <div className={styles.contImgSearch}>
+                    <div className={styles.smallImg}>
                       <img src={imageUrl} alt={title} />
                     </div>
-                    <div className={styles.informationSearch}>
-                      <span className={styles.titleSearch}>{title}</span>
-                      <span className={styles.priceSearch}>
-                        {util.formatCOP(price)}
-                      </span>
+                    <div className={styles.informationResponsiveProduct}>
+                      <span>{title}</span>
+                      <span>{util.formatCOP(price)}</span>
                     </div>
                   </div>
                 );
               })}
-          </div>
-        </>
+            </div>
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 };
-
-export default Search;
+ModalSearchResponsive.propTypes = {
+  close: PropTypes.func,
+  open: PropTypes.bool,
+};
+export default ModalSearchResponsive;

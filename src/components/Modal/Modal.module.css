@@ -35,6 +35,13 @@
   background-color: transparent;
   outline: none;
 }
+@media only screen and (max-width: 1024px) {
+  .modal {
+    width: 100%;
+    margin: 0 1rem;
+  }
+}
+
 @media only screen and (max-width: 767px) {
   .modal {
     max-width: 100%;

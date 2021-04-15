@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Rating from "react-rating";
 import { gql, useMutation } from "@apollo/client";
@@ -41,17 +41,18 @@ const Product = () => {
   const { state, globalDispatch } = useContext(StoreContext);
   const { globalState } = state;
   const { checkout, showCart } = globalState;
-  let { product } = router.query;
 
-  const productSelect = product ? JSON.parse(product) : null;
-  const { title, price, description, imageUrl, variantId } = productSelect;
+  const [productSelect, setProductSelect] = useState(null);
+  let { product } = router.query;
 
   const handleAddProduct = async () => {
     try {
       const res = await checkoutItemsAdd({
         variables: {
           checkoutId: checkout.id,
-          lineItems: [{ variantId, quantity: parseInt(1, 10) }],
+          lineItems: [
+            { variantId: productSelect.variantId, quantity: parseInt(1, 10) },
+          ],
         },
       });
       const dataCart = res.data.checkoutLineItemsAdd.checkout;
@@ -61,43 +62,59 @@ const Product = () => {
     }
     handleShowCartDispatch(!showCart, globalDispatch);
   };
-  console.log("variantId =>", variantId);
+
+  useEffect(() => {
+    const productFilter = product ? JSON.parse(product) : null;
+    setProductSelect(productFilter);
+  }, [router.query]);
   return (
     <>
-      <Seo title={title} description={description} />
-      <div className={styles.headerProduct}>
-        <div className={styles.col1}>
-          <img src={imageUrl} alt={title} /> <img src={imageUrl} alt={title} />
-          <img src={imageUrl} alt={title} /> <img src={imageUrl} alt={title} />
-        </div>
-        <div className={styles.col2}>
-          <img src={imageUrl} alt={title} />
-        </div>
-        <div className={styles.col3}>
-          <h2 className={styles.title}>{title}</h2>
-          <div className={styles.containerRating}>
-            <Rating
-              initialRating={5}
-              fullSymbol={<IconStart />}
-              emptySymbol={<IconEmpty />}
-            />
-            <span className={styles.visits}>232 Visitas</span>
-          </div>
-          <h3 className={styles.price}>{util.formatCOP(price)}</h3>
+      {productSelect && (
+        <>
+          <Seo
+            title={productSelect.title}
+            description={productSelect.description}
+          />
+          <div className={styles.headerProduct}>
+            <div className={styles.col1}>
+              <img src={productSelect.imageUrl} alt={productSelect.title} />{" "}
+              <img src={productSelect.imageUrl} alt={productSelect.title} />{" "}
+              <img src={productSelect.imageUrl} alt={productSelect.title} />{" "}
+            </div>
+            <div className={styles.col2}>
+              <img src={productSelect.imageUrl} alt={productSelect.title} />
+            </div>
+            <div className={styles.col3}>
+              <h2 className={styles.title}>{productSelect.title}</h2>
+              <div className={styles.containerRating}>
+                <Rating
+                  initialRating={5}
+                  fullSymbol={<IconStart />}
+                  emptySymbol={<IconEmpty />}
+                />
+                <span className={styles.visits}>232 Visitas</span>
+              </div>
+              <h3 className={styles.price}>
+                {util.formatCOP(productSelect.price)}
+              </h3>
 
-          <button
-            className={styles.btnAdd}
-            type={"button"}
-            onClick={() => handleAddProduct()}
-          >
-            Agregar al carrito
-          </button>
-          <h3 className={styles.titleInformation}>Información nutritional</h3>
-          <p>{description}</p>
-        </div>
-      </div>
-      <Products title={"También te puede interesar"} extend={false} />
-      <Products title={"Otros productos"} extend={false} />
+              <button
+                className={styles.btnAdd}
+                type={"button"}
+                onClick={() => handleAddProduct()}
+              >
+                Agregar al carrito
+              </button>
+              <h3 className={styles.titleInformation}>
+                Información nutritional
+              </h3>
+              <p>{productSelect.description}</p>
+            </div>
+          </div>
+          <Products title={"También te puede interesar"} extend={false} />
+          <Products title={"Otros productos"} extend={false} />
+        </>
+      )}
     </>
   );
 };

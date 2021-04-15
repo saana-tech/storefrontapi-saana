@@ -152,6 +152,12 @@
   color: #314790;
   cursor: pointer;
 }
+@media only screen and (max-width: 1024px) {
+  .userName {
+    flex-direction: column;
+  }
+}
+
 @media only screen and (max-width: 767px) {
   .banner {
     display: none;

@@ -20,6 +20,7 @@ import SelectServices from "./SelectServices";
 import SelectAddress from "./SelectAddress";
 import MenuResponsive from "../MenuResponsive";
 import Search from "./Search";
+import ModalSearchResponsive from "./ModalSearchResponsive";
 
 const NavBar = () => {
   const { state, globalDispatch } = useContext(StoreContext);
@@ -58,6 +59,7 @@ const NavBar = () => {
   `;
   const [showModal, setShowModal] = useState(false);
   const [showNav, setShowNav] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const { data = null, loading = false, error = null } = useQuery(
     GET_COLLECTIONS
   );
@@ -106,7 +108,7 @@ const NavBar = () => {
             <SelectAddress />
             <SelectServices />
             <div className={styles.btnSearchResponsive}>
-              <button>
+              <button onClick={() => setShowSearch(true)}>
                 <SearchIcon />
               </button>
             </div>
@@ -153,6 +155,7 @@ const NavBar = () => {
         close={closeMenuResponsive}
         openModalRegister={setShowModal}
       />
+      <ModalSearchResponsive open={showSearch} close={setShowSearch} />
     </>
   );
 };
