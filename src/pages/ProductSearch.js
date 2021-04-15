@@ -18,6 +18,18 @@ import IconStart from "../../public/static/svg/IconStart";
 import IconEmpty from "../../public/static/svg/IconEmpty";
 
 const ProductSearch = () => {
+  const QUERY_PRODUCT = gql`
+    {
+      products(id: "gid://shopify/Product/6611955843246") {
+        description
+        id
+        storefrontId
+      }
+    }
+  `;
+  const { data = null, loading = false, error = null } = useQuery(
+    QUERY_PRODUCT
+  );
   const checkoutLineItemsAdd = gql`
     mutation checkoutLineItemsAdd(
       $checkoutId: ID!
@@ -48,37 +60,6 @@ const ProductSearch = () => {
   const productSelect = product ? JSON.parse(product) : null;
   const { title, price, description, imageUrl, variantId, id } = productSelect;
 
-  const GET_PRODUCTS_BY_ID = gql`
-    query getProducts($ids: [ID!]!) {
-      nodes(ids: $ids) {
-        ... on Product {
-          title
-          handle
-          id
-          images(first: 1) {
-            edges {
-              node {
-                originalSrc
-                altText
-              }
-            }
-          }
-          variants(first: 1) {
-            edges {
-              node {
-                price
-                id
-              }
-            }
-          }
-        }
-      }
-    }
-  `;
-  const { data = null, loading = false, error = null } = useQuery(
-    GET_PRODUCTS_BY_ID
-  );
-  console.log("productSelect =>", productSelect);
   console.log("ProductById =>", data);
 
   const handleAddProduct = async () => {
@@ -98,7 +79,6 @@ const ProductSearch = () => {
     }
     handleShowCartDispatch(!showCart, globalDispatch);
   };
-  console.log("id =>", id);
   return (
     <>
       <Seo title={title} description={description} />

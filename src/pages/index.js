@@ -1,4 +1,5 @@
 import React from "react";
+import { useQuery, gql } from "@apollo/client";
 
 import Banner from "../components/Banner";
 import Collections from "../components/Collections";
@@ -7,6 +8,19 @@ import Section from "../components/Section";
 import Seo from "../components/Seo";
 
 export default function Home() {
+  const QUERY_PRODUCT = gql`
+    query {
+      product(id: "gid://shopify/Product/6611955843246") {
+        description
+        id
+        storefrontId
+      }
+    }
+  `;
+  const { data = null, loading = false, error = null } = useQuery(
+    QUERY_PRODUCT
+  );
+  console.log("product by id =>", data);
   return (
     <div>
       <Seo />

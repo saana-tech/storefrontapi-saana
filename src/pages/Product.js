@@ -41,10 +41,10 @@ const Product = () => {
   const { state, globalDispatch } = useContext(StoreContext);
   const { globalState } = state;
   const { checkout, showCart } = globalState;
-  let { product, idProduct } = router.query;
+  let { product } = router.query;
 
   const productSelect = product ? JSON.parse(product) : null;
-  const { title, price, description, imageUrl, variantId, id } = productSelect;
+  const { title, price, description, imageUrl, variantId } = productSelect;
 
   const handleAddProduct = async () => {
     try {
@@ -61,9 +61,7 @@ const Product = () => {
     }
     handleShowCartDispatch(!showCart, globalDispatch);
   };
-  console.log("id =>", id);
-  console.log("idProduct =>", idProduct);
-
+  console.log("variantId =>", variantId);
   return (
     <>
       <Seo title={title} description={description} />
