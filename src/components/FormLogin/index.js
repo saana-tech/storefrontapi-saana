@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react";
-import { gql, useMutation } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import styles from "./FormLogin.module.css";
 import ArrowLeft from "../../../public/static/svg/ArrowLeft";
 import { handleCreateCheckoutDispatch } from "../../core/global/actions";
-import { CheckoutFragment } from "../../graphql/gql";
+import { checkoutCustomerAssociate, CheckoutFragment } from "../../graphql/gql";
 import { StoreContext } from "../../core";
+
+//Handle login
 
 const FormLogin = () => {
   const { state, globalDispatch } = useContext(StoreContext);
@@ -19,6 +21,8 @@ const FormLogin = () => {
   };
   const [values, setValues] = useState(INITIAL_VALUES);
   const [modeRegister, setModeRegister] = useState(false);
+
+  console.log("checkout login=>", checkout);
   const IMG_LOGIN =
     "https://cdn.shopify.com/s/files/1/0539/3920/8366/files/image_login.jpg?v=1617368606";
   const IMG_REGISTER =
@@ -56,26 +60,6 @@ const FormLogin = () => {
       }
     }
   `;
-  const checkoutCustomerAssociate = gql`
-    mutation checkoutCustomerAssociate(
-      $checkoutId: ID!
-      $customerAccessToken: String!
-    ) {
-      checkoutCustomerAssociate(
-        checkoutId: $checkoutId
-        customerAccessToken: $customerAccessToken
-      ) {
-        userErrors {
-          field
-          message
-        }
-        checkout {
-          ...CheckoutFragment
-        }
-      }
-    }
-    ${CheckoutFragment}
-  `;
 
   const [customerCreate] = useMutation(customerCreateSchema);
   const [createTokenCustomer] = useMutation(customerAccessTokenCreate);
@@ -91,7 +75,9 @@ const FormLogin = () => {
     };
 
     try {
-      await customerCreate({ variables: { input } });
+      const { data } = await customerCreate({ variables: { input } });
+
+      console.log("user =>", data);
       await handleLogin();
     } catch (error) {
       console.log("error createCustomer =>", error);
@@ -105,11 +91,14 @@ const FormLogin = () => {
         password: values.password,
       };
       const { data } = await createTokenCustomer({ variables: { input } });
+      console.log("data login customer =>", data);
       const token =
         data.customerAccessTokenCreate.customerAccessToken.accessToken;
 
       const expireTime =
         data.customerAccessTokenCreate.customerAccessToken.expiresAt;
+      localStorage.setItem("token", token);
+      localStorage.setItem("expireTime", expireTime);
 
       const res = await checkoutCustomer({
         variables: {
@@ -118,12 +107,10 @@ const FormLogin = () => {
         },
       });
 
-      const dataCart = res.data.checkoutCustomer.checkout;
-
-      console.log("data sociaty =>", res.data);
-      console.log("expireTime =>", expireTime);
-      console.log("token =>", token);
+      const dataCart = res.data.checkoutCustomerAssociate.checkout;
       handleCreateCheckoutDispatch(dataCart, globalDispatch);
+
+      console.log("token ===>", token);
     } catch (error) {
       console.log("error handleLogin", error);
     }

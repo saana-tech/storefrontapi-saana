@@ -26,3 +26,37 @@ export const CheckoutFragment = gql`
     }
   }
 `;
+export const createCheckoutSchema = gql`
+  mutation checkoutCreate($input: CheckoutCreateInput!) {
+    checkoutCreate(input: $input) {
+      userErrors {
+        message
+        field
+      }
+      checkout {
+        ...CheckoutFragment
+      }
+    }
+  }
+  ${CheckoutFragment}
+`;
+export const checkoutCustomerAssociate = gql`
+  mutation checkoutCustomerAssociate(
+    $checkoutId: ID!
+    $customerAccessToken: String!
+  ) {
+    checkoutCustomerAssociate(
+      checkoutId: $checkoutId
+      customerAccessToken: $customerAccessToken
+    ) {
+      userErrors {
+        field
+        message
+      }
+      checkout {
+        ...CheckoutFragment
+      }
+    }
+  }
+  ${CheckoutFragment}
+`;

@@ -2,18 +2,20 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
+import { StoreContext } from "../../core";
+import { LOGO } from "../../constants";
+import styles from "./NavBar.module.css";
+
 import CartIcon from "../../../public/static/svg/CartIcon";
 import SearchIcon from "../../../public/static/svg/SearchIcon";
 import IconMenuBar from "../../../public/static/svg/IconMenuBar";
+import IconUser from "../../../public/static/svg/IconUser";
 
-import { LOGO } from "../../constants";
-import styles from "./NavBar.module.css";
-import { StoreContext } from "../../core";
 import {
   handleCreateCheckoutDispatch,
   handleShowCartDispatch,
 } from "../../core/global/actions";
-import { CheckoutFragment } from "../../graphql/gql";
+import { createCheckoutSchema } from "../../graphql/gql";
 import Modal from "../Modal";
 import FormLogin from "../FormLogin";
 import SelectServices from "./SelectServices";
@@ -24,25 +26,10 @@ import ModalSearchResponsive from "./ModalSearchResponsive";
 
 const NavBar = () => {
   const { state, globalDispatch } = useContext(StoreContext);
-  const createCheckoutSchema = gql`
-    mutation checkoutCreate($input: CheckoutCreateInput!) {
-      checkoutCreate(input: $input) {
-        userErrors {
-          message
-          field
-        }
-        checkout {
-          ...CheckoutFragment
-        }
-      }
-    }
-    ${CheckoutFragment}
-  `;
-
   const [createCheckout] = useMutation(createCheckoutSchema);
 
   const { globalState } = state;
-  const { showCart, checkout } = globalState;
+  const { showCart, checkout, user } = globalState;
 
   const router = useRouter();
   const GET_COLLECTIONS = gql`
@@ -63,8 +50,7 @@ const NavBar = () => {
   const { data = null, loading = false, error = null } = useQuery(
     GET_COLLECTIONS
   );
-  console.log("loading => ", loading);
-  console.log("error => ", error);
+
   const handleOpenCart = () => {
     handleShowCartDispatch(!showCart, globalDispatch);
   };
@@ -91,6 +77,8 @@ const NavBar = () => {
   const closeMenuResponsive = () => {
     setShowNav(false);
   };
+
+  console.log("user =>", user);
   return (
     <>
       <div className={styles.containerNav}>
@@ -126,7 +114,15 @@ const NavBar = () => {
               <IconMenuBar />
             </div>
             <div className={styles.buttonLogin}>
-              <button onClick={() => setShowModal(true)}>Iniciar sesión</button>
+              {user ? (
+                <span onClick={() => router.push("/Profile")}>
+                  <IconUser /> {user.displayName}
+                </span>
+              ) : (
+                <button onClick={() => setShowModal(true)}>
+                  Iniciar sesión
+                </button>
+              )}
             </div>
           </nav>
 

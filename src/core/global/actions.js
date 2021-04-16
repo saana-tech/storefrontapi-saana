@@ -4,6 +4,7 @@ import {
   ADD_CART,
   SHOW_CART,
   CREATE_CHECKOUT,
+  SET_USER,
 } from "./types";
 
 export const handleErrorGlobal = (payload, dispatch) => {
@@ -37,5 +38,12 @@ export const handleCreateCheckoutDispatch = (data, dispatch) => {
   dispatch({
     type: CREATE_CHECKOUT,
     payload: data,
+  });
+};
+
+export const setUserDispatch = (user, dispatch) => {
+  dispatch({
+    type: SET_USER,
+    payload: user,
   });
 };
