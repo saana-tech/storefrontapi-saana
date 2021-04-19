@@ -14,6 +14,7 @@ import IconUser from "../../../public/static/svg/IconUser";
 import {
   handleCreateCheckoutDispatch,
   handleShowCartDispatch,
+  showModalLoginDispatch,
 } from "../../core/global/actions";
 import { createCheckoutSchema } from "../../graphql/gql";
 import Modal from "../Modal";
@@ -29,7 +30,7 @@ const NavBar = () => {
   const [createCheckout] = useMutation(createCheckoutSchema);
 
   const { globalState } = state;
-  const { showCart, checkout, user } = globalState;
+  const { showCart, checkout, user, modalLogin } = globalState;
 
   const router = useRouter();
   const GET_COLLECTIONS = gql`
@@ -44,7 +45,6 @@ const NavBar = () => {
       }
     }
   `;
-  const [showModal, setShowModal] = useState(false);
   const [showNav, setShowNav] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const { data = null, loading = false, error = null } = useQuery(
@@ -76,6 +76,9 @@ const NavBar = () => {
 
   const closeMenuResponsive = () => {
     setShowNav(false);
+  };
+  const setShowModal = (bool) => {
+    showModalLoginDispatch(bool, globalDispatch);
   };
 
   console.log("user =>", user);
@@ -143,7 +146,7 @@ const NavBar = () => {
           <div className={styles.shadow} />
         </div>
       </div>
-      <Modal open={showModal} close={setShowModal}>
+      <Modal open={modalLogin} close={setShowModal}>
         <FormLogin />
       </Modal>
       <MenuResponsive

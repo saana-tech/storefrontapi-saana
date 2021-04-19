@@ -43,9 +43,10 @@ const Layout = ({ children }) => {
                 title
                 variant {
                   image {
-                    transformedSrc
+                    src
                   }
                   price
+                  sku
                 }
               }
             }
@@ -56,11 +57,19 @@ const Layout = ({ children }) => {
           totalPrice
           subtotalPrice
           processedAt
-         }
+          
+         
+        }
       }
     }
+    defaultAddress {
+      address1
+    }
+
   }
 }
+
+
 
 `;
   const { data = null, loading = null, error = null } = useQuery(
@@ -91,7 +100,7 @@ const Layout = ({ children }) => {
     if (data?.customer && checkout.id) {
       handleLoginUser();
     }
-  }, [data, checkout.id]);
+  }, [data, checkout?.id]);
   console.log("user =>", user);
   return (
     <div>

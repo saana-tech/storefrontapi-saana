@@ -6,3 +6,86 @@
   border-collapse: collapse;
   border: 1px solid black;
 }
+.linkOrder {
+  color: #314790;
+  cursor: pointer;
+}
+.linkOrder:hover {
+  text-decoration: underline;
+}
+.containerModalDetailOrder {
+  margin-top: 3rem;
+  padding: 0 1rem;
+}
+.containerProducts {
+  flex: 2;
+  margin: 0 1rem;
+}
+.cardProductOrder {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ebebeb;
+}
+.imgProductOrder {
+  flex: 1;
+}
+.priceAndQuantity {
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+}
+
+.imgProductOrder img {
+  width: 80px;
+  height: auto;
+  object-fit: cover;
+}
+.containerModalDetailOrder {
+  display: flex;
+  justify-content: space-between;
+}
+.containerInformation {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 400px;
+  max-height: 100%;
+}
+.priceAndQuantity h4 {
+  color: #2c2c2c;
+  margin: 0;
+}
+.priceAndQuantity span {
+  color: #505050;
+}
+.informationSidebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 10px;
+}
+.informationSidebar h4 {
+  color: #5e5e5e;
+  font-size: 1rem;
+}
+.informationSidebar span {
+  color: #5e5e5e;
+  font-size: 1rem;
+}
+.informationSidebar:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 10px;
+  border-bottom: 0;
+  margin-top: 2rem;
+}
+.informationSidebar:last-child span {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: black;
+}
+.informationSidebar h4 {
+  margin: 0;
+}

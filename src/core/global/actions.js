@@ -5,6 +5,7 @@ import {
   SHOW_CART,
   CREATE_CHECKOUT,
   SET_USER,
+  HANDLE_MODAL_LOGIN,
 } from "./types";
 
 export const handleErrorGlobal = (payload, dispatch) => {
@@ -45,5 +46,18 @@ export const setUserDispatch = (user, dispatch) => {
   dispatch({
     type: SET_USER,
     payload: user,
+  });
+};
+export const signOffDispatch = (dispatch) => {
+  localStorage.removeItem("token");
+  dispatch({
+    type: SET_USER,
+    payload: null,
+  });
+};
+export const showModalLoginDispatch = (bool, dispatch) => {
+  dispatch({
+    type: HANDLE_MODAL_LOGIN,
+    payload: bool,
   });
 };

@@ -60,3 +60,33 @@ export const checkoutCustomerAssociate = gql`
   }
   ${CheckoutFragment}
 `;
+export const customerCreateSchema = gql`
+  mutation customerCreate($input: CustomerCreateInput!) {
+    customerCreate(input: $input) {
+      userErrors {
+        field
+        message
+      }
+      customer {
+        id
+        displayName
+        email
+      }
+    }
+  }
+`;
+export const customerAccessTokenCreate = gql`
+  mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
+    customerAccessTokenCreate(input: $input) {
+      customerAccessToken {
+        accessToken
+        expiresAt
+      }
+      customerUserErrors {
+        code
+        field
+        message
+      }
+    }
+  }
+`;

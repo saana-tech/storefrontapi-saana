@@ -4,3 +4,4 @@ export const ADD_CART = "ADD_CART";
 export const SHOW_CART = "SHOW_CART";
 export const CREATE_CHECKOUT = "CREATE_CHECKOUT";
 export const SET_USER = "SET_USER";
+export const HANDLE_MODAL_LOGIN = "HANDLE_MODAL_LOGIN";

@@ -6,6 +6,7 @@ import {
   SHOW_CART,
   CREATE_CHECKOUT,
   SET_USER,
+  HANDLE_MODAL_LOGIN,
 } from "./types";
 
 export const INITIAL_STATE_GLOBAL = {
@@ -15,6 +16,7 @@ export const INITIAL_STATE_GLOBAL = {
   cart: [],
   showCart: false,
   checkout: { lineItems: { edges: [] } },
+  modalLogin: false,
 };
 const handleError = (state, action) => {
   const { error, errorMsn } = action.payload;
@@ -55,6 +57,12 @@ const setUser = (state, action) => {
     user: action.payload,
   };
 };
+const handleModalLogin = (state, action) => {
+  return {
+    ...state,
+    modalLogin: action.payload,
+  };
+};
 export default createReducer(INITIAL_STATE_GLOBAL, {
   [HANDLE_ERROR_GLOBAL]: handleError,
   [LOADING_GLOBAL]: setLoading,
@@ -62,4 +70,5 @@ export default createReducer(INITIAL_STATE_GLOBAL, {
   [SHOW_CART]: handleModal,
   [CREATE_CHECKOUT]: createCheckout,
   [SET_USER]: setUser,
+  [HANDLE_MODAL_LOGIN]: handleModalLogin,
 });
