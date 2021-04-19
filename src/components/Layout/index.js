@@ -51,12 +51,16 @@ const Layout = ({ children }) => {
             }
           }
           id
-        }
+          currencyCode
+          totalTax
+          totalPrice
+          subtotalPrice
+          processedAt
+         }
       }
     }
   }
 }
-
 
 `;
   const { data = null, loading = null, error = null } = useQuery(

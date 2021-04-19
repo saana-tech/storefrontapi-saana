@@ -10,7 +10,8 @@
 .navPrincipal {
   display: flex;
   align-items: center;
-  max-width: 1350px;
+  width: 90% !important;
+  justify-content: space-between;
 }
 
 .logoImage {
@@ -22,12 +23,12 @@
 .inputSearch {
   width: 362px;
   height: 40px;
-  margin: 0 20px 0 35.4px;
   padding: 9px 13.6px 8px 13px;
   border-radius: 7px;
   background-color: #f8f8f8;
   outline: none;
   border: 0;
+  margin: 0 1rem;
 }
 .inputSearch::placeholder {
   opacity: 0.87;

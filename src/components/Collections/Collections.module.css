@@ -82,6 +82,12 @@
   justify-content: center;
   align-items: center;
 }
+@media only screen and (min-width: 1440px) {
+  .containerCollection {
+    max-width: 100%;
+    margin: 0 15%;
+  }
+}
 @media only screen and (max-width: 768px) {
   .containerCollection {
     margin: 0 10px;

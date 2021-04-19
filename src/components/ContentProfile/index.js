@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Address from "./Address";
 import Orders from "./Orders";
 
@@ -10,5 +11,7 @@ const ContentProfile = ({ path }) => {
     </div>
   );
 };
-
+ContentProfile.propTypes = {
+  path: PropTypes.string,
+};
 export default ContentProfile;

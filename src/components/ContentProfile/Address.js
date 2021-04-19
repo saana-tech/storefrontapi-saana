@@ -5,7 +5,7 @@ const Address = () => {
   return (
     <div>
       <div>
-        <h3 className={styles.title}> ¡Mis Direcciones!</h3>
+        <h3 className={styles.title}>¡Mis Direcciones!</h3>
       </div>
     </div>
   );

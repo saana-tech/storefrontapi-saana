@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+import { gql, useQuery } from "@apollo/client";
+
 import { StoreContext } from "../../core";
 import styles from "./ContentProfile.module.css";
 
@@ -7,16 +9,18 @@ const Orders = () => {
   const { globalState } = state;
   const { user } = globalState;
   let orders = user && user.orders && user.orders.edges;
+  console.log("order =>", orders);
+
   return (
     <div>
       <div>
         <h3 className={styles.title}>¡Mis Ordenes!</h3>
       </div>
 
-      <div>
+      <div className={styles.containerTablet}>
         <table>
           <tr>
-            <th></th>
+            <th>d</th>
             <th>Last_Name</th>
             <th>Marks</th>
           </tr>

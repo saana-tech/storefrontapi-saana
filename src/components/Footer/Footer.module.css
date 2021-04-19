@@ -77,6 +77,12 @@
 .containerUl {
   display: flex;
 }
+@media only screen and (min-width: 1440px) {
+  .containerFooter {
+    max-width: 100%;
+    margin: 0 15%;
+  }
+}
 /* RESPONSIVE */
 /* TABLET */
 @media only screen and (max-width: 1024px) {
