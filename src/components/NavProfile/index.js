@@ -8,7 +8,9 @@ import { StoreContext } from "../../core";
 
 const NavProfile = ({ path, setPath }) => {
   const router = useRouter();
-  const { globalDispatch } = useContext(StoreContext);
+  const { state, globalDispatch } = useContext(StoreContext);
+  const { globalState } = state;
+  const { user } = globalState;
   const [modalShow, setModalShow] = useState(false);
 
   const handleSingOff = async () => {
@@ -25,13 +27,13 @@ const NavProfile = ({ path, setPath }) => {
             </div>
             <div className={styles.information}>
               <span className={styles.title}>Mi perfil</span>
-              <span className={styles.name}>Jesus briceño</span>
+              <span className={styles.name}>{user?.displayName}</span>
             </div>
           </div>
         </div>
         <div className={styles.containerLinks}>
           <div className={styles.contentLinks}>
-            <div>
+            <div className={styles.linksResponsive}>
               <a
                 className={path === "Mis Ordenes" ? "activeLink" : "noneLink"}
                 onClick={() => setPath("Mis Ordenes")}

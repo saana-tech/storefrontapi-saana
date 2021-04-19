@@ -2,10 +2,6 @@
   border-bottom: 1px solid #ebebeb;
 }
 
-.containerTablet table {
-  border-collapse: collapse;
-  border: 1px solid black;
-}
 .linkOrder {
   color: #314790;
   cursor: pointer;
@@ -48,7 +44,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   height: 400px;
   max-height: 100%;
 }
@@ -88,4 +84,25 @@
 }
 .informationSidebar h4 {
   margin: 0;
+}
+@media only screen and (max-width: 1024px) {
+  .userName {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .banner {
+    display: none;
+  }
+  .userName {
+    flex-direction: column;
+  }
+  .containerModalDetailOrder {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    overflow: auto;
+    max-height: 80%;
+  }
 }

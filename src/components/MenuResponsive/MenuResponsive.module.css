@@ -102,3 +102,16 @@
   top: 20px;
   z-index: 1000000;
 }
+.containerSingOff {
+  margin-top: 1rem;
+}
+.containerSingOff button {
+  width: 156px;
+  height: 40px;
+  font-size: 16px;
+  color: #191919;
+  border: 0;
+  background-color: white;
+  border-radius: 5px;
+  margin: 0 0.4rem;
+}

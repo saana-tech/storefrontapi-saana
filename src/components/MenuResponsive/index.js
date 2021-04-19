@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
+
+import { StoreContext } from "../../core";
 
 import ArrowDown from "../../../public/static/svg/ArrowDown";
 import IconHome from "../../../public/static/svg/IconHome";
@@ -12,6 +14,10 @@ const MenuResponsive = ({
   close = () => {},
   openModalRegister = () => {},
 }) => {
+  const { state } = useContext(StoreContext);
+  const { globalState } = state;
+  const { user } = globalState;
+
   const [show, setShow] = useState(false);
   return (
     <>
@@ -29,12 +35,18 @@ const MenuResponsive = ({
                 <h4>¡Hola!</h4>
                 <span>No tienes una cuenta conectada</span>
               </div>
-              <div className={styles.containerButtons}>
-                <button>Crear una cuenta</button>
-                <button onClick={() => openModalRegister(true)}>
-                  Iniciar sesión
-                </button>
-              </div>
+              {user ? (
+                <div className={styles.containerSingOff}>
+                  <button>Cerrar sesión</button>
+                </div>
+              ) : (
+                <div className={styles.containerButtons}>
+                  <button>Crear una cuenta</button>
+                  <button onClick={() => openModalRegister(true)}>
+                    Iniciar sesión
+                  </button>
+                </div>
+              )}
             </div>
             <div className={styles.body}>
               <div className={styles.link}>

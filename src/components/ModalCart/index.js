@@ -5,25 +5,28 @@ import { StoreContext } from "../../core";
 import CloseIcon from "../../../public/static/svg/CloseIcon";
 import {
   handleShowCartDispatch,
-  showModalLoginDispatch,
+  //showModalLoginDispatch,
 } from "../../core/global/actions";
 import ProductItem from "./ProductItem";
 
 const ModalCart = () => {
   const { state, globalDispatch } = useContext(StoreContext);
   const { globalState } = state;
-  const { showCart, checkout, user, modalLogin } = globalState;
+  const {
+    showCart,
+    checkout, // user, modalLogin
+  } = globalState;
 
   const handleCloseModal = () => {
     handleShowCartDispatch(!showCart, globalDispatch);
   };
 
   const goPay = () => {
-    if (!user) {
+    /*    if (!user) {
       handleCloseModal();
       showModalLoginDispatch(!modalLogin, globalDispatch);
       return;
-    }
+    } */
     window.open(checkout.webUrl);
   };
 
