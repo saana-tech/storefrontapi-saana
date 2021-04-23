@@ -9,6 +9,7 @@ import NavBar from "../NavBar";
 import Footer from "../Footer";
 import {
   handleCreateCheckoutDispatch,
+  handleGeoLocation,
   setUserDispatch,
 } from "../../core/global/actions";
 import { checkoutCustomerAssociate } from "../../graphql/gql";
@@ -33,6 +34,16 @@ const Layout = ({ children }) => {
     email
     displayName
     id
+  addresses(first: 5) {
+      edges {
+        node {
+        id
+        address1
+        city
+        country
+        }
+      }
+    }
     orders(first: 5) {
       edges {
         node {
@@ -81,7 +92,6 @@ const Layout = ({ children }) => {
     setUserDispatch(data?.customer, globalDispatch);
 
     try {
-      console.log("checkout id =>", checkout);
       const res = await checkoutCustomer({
         variables: {
           checkoutId: checkout.id,
@@ -101,7 +111,29 @@ const Layout = ({ children }) => {
       handleLoginUser();
     }
   }, [data, checkout?.id]);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      handleGeoLocation(
+        {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        },
+        globalDispatch
+      );
+    });
+  }, []);
+
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      alert("Available");
+    } else {
+      alert("Not Available");
+    }
+  }, []);
+
   console.log("user =>", user);
+
   return (
     <div>
       {showCart && <ModalCart />}

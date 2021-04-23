@@ -7,6 +7,7 @@ import {
   CREATE_CHECKOUT,
   SET_USER,
   HANDLE_MODAL_LOGIN,
+  SET_COORDINATES,
 } from "./types";
 
 export const INITIAL_STATE_GLOBAL = {
@@ -17,6 +18,7 @@ export const INITIAL_STATE_GLOBAL = {
   showCart: false,
   checkout: { lineItems: { edges: [] } },
   modalLogin: false,
+  coordinates: null,
 };
 const handleError = (state, action) => {
   const { error, errorMsn } = action.payload;
@@ -63,6 +65,12 @@ const handleModalLogin = (state, action) => {
     modalLogin: action.payload,
   };
 };
+const setCoordinates = (state, action) => {
+  return {
+    ...state,
+    coordinates: action.payload,
+  };
+};
 export default createReducer(INITIAL_STATE_GLOBAL, {
   [HANDLE_ERROR_GLOBAL]: handleError,
   [LOADING_GLOBAL]: setLoading,
@@ -71,4 +79,5 @@ export default createReducer(INITIAL_STATE_GLOBAL, {
   [CREATE_CHECKOUT]: createCheckout,
   [SET_USER]: setUser,
   [HANDLE_MODAL_LOGIN]: handleModalLogin,
+  [SET_COORDINATES]: setCoordinates,
 });

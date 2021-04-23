@@ -12,6 +12,11 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="shortcut icon" href="static/img/favicon.png" />
+
+          <script
+            async
+            src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_API}&libraries=places`}
+          ></script>
         </Head>
         <body>
           <Main />

@@ -73,8 +73,8 @@ const Collections = () => {
           <div className={styles.cards} ref={collectionRef}>
             {data &&
               data?.shop?.collections?.edges?.map(({ node }, index) => {
-                const { title, image } = node;
-                let imageUrl = image.originalSrc;
+                const { title = "", image = "" } = node;
+                let imageUrl = image?.originalSrc;
                 return (
                   <div
                     key={index}

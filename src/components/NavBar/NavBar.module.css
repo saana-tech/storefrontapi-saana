@@ -407,6 +407,84 @@
   align-items: center;
   justify-content: space-between;
 }
+.inputAutocomplete {
+  border: 0;
+  border-bottom: 2px solid #314790;
+  width: 384px;
+  padding: 0 1rem;
+  height: 40px;
+  outline: none;
+  font-size: 12px;
+}
+.inputAutocomplete::placeholder {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.4);
+}
+.containerAddAddress {
+  display: flex;
+  height: 100%;
+}
+.contAutocomplete {
+  flex: 1;
+  flex-direction: column;
+  align-self: center;
+  padding-left: 2rem;
+  position: relative;
+}
+.containerMaps {
+  flex: 1;
+}
+.title {
+  width: 390px;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 1.15;
+  letter-spacing: normal;
+  color: #314790;
+}
+.badgeInformation {
+  width: 384px;
+  height: 54px;
+  padding: 10px 21px 9px;
+  border-radius: 6px;
+  background-color: #eaeaf4;
+  margin-top: 20px;
+}
+.badgeInformation span {
+  width: 342px;
+  height: 35px;
+  font-family: Poppins;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+  color: #314790;
+}
+.disabledButton {
+  width: 384px;
+  height: 49px;
+  padding: 13px 161px 12px 136px;
+  border-radius: 7px;
+  background-color: rgba(206, 206, 206, 0.51);
+  color: #ffffff;
+  font-size: 17px;
+  outline: none;
+  border: 0;
+  margin-top: 40px;
+  cursor: pointer;
+}
+.btnCompleteButton {
+  width: 384px;
+  height: 49px;
+  padding: 13px 161px 12px 136px;
+  border-radius: 7px;
+  background-color: #314790;
+  color: #ffffff;
+  font-size: 17px;
+  outline: none;
+  border: 0;
+  margin-top: 40px;
+  cursor: pointer;
+}
 
 /* RESPONSIVE DESIGN */
 /* TABLET */
@@ -485,6 +563,14 @@
     padding-right: 45px;
   }
 }
+.defaultAddress {
+  max-width: 80%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+  display: block;
+}
 
 /* PHONE */
 @media only screen and (max-width: 767px) {
@@ -554,5 +640,13 @@
   }
   .contCart {
     margin: 0 0.5rem;
+  }
+  .containerAddAddress {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+  }
+  .contAutocomplete {
+    padding: 1rem;
   }
 }

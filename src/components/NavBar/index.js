@@ -81,7 +81,7 @@ const NavBar = () => {
     showModalLoginDispatch(bool, globalDispatch);
   };
 
-  console.log("user =>", user);
+  console.log("user ====>", user);
   return (
     <>
       <div className={styles.containerNav}>
