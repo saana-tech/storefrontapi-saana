@@ -7,7 +7,6 @@ import PinIcon from "../../../public/static/svg/PinIcon";
 import Modal from "../Modal";
 import AddAddress from "./AddAddress";
 import { StoreContext } from "../../core";
-import { selectAddressDefault } from "../../graphql/gql";
 const SelectAddress = () => {
   const { state } = useContext(StoreContext);
   const { globalState } = state;
@@ -17,7 +16,7 @@ const SelectAddress = () => {
   const [showMaps, setShowMaps] = useState(false);
   const addresses = user?.addresses?.edges;
   const defaultAddress = user?.defaultAddress?.address1;
-  const [selectAddressSelect] = useMutation(selectAddressDefault);
+  //const [selectAddressSelect] = useMutation(selectAddressDefault);
 
   const handleDefaultAddAddress = async (id) => {
     const token = localStorage.getItem("token");
@@ -27,8 +26,7 @@ const SelectAddress = () => {
       addressId: id,
     };
     try {
-      const { data } = await selectAddressSelect({ variables: input });
-      console.log("select address =>", data);
+      // const { data } = await selectAddressSelect({ variables: input });
     } catch (error) {
       console.log("error:handleDefaultAddAddress=>", error);
     }

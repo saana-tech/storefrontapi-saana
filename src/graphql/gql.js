@@ -110,19 +110,3 @@ export const createAddAddressCustomer = gql`
     }
   }
 `;
-export const selectAddressDefault = gql`
-  mutation customerDefaultAddressUpdate(
-    customerAccessToken: $customerAccessToken
-    addressId: $addressId
-  ) {
-    customer {
-      id
-    }
-    customerUserErrors {
-      code
-      field
-      message
-    }
-  }
-}
-`;
