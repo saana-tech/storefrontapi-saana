@@ -135,3 +135,15 @@ export const selectAddressDefault = gql`
     }
   }
 `;
+export const deleteAddressCustomer = gql`
+  mutation customerAddressDelete($id: ID!, $customerAccessToken: String!) {
+    customerAddressDelete(id: $id, customerAccessToken: $customerAccessToken) {
+      customerUserErrors {
+        code
+        field
+        message
+      }
+      deletedCustomerAddressId
+    }
+  }
+`;

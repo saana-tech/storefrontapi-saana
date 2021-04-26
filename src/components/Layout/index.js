@@ -35,13 +35,13 @@ const Layout = ({ children }) => {
     email
     displayName
     id
-  addresses(first: 5) {
+    addresses(first: 5) {
       edges {
         node {
-        id
-        address1
-        city
-        country
+          id
+          address1
+          city
+          country
         }
       }
     }
@@ -69,16 +69,23 @@ const Layout = ({ children }) => {
           totalPrice
           subtotalPrice
           processedAt
-          
-         
+          financialStatus
+          fulfillmentStatus
+          shippingAddress {
+            address1
+          }
         }
       }
     }
     defaultAddress {
       address1
     }
-
-  }
+    lastIncompleteCheckout {
+      completedAt
+      createdAt
+      paymentDue
+    }
+   }
 }
 `;
   const { data = null, loading = null, error = null } = useQuery(

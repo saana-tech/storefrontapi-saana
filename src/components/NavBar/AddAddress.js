@@ -88,15 +88,8 @@ const AddAddress = () => {
           },
         });
         currentCustomer = customer;
-        console.log("customer =>", customer);
-        console.log(
-          "customerAddressCreate =>",
-          customerAddressCreate.customerAddress
-        );
 
         const newAddress = customerAddressCreate.customerAddress;
-        console.log("after address =>", customer.addresses.edges);
-        console.log("new address =>", newAddress);
         const newAddressArray = newAddress
           ? [...customer.addresses.edges, newAddress]
           : [newAddress];
@@ -107,8 +100,6 @@ const AddAddress = () => {
             __typename: "MailingAddressConnection",
           },
         };
-
-        console.log("currentCustomer =>", currentCustomer);
 
         cache.writeQuery({
           query: customerTokenQuery,
