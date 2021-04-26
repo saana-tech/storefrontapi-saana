@@ -5,7 +5,7 @@ import IconDelete from "../../../public/static/svg/IconDelete";
 import { StoreContext } from "../../core";
 import styles from "./ContentProfile.module.css";
 import { deleteAddressCustomer } from "../../graphql/gql";
-import { node } from "prop-types";
+import Modal from "../Modal";
 
 const Address = () => {
   const { state } = useContext(StoreContext);
@@ -14,7 +14,8 @@ const Address = () => {
   const address = user?.addresses?.edges;
 
   const [token, setToken] = useState("");
-  const [idAddress, setIdAddress] = useState("");
+  const [itemAddress, setItemAddress] = useState("");
+  const [modalDelete, setModalDelete] = useState(false);
 
   const customerTokenQuery = gql`
   query customer {
@@ -70,9 +71,9 @@ const Address = () => {
 `;
 
   const [deleteAddressMutation] = useMutation(deleteAddressCustomer, {
-    update(cache, { data: { customerAddressDelete } }) {
+    update(cache) {
       let currentCustomer;
-      console.log("data ==>", customerAddressDelete);
+
       const { customer } = cache.readQuery({
         query: customerTokenQuery,
         variables: {
@@ -83,9 +84,8 @@ const Address = () => {
       });
       currentCustomer = customer;
       const result = customer.addresses.edges.filter(
-        (a) => a.node.id !== idAddress
+        (a) => a.node.id !== itemAddress.id
       );
-      console.log("result =>", result);
 
       currentCustomer = {
         ...customer,
@@ -109,17 +109,19 @@ const Address = () => {
     },
   });
 
-  const handleDeleteAddress = async (id) => {
-    setIdAddress(id);
-    console.log("token ==>", token);
-    console.log("id ==>", id);
+  const handleModalRemove = (paramsAddress) => {
+    setModalDelete(true);
+    setItemAddress(paramsAddress);
+  };
+
+  const handleDeleteAddress = async () => {
     const input = {
       customerAccessToken: token,
-      id: id,
+      id: itemAddress.id,
     };
     try {
-      const { data } = await deleteAddressMutation({ variables: input });
-      console.log("response data =>", data);
+      await deleteAddressMutation({ variables: input });
+      setModalDelete(false);
     } catch (error) {
       console.log("error =>", error);
     }
@@ -132,6 +134,7 @@ const Address = () => {
   useEffect(() => {
     handleToken();
   }, [handleToken]);
+
   return (
     <div>
       <div>
@@ -156,7 +159,7 @@ const Address = () => {
                     <td data-label="Pedido">{node.address1}</td>
                     <td data-label="Ciudad">{node.city}</td>
                     <td data-label="Opciones">
-                      <a onClick={() => handleDeleteAddress(node.id)}>
+                      <a onClick={() => handleModalRemove(node)}>
                         <IconDelete />
                       </a>
                     </td>
@@ -166,6 +169,15 @@ const Address = () => {
           </tbody>
         </table>
       </div>
+      <Modal open={modalDelete} close={setModalDelete} width={400} height={150}>
+        <div className={styles.containerMsn}>
+          <span>Realmente deseas eliminar esta dirección</span>
+          <div className={styles.containerBtnsClose}>
+            <button onClick={() => setModalDelete(false)}>Cancelar</button>
+            <button onClick={() => handleDeleteAddress()}>Eliminar</button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };
