@@ -29,7 +29,8 @@ const Layout = ({ children }) => {
     handleToken();
   }, [handleToken]);
 
-  const customerTokenQuery = gql`{
+  const customerTokenQuery = gql`
+  query customer {
   customer(customerAccessToken: "${token}") {
     email
     displayName
@@ -79,9 +80,6 @@ const Layout = ({ children }) => {
 
   }
 }
-
-
-
 `;
   const { data = null, loading = null, error = null } = useQuery(
     customerTokenQuery

@@ -101,7 +101,32 @@ export const createAddAddressCustomer = gql`
     ) {
       customerAddress {
         id
+        address1
       }
+      customerUserErrors {
+        code
+        field
+        message
+      }
+    }
+  }
+`;
+export const selectAddressDefault = gql`
+  mutation customerDefaultAddressUpdate(
+    $customerAccessToken: String!
+    $addressId: ID!
+  ) {
+    customerDefaultAddressUpdate(
+      customerAccessToken: $customerAccessToken
+      addressId: $addressId
+    ) {
+      customer {
+        id
+        defaultAddress {
+          address1
+        }
+      }
+
       customerUserErrors {
         code
         field

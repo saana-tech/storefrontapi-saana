@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, gql } from "@apollo/client";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -15,11 +15,115 @@ import { createAddAddressCustomer } from "../../graphql/gql";
 const AddAddress = () => {
   const [address, setAddress] = useState("");
   const [google, setGoogle] = useState(null);
+  const [token, setToken] = useState("");
+
   const { state, globalDispatch } = useContext(StoreContext);
   const { globalState } = state;
   const { coordinates = null } = globalState;
+  const customerTokenQuery = gql`
+  query customer {
+  customer(customerAccessToken: "${token}") {
+    email
+    displayName
+    id
+  addresses(first: 5) {
+      edges {
+        node {
+        id
+        address1
+        city
+        country
+        }
+      }
+    }
+    orders(first: 5) {
+      edges {
+        node {
+          lineItems(first: 5) {
+            edges {
+              node {
+                quantity
+                title
+                variant {
+                  image {
+                    src
+                  }
+                  price
+                  sku
+                }
+              }
+            }
+          }
+          id
+          currencyCode
+          totalTax
+          totalPrice
+          subtotalPrice
+          processedAt
+          
+         
+        }
+      }
+    }
+    defaultAddress {
+      address1
+    }
 
-  const [addAddressMutation] = useMutation(createAddAddressCustomer);
+  }
+}
+`;
+
+  const [addAddressMutation] = useMutation(
+    createAddAddressCustomer,
+
+    {
+      update(cache, { data: { customerAddressCreate } }) {
+        let currentCustomer;
+        const { customer } = cache.readQuery({
+          query: customerTokenQuery,
+          variables: {
+            input: {
+              customerAccessToken: token,
+            },
+          },
+        });
+        currentCustomer = customer;
+        console.log("customer =>", customer);
+        console.log(
+          "customerAddressCreate =>",
+          customerAddressCreate.customerAddress
+        );
+
+        const newAddress = customerAddressCreate.customerAddress;
+        console.log("after address =>", customer.addresses.edges);
+        console.log("new address =>", newAddress);
+        const newAddressArray = newAddress
+          ? [...customer.addresses.edges, newAddress]
+          : [newAddress];
+        currentCustomer = {
+          ...customer,
+          addresses: {
+            edges: newAddressArray,
+            __typename: "MailingAddressConnection",
+          },
+        };
+
+        console.log("currentCustomer =>", currentCustomer);
+
+        cache.writeQuery({
+          query: customerTokenQuery,
+          variables: {
+            input: {
+              customerAccessToken: token,
+            },
+          },
+          data: {
+            customer: currentCustomer,
+          },
+        });
+      },
+    }
+  );
 
   const searchOptions = {
     location:
@@ -99,10 +203,16 @@ const AddAddress = () => {
       </div>
     </div>
   );
+  const handleToken = () => {
+    setToken(localStorage.getItem("token"));
+  };
 
   useEffect(() => {
     setGoogle(window.google);
   }, []);
+  useEffect(() => {
+    handleToken();
+  }, [handleToken]);
 
   return (
     <div className={styles.containerAddAddress}>

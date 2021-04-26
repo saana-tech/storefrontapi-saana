@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { useMutation } from "@apollo/client";
+import React, { useContext, useEffect, useState } from "react";
+import { useMutation, gql } from "@apollo/client";
 import styles from "./NavBar.module.css";
 
 import ArrowDown from "../../../public/static/svg/ArrowDown";
@@ -7,6 +7,7 @@ import PinIcon from "../../../public/static/svg/PinIcon";
 import Modal from "../Modal";
 import AddAddress from "./AddAddress";
 import { StoreContext } from "../../core";
+import { selectAddressDefault } from "../../graphql/gql";
 const SelectAddress = () => {
   const { state } = useContext(StoreContext);
   const { globalState } = state;
@@ -14,23 +15,106 @@ const SelectAddress = () => {
 
   const [showSelect, setShowSelect] = useState(false);
   const [showMaps, setShowMaps] = useState(false);
+  const [token, setToken] = useState("");
+
   const addresses = user?.addresses?.edges;
   const defaultAddress = user?.defaultAddress?.address1;
-  //const [selectAddressSelect] = useMutation(selectAddressDefault);
+
+  const customerTokenQuery = gql`
+  query customer {
+  customer(customerAccessToken: "${token}") {
+    email
+    displayName
+    id
+  addresses(first: 5) {
+      edges {
+        node {
+        id
+        address1
+        city
+        country
+        }
+      }
+    }
+    orders(first: 5) {
+      edges {
+        node {
+          lineItems(first: 5) {
+            edges {
+              node {
+                quantity
+                title
+                variant {
+                  image {
+                    src
+                  }
+                  price
+                  sku
+                }
+              }
+            }
+          }
+          id
+          currencyCode
+          totalTax
+          totalPrice
+          subtotalPrice
+          processedAt
+          
+         
+        }
+      }
+    }
+    defaultAddress {
+      address1
+    }
+
+  }
+}
+`;
+  const [selectAddressSelect] = useMutation(selectAddressDefault, {
+    update(cache) {
+      const { customer } = cache.readQuery({
+        query: customerTokenQuery,
+        variables: {
+          input: {
+            customerAccessToken: token,
+          },
+        },
+      });
+
+      cache.writeQuery({
+        query: customerTokenQuery,
+        variables: {
+          input: {
+            customerAccessToken: token,
+          },
+        },
+        data: {
+          customer,
+        },
+      });
+    },
+  });
 
   const handleDefaultAddAddress = async (id) => {
     const token = localStorage.getItem("token");
-
     const input = {
       customerAccessToken: token,
       addressId: id,
     };
     try {
-      // const { data } = await selectAddressSelect({ variables: input });
+      await selectAddressSelect({ variables: input });
     } catch (error) {
       console.log("error:handleDefaultAddAddress=>", error);
     }
   };
+  const handleToken = () => {
+    setToken(localStorage.getItem("token"));
+  };
+  useEffect(() => {
+    handleToken();
+  }, [handleToken]);
   return (
     <>
       <div className={styles.selectAddress}>
@@ -50,7 +134,10 @@ const SelectAddress = () => {
               {addresses && addresses.length > 0 ? (
                 addresses.map(({ node }, index) => {
                   return (
-                    <a key={index} onClick={() => handleDefaultAddAddress()}>
+                    <a
+                      key={index}
+                      onClick={() => handleDefaultAddAddress(node.id)}
+                    >
                       {node.address1}
                     </a>
                   );
