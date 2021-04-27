@@ -36,6 +36,8 @@
   min-width: 195px;
   margin-right: 1rem;
   z-index: 2;
+  position: relative;
+  min-height: 250px;
 }
 
 .imgProduct {
@@ -47,6 +49,8 @@
   object-fit: contain;
   height: auto;
   max-width: 100%;
+  width: 100px;
+  padding: 0.5rem;
 }
 .information {
   display: flex;
@@ -57,16 +61,17 @@
 .information h2 {
   width: 100%;
   white-space: normal;
-  font-size: 18px;
+  font-size: 14px;
   color: #314790;
   flex: 2;
 }
 .information h3 {
   width: 100%;
   white-space: normal;
-  font-size: 20px;
+  font-size: 18px;
   color: #111820;
   flex: 1;
+  font-weight: bold;
 }
 .buttonContainer button {
   outline: none;
@@ -84,8 +89,7 @@
   position: absolute;
   right: 0;
   background: linear-gradient(90deg, hsla(0, 0%, 100%, 0), rgb(255, 255, 255));
-  max-height: 100%;
-  height: 62%;
+  height: 280px;
   z-index: 3;
 }
 .cardShowCategory {
@@ -100,8 +104,11 @@
 .cardShowCategory span {
   font-size: 16px;
 }
+
 .cardShowCategory h4 {
   margin: 0.5rem;
+  font-weight: bold;
+  font-size: 18px !important;
 }
 .cardShowCategory button {
   margin: 0.5rem;
@@ -163,6 +170,12 @@
 
 /* PHONE */
 @media only screen and (max-width: 768px) {
+  .header h2 {
+    font-size: 18px;
+  }
+  .header {
+    margin: 10px 10px;
+  }
   .containerProducts {
     margin: 0px;
   }
@@ -174,11 +187,15 @@
     margin: 0 10px;
   }
   .shadowRight {
-    width: 120px;
+    width: 60px;
     position: absolute;
     right: 0;
+    max-height: 249px;
     background: linear-gradient(90deg, hsla(0, 0%, 100%, 0), #fff);
-    max-height: 60%;
-    height: 450px;
+  }
+  .title {
+    text-transform: capitalize !important;
+    font-size: 18px;
+    font-weight: bold;
   }
 }

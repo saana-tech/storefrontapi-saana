@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { gql, useQuery } from "@apollo/client";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
 
 import styles from "../styles/Collections.module.css";
 import CardProduct from "../components/Products/CardProduct";
@@ -56,7 +56,7 @@ const Collection = () => {
       }
     }
   `;
-  const { data = null, loading = false, error = null } = useQuery(GET_PRODUCTS);
+  const { data = null, loading = false } = useQuery(GET_PRODUCTS);
   const products = data?.collectionByHandle?.products?.edges;
 
   const handleProduct = (product) => {
@@ -65,17 +65,26 @@ const Collection = () => {
       query: { product: JSON.stringify(product), idProduct: product.id },
     });
   };
-
+  if (loading) {
+    return (
+      <div className={styles.loading}>
+        <div className={styles.contentLoading}>
+          <Spinner animation="border" role="status" />
+          <span>Cargando productos...</span>
+        </div>
+      </div>
+    );
+  }
   return (
     <div>
       <div className={styles.header}>
-        <span>Categoría {title}</span>
+        <span>Categoría / {title}</span>
+        <h2>{title}</h2>
       </div>
       <div>
-        <h2>{title}</h2>
         <div>
           <Container>
-            <Row>
+            <Row xs={2} md={5}>
               {products &&
                 products.length > 0 &&
                 products.map(({ node }) => {
@@ -86,17 +95,20 @@ const Collection = () => {
 
                   return (
                     <Col key={id}>
-                      <CardProduct
-                        product={{
-                          imageUrl,
-                          price,
-                          variantId,
-                          title,
-                          description,
-                          id,
-                        }}
-                        handleProduct={handleProduct}
-                      />
+                      <div style={{ margin: "10px 0" }}>
+                        <CardProduct
+                          product={{
+                            imageUrl,
+                            price,
+                            variantId,
+                            title,
+                            description,
+                            id,
+                            tags: node.tags,
+                          }}
+                          handleProduct={handleProduct}
+                        />
+                      </div>
                     </Col>
                   );
                 })}

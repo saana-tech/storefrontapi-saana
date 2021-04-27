@@ -1,28 +1,33 @@
 import React from "react";
-import PropTypes from "prop-types";
+import PropTypes, { number } from "prop-types";
 import styles from "./Products.module.css";
 import util from "../../util";
 
-const CardProduct = ({ product, handleProduct }) => {
+const CardProduct = ({ product, handleProduct, lastProduct, index }) => {
   const { imageUrl, title, price } = product;
   return (
-    <div className={styles.card} onClick={() => handleProduct(product)}>
-      <div className={styles.imgProduct}>
-        <img src={imageUrl} alt={title} />
+    <>
+      <div className={styles.card} onClick={() => handleProduct(product)}>
+        <div className={styles.imgProduct}>
+          <img src={imageUrl} alt={title} />
+        </div>
+        <div className={styles.information}>
+          <h2>{title}</h2>
+          <h3>{util.formatCOP(price)}</h3>
+        </div>
+        <div className={styles.buttonContainer}>
+          <button onClick={() => handleProduct(product)}>AGREGAR</button>
+        </div>
       </div>
-      <div className={styles.information}>
-        <h2>{title}</h2>
-        <h3>{util.formatCOP(price)}</h3>
-      </div>
-      <div className={styles.buttonContainer}>
-        <button onClick={() => handleProduct(product)}>AGREGAR</button>
-      </div>
-    </div>
+      {index === lastProduct - 1 && <div className={styles.shadowRight} />}
+    </>
   );
 };
 CardProduct.propTypes = {
   product: PropTypes.object,
   handleProduct: PropTypes.func,
+  lastProduct: number,
+  index: number,
 };
 
 export default CardProduct;

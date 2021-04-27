@@ -1,4 +1,33 @@
 .header {
   color: #314790;
   font-size: 16px;
+  margin-left: 8%;
+}
+
+.header h2 {
+  color: #38393d;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.loading {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contentLoading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.contentLoading span {
+  margin-top: 0.5rem;
+}
+@media only screen and (max-width: 768px) {
+  .header {
+    color: #314790;
+    font-size: 16px;
+    margin-left: 4%;
+  }
 }
