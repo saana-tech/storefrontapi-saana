@@ -40,7 +40,6 @@ const Orders = () => {
                 orders.map(({ node }) => {
                   const { totalPrice, lineItems, processedAt, id } = node;
                   const products = lineItems.edges;
-                  console.log("order =>", node);
                   return (
                     <tr key={id}>
                       <td data-label="Pedido">

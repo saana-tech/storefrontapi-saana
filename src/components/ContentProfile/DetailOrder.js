@@ -14,7 +14,6 @@ const DetailOrder = ({ order }) => {
           products.length > 0 &&
           products.map(({ node }, index) => {
             const { title, quantity, variant } = node;
-            console.log("variant =Z>", variant);
             return (
               <div key={index} className={styles.cardProductOrder}>
                 <div className={styles.imgProductOrder}>
