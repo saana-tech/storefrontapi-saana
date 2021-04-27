@@ -4,6 +4,7 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
+import PropTypes from "prop-types";
 
 import styles from "./NavBar.module.css";
 
@@ -12,10 +13,11 @@ import { StoreContext } from "../../core";
 import { handleGeoLocation } from "../../core/global/actions";
 import { createAddAddressCustomer } from "../../graphql/gql";
 
-const AddAddress = () => {
+const AddAddress = ({ close }) => {
   const [address, setAddress] = useState("");
   const [google, setGoogle] = useState(null);
   const [token, setToken] = useState("");
+  const [valueSearch, setValueSearch] = useState("");
 
   const { state, globalDispatch } = useContext(StoreContext);
   const { globalState } = state;
@@ -145,7 +147,6 @@ const AddAddress = () => {
   };
   const handleSaveAddress = async () => {
     const token = localStorage.getItem("token");
-    console.log("token ==>", token);
     const input = {
       customerAccessToken: token,
       address: {
@@ -156,8 +157,8 @@ const AddAddress = () => {
     };
 
     try {
-      const { data } = await addAddressMutation({ variables: input });
-      console.log("data save address", data);
+      await addAddressMutation({ variables: input });
+      close(false);
     } catch (error) {
       console.log("error address =>", error);
     }
@@ -225,6 +226,7 @@ const AddAddress = () => {
               className={styles.inputAutocomplete}
               htmlFor={"input-auto"}
               placeholder={"Ex: Carrera 12 #34-56 Bogotá, D.C"}
+              onChange={(e) => setValueSearch(e.target.value)}
             />
           </div>
         )}
@@ -247,7 +249,11 @@ const AddAddress = () => {
             disabled={address.length > 0 ? false : true}
             type={"button"}
             className={
-              address.length > 0
+              coordinates
+                ? address.length > 0
+                  ? styles.btnCompleteButton
+                  : styles.disabledButton
+                : valueSearch.length > 0
                 ? styles.btnCompleteButton
                 : styles.disabledButton
             }
@@ -262,6 +268,9 @@ const AddAddress = () => {
       </div>
     </div>
   );
+};
+AddAddress.propTypes = {
+  close: PropTypes.func,
 };
 
 export default AddAddress;

@@ -5,6 +5,7 @@ import { Container, Row, Col, Spinner } from "react-bootstrap";
 
 import styles from "../styles/Collections.module.css";
 import CardProduct from "../components/Products/CardProduct";
+import util from "../util";
 
 const Collection = () => {
   const router = useRouter();
@@ -78,13 +79,13 @@ const Collection = () => {
   return (
     <div>
       <div className={styles.header}>
-        <span>Categoría / {title}</span>
-        <h2>{title}</h2>
+        <span>Categoría / {util.capitalize(title)}</span>
+        <h2>{util.capitalize(title)}</h2>
       </div>
       <div>
         <div>
           <Container>
-            <Row xs={2} md={5}>
+            <Row xs={2} md={3} xl={4}>
               {products &&
                 products.length > 0 &&
                 products.map(({ node }) => {
@@ -92,6 +93,7 @@ const Collection = () => {
                   let imageUrl = images.edges[0].node.src;
                   let price = variants.edges[0].node.price;
                   let variantId = variants.edges[0].node.id;
+                  let sku = variants.edges[0].node.sku;
 
                   return (
                     <Col key={id}>
@@ -105,6 +107,7 @@ const Collection = () => {
                             description,
                             id,
                             tags: node.tags,
+                            sku,
                           }}
                           handleProduct={handleProduct}
                         />

@@ -48,9 +48,7 @@ const NavBar = () => {
   `;
   const [showNav, setShowNav] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const { data = null, loading = false, error = null } = useQuery(
-    GET_COLLECTIONS
-  );
+  const { data = null } = useQuery(GET_COLLECTIONS);
 
   const handleOpenCart = () => {
     handleShowCartDispatch(!showCart, globalDispatch);
@@ -88,7 +86,6 @@ const NavBar = () => {
     });
   };
 
-  console.log("user ====>", user);
   return (
     <>
       <div className={styles.containerNav}>

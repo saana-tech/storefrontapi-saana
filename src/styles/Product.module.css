@@ -28,12 +28,16 @@
   height: 388px;
   cursor: zoom-in;
   object-fit: contain;
+  margin-right: 40px;
 }
 .col1 img:hover {
   background-color: rgba(0, 0, 0, 0.199);
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
+}
+.sku {
+  color: #666666;
 }
 
 .price {
@@ -67,9 +71,10 @@
   color: #242424;
   margin-top: 1rem;
 }
-.titleInformation p {
+.description {
   color: #666666;
 }
+
 .containerRating {
   display: flex;
   align-items: center;

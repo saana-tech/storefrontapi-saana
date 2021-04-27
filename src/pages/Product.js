@@ -87,6 +87,7 @@ const Product = () => {
             </div>
             <div className={styles.col3}>
               <h2 className={styles.title}>{productSelect.title}</h2>
+              <span className={styles.sku}>Sku {productSelect.sku}</span>
               <div className={styles.containerRating}>
                 <Rating
                   initialRating={5}
@@ -109,7 +110,7 @@ const Product = () => {
               <h3 className={styles.titleInformation}>
                 Información nutritional
               </h3>
-              <p>{productSelect.description}</p>
+              <p className={styles.description}>{productSelect.description}</p>
             </div>
           </div>
           <ProductsTag

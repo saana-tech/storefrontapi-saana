@@ -105,6 +105,7 @@ const SelectAddress = () => {
     };
     try {
       await selectAddressSelect({ variables: input });
+      setShowSelect(false);
     } catch (error) {
       console.log("error:handleDefaultAddAddress=>", error);
     }
@@ -156,7 +157,7 @@ const SelectAddress = () => {
         )}
       </div>
       <Modal open={showMaps} close={setShowMaps}>
-        <AddAddress />
+        <AddAddress close={setShowMaps} />
       </Modal>
     </>
   );
