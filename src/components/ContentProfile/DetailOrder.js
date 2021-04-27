@@ -5,23 +5,6 @@ import styles from "./ContentProfile.module.css";
 //import { gql, useQuery } from "@apollo/client";
 
 const DetailOrder = ({ order }) => {
-  /*   const GET_COLLECTIONS = gql`
-    {
-      shop {
-        name
-      }
-      order(id:"${orderId}") {
-        confirmed
-     
-    
-      }
-    }
-  `;
-  const { data = null, loading = false, error = null } = useQuery(
-    GET_COLLECTIONS
-  );
- */
-  console.log("order =>", order);
   const { products } = order;
   return (
     <div className={styles.containerModalDetailOrder}>
