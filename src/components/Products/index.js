@@ -14,6 +14,8 @@ const Products = ({
   extend = true,
   tag1 = "jarabe",
   tag2 = "Oral",
+  handle = "",
+  limit = 10,
 }) => {
   const router = useRouter();
   const collectionRef = useRef(null);
@@ -21,15 +23,10 @@ const Products = ({
   /*products(first: 10, query: "tag:${tag1} AND tag:${tag2}") { */
 
   const GET_PRODUCTS = gql`
-    query GetProductsByTag {
-      shop {
-        name
-        description
-        products(first: 10) {
-          pageInfo {
-            hasNextPage
-            hasPreviousPage
-          }
+    query collectionByHandle{
+       collectionByHandle(handle: "${handle}") {
+       products(first: ${limit}) {
+         
           edges {
             node {
               id
@@ -41,10 +38,7 @@ const Products = ({
                 values
               }
               variants(first: 250) {
-                pageInfo {
-                  hasNextPage
-                  hasPreviousPage
-                }
+              
                 edges {
                   node {
                     id
@@ -62,11 +56,7 @@ const Products = ({
                 }
               }
               images(first: 250) {
-                pageInfo {
-                  hasNextPage
-                  hasPreviousPage
-                }
-                edges {
+              edges {
                   node {
                     src
                   }
@@ -79,8 +69,7 @@ const Products = ({
     }
   `;
   const { data = null, loading = false, error = null } = useQuery(GET_PRODUCTS);
-  console.log(loading, error);
-  let products = data?.shop?.products?.edges;
+  let products = data?.collectionByHandle?.products?.edges;
 
   const handleProduct = (product) => {
     router.push({
@@ -161,6 +150,8 @@ Products.propTypes = {
   tag1: PropTypes.string,
   tag2: PropTypes.string,
   extend: PropTypes.bool,
+  handle: PropTypes.string,
+  limit: PropTypes.number,
 };
 
 export default Products;

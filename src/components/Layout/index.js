@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useQuery, gql, useMutation } from "@apollo/client";
-
 import PropTypes from "prop-types";
+
 import { StoreContext } from "../../core";
 import ModalCart from "../ModalCart";
 

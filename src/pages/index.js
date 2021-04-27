@@ -1,4 +1,5 @@
 import React from "react";
+import { gql, useQuery } from "@apollo/client";
 
 import Banner from "../components/Banner";
 import Collections from "../components/Collections";
@@ -7,26 +8,43 @@ import Section from "../components/Section";
 import Seo from "../components/Seo";
 
 export default function Home() {
+  const GET_COLLECTIONS = gql`
+    query collections {
+      collections(first: 10) {
+        edges {
+          node {
+            id
+            title
+            handle
+            image {
+              originalSrc
+            }
+          }
+        }
+      }
+    }
+  `;
+  const { data = null, loading = false, error = null } = useQuery(
+    GET_COLLECTIONS
+  );
   return (
     <div>
       <Seo />
       <Banner />
-      <Collections />
-      <Section>
-        <Products title={"Ofertas"} />
-      </Section>
-      <Section>
-        <Products title={"Salud sexual"} />
-      </Section>
-      <Section>
-        <Products title={"Salud sexual"} />
-      </Section>
-      <Section>
-        <Products title={"Dolor e inflamación"} />
-      </Section>
-      <Section>
-        <Products title={"Gripa y tos"} />
-      </Section>
+      <Collections
+        collection={data?.collections?.edges}
+        loading={loading}
+        error={error}
+      />
+
+      {data?.collections?.edges.length > 0 &&
+        data?.collections?.edges.map(({ node }) => {
+          return (
+            <Section key={node.id}>
+              <Products title={node.title} handle={node.handle} />
+            </Section>
+          );
+        })}
     </div>
   );
 }

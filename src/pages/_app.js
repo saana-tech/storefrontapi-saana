@@ -3,6 +3,7 @@ import { ApolloProvider } from "@apollo/client";
 import PropTypes from "prop-types";
 
 import "normalize.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
 
 import Layout from "../components/Layout";

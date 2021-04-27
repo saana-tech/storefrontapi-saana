@@ -40,6 +40,7 @@ const NavBar = () => {
           node {
             id
             title
+            handle
           }
         }
       }
@@ -79,6 +80,12 @@ const NavBar = () => {
   };
   const setShowModal = (bool) => {
     showModalLoginDispatch(bool, globalDispatch);
+  };
+  const handleProductsCategory = (handle, title) => {
+    router.push({
+      pathname: "/Collection",
+      query: { handle, title },
+    });
   };
 
   console.log("user ====>", user);
@@ -138,7 +145,13 @@ const NavBar = () => {
                 const { title } = node;
                 return (
                   <li key={index}>
-                    <a>{title}</a>
+                    <a
+                      onClick={() =>
+                        handleProductsCategory(node.handle, node.title)
+                      }
+                    >
+                      {title}
+                    </a>
                   </li>
                 );
               })}
