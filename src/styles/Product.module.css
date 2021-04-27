@@ -65,6 +65,10 @@
   font-size: 21px;
   font-weight: 600;
   color: #242424;
+  margin-top: 1rem;
+}
+.titleInformation p {
+  color: #666666;
 }
 .containerRating {
   display: flex;
