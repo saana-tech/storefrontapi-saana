@@ -1,9 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 html,
 body {
   padding: 0;
   margin: 0;
+  font-family: "Poppins", sans-serif !important;
 }
 
 * {
   box-sizing: border-box;
+}
+.container-principal {
+  margin-top: 9rem;
+}
+ul {
+  list-style: none;
+}
+button {
+  outline: none;
+}
+.activeLink {
+  color: #314790 !important;
+}
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: 0.5em 0 0.75em;
+}
+
+table tr {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 0.35em;
+}
+
+table th,
+table td {
+  padding: 0.625em;
+  text-align: center;
+}
+
+table th {
+  font-size: 0.85em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: 0.625em;
+  }
+
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 0.8em;
+    text-align: right;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+.input-auto {
+  color: #111820;
+  font-size: 12px;
+}
+.autocomplete-root {
+  display: flex;
+  flex-direction: column;
+}
+.App-map {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+}
+.autocomplete-dropdown-container {
+  background-color: white;
+  max-width: 100%;
+  border-radius: 6px;
+  padding: 0.5rem 0;
+  margin: 1rem 0;
+  position: fixed;
+  bottom: 90px;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(156, 156, 156, 1);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(156, 156, 156, 1);
+  box-shadow: 0px 0px 5px 0px rgba(156, 156, 156, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  z-index: 99;
+}
+.autocomplete-dropdown-container span {
+  margin: 0.5rem 0;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+  display: block;
+  padding: 0 10px;
+}
+.autocomplete-dropdown-container:last-child {
+  border-bottom: 0;
+}
+.autocomplete-dropdown-container span:hover {
+  text-decoration: underline;
+  color: #314790;
 }

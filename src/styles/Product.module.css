@@ -1,0 +1,128 @@
+.headerProduct {
+  display: flex;
+  align-items: center;
+  margin: 0 40px;
+}
+.col1 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.col2 {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.col3 {
+  flex: 4;
+}
+.col1 img {
+  width: 75.9px;
+  height: 75.9px;
+  object-fit: contain;
+  margin: 20px 0;
+}
+.col2 img {
+  width: 388px;
+  height: 388px;
+  cursor: zoom-in;
+  object-fit: contain;
+}
+.col1 img:hover {
+  background-color: rgba(0, 0, 0, 0.199);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.price {
+  font-size: 35px;
+  font-weight: bold;
+  color: #242424;
+}
+.btnAdd {
+  border-radius: 6px;
+  background-color: #314790;
+  outline: none;
+  border: 0;
+  cursor: pointer;
+  width: 457.8px;
+  height: 37.8px;
+  font-size: 16px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btnAdd:hover {
+  transition: all 0.3s all;
+  background-color: #ffffff;
+  color: #314790;
+  border: 1px solid #314790;
+}
+.titleInformation {
+  font-size: 21px;
+  font-weight: 600;
+  color: #242424;
+}
+.containerRating {
+  display: flex;
+  align-items: center;
+}
+.visits {
+  height: 15px;
+  font-size: 15px;
+  color: #969696;
+  margin-left: 0.5rem;
+}
+@media only screen and (min-width: 1440px) {
+  .headerProduct {
+    display: flex;
+    align-items: center;
+    margin: 0 16%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .headerProduct {
+    max-width: 100%;
+  }
+  .col1 {
+    display: none;
+  }
+  .col2 img {
+    max-width: 100%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .headerProduct {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 10px !important;
+  }
+  .btnAdd {
+    width: 100%;
+    max-width: 100%;
+  }
+  .col1 {
+    display: none;
+  }
+  .col2 img {
+    width: 168px;
+    height: auto;
+    cursor: zoom-in;
+    object-fit: contain;
+  }
+  .title {
+    font-size: 22px;
+  }
+  .col3 {
+    flex: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}

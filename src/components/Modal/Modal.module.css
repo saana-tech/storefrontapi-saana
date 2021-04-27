@@ -1,0 +1,54 @@
+.backdrop {
+  background-color: rgba(0, 0, 0, 0.349);
+  height: 100%;
+  width: 100%;
+  z-index: 9999999999;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal {
+  width: 961px;
+  height: 492px;
+  background-color: white;
+  border-radius: 15px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.modalButtonClose {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 99;
+}
+.modalButtonClose button {
+  border: 1px solid #314790;
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  outline: none;
+}
+
+@media only screen and (max-width: 1024px) {
+  .modal {
+    width: 100%;
+    margin: 0 1rem;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .modal {
+    max-width: 100%;
+    margin: 0 0.5rem;
+  }
+}

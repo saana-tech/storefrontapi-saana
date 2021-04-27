@@ -1,0 +1,109 @@
+.footerPrincipal {
+  background-color: #314790;
+  width: 100%;
+  margin-top: 6rem;
+  color: white;
+}
+.containerLogo {
+  margin-bottom: 2rem;
+}
+.containerLogo img {
+  width: 184px;
+  height: auto;
+}
+.containerFooter {
+  margin-bottom: 0;
+  max-width: 1350px;
+  padding: 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+}
+.containerBody {
+  display: flex;
+  width: 100%;
+}
+.col1 {
+  flex: 1;
+}
+.col2 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.col3 {
+  flex: 1;
+  margin-left: 2rem;
+}
+.col1 h3 {
+  margin: 0;
+}
+.col2 h3 {
+  margin: 0;
+}
+.col1 ul li {
+  margin-left: -2rem !important;
+  margin-bottom: 0.5rem;
+}
+.col2 ul li {
+  margin-left: -2rem !important;
+}
+
+.col3 h3 {
+  margin: 0;
+}
+.form {
+  margin-top: 1.5rem;
+}
+.form input {
+  background-color: white;
+  padding: 10px 18px;
+  border: 0;
+  outline: none;
+  border-radius: 5px;
+  margin-right: 1rem;
+  max-width: 300px;
+}
+.form button {
+  background-color: white;
+  padding: 10px 18px;
+  border: 0;
+  outline: none;
+  border-radius: 5px;
+  margin-right: 1rem;
+  max-width: 300px;
+  color: black;
+  cursor: pointer;
+}
+.containerUl {
+  display: flex;
+}
+@media only screen and (min-width: 1440px) {
+  .containerFooter {
+    max-width: 100%;
+    margin: 0 15%;
+  }
+}
+/* RESPONSIVE */
+/* TABLET */
+@media only screen and (max-width: 1024px) {
+  .form button {
+    margin-top: 1rem;
+  }
+  .col3 {
+    margin: 0;
+  }
+}
+
+/* PHONE */
+@media only screen and (max-width: 768px) {
+  .containerBody {
+    flex-direction: column;
+  }
+  .containerFooter {
+    padding: 2rem;
+    max-width: 100%;
+  }
+  .col3 button {
+    margin-top: 0.5rem;
+  }
+}

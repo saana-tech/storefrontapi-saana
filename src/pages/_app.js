@@ -1,20 +1,28 @@
 import React from "react";
 import { ApolloProvider } from "@apollo/client";
+import PropTypes from "prop-types";
 
 import "normalize.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
 
 import Layout from "../components/Layout";
-import client from "../components/graphql";
+import client from "../graphql";
+import Store from "../core";
 
-function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps }) => {
   return (
     <ApolloProvider client={client}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Store>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Store>
     </ApolloProvider>
   );
-}
-
+};
+MyApp.propTypes = {
+  Component: PropTypes.func,
+  pageProps: PropTypes.object,
+};
 export default MyApp;

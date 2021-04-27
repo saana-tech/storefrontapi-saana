@@ -1,0 +1,117 @@
+.content {
+  background-color: white;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 100%;
+}
+.profile {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e2e2e2;
+}
+.information {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+  height: 50px;
+}
+.imgProfile {
+  flex: 1;
+}
+.imgProfile img {
+  width: 100px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.title {
+  font-size: 0.9rem;
+  color: #bbbbbb;
+  margin-bottom: 0.5rem;
+}
+.name {
+  font-weight: bold;
+  color: #2c2c2c;
+}
+.contentLinks {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px;
+}
+
+.contentLinks a {
+  margin: 0.3rem 0;
+  cursor: pointer;
+  display: block;
+}
+.contentLinks a:hover {
+  color: #314790;
+}
+.containerClose {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.contentClose {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.containerBtnsClose {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+.containerBtnsClose button {
+  background-color: #314790;
+  border: 0;
+  outline: none;
+  color: white;
+  border-radius: 5px;
+  height: 40px;
+  width: 120px;
+  cursor: pointer;
+}
+.containerBtnsClose button:last-child {
+  background-color: transparent;
+  border: 1px solid #314790;
+  outline: none;
+  color: #314790;
+  border-radius: 5px;
+  height: 40px;
+  width: 120px;
+  cursor: pointer;
+}
+@media only screen and (max-width: 768px) {
+  .contentLinks {
+    flex-direction: row;
+  }
+  .contentLinks {
+    display: flex;
+    flex-direction: row;
+    height: 0;
+  }
+  .linksResponsive {
+    display: flex;
+  }
+  .linksResponsive a {
+    margin-right: 1rem;
+  }
+  .content {
+    background-color: white;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 100%;
+  }
+}

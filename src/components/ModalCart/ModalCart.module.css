@@ -1,0 +1,159 @@
+.backdrop {
+  background-color: rgba(0, 0, 0, 0.432);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 99999;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+.modalRight {
+  height: 100%;
+  position: fixed;
+  background-color: #fff;
+  width: 428px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+.header {
+  flex: 0.5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 0.8rem;
+  border-bottom: 1px solid #e5edef;
+}
+.body {
+  flex: 6;
+  overflow-x: auto;
+}
+.footer {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.close {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+.close:hover {
+  background-color: rgba(128, 128, 128, 0.664);
+  cursor: pointer;
+}
+.msnEmpty {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-direction: column;
+  align-items: center;
+}
+.titleMsn {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.containerProduct {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f7f7f7;
+  padding: 10px 10px;
+}
+.containerImg {
+  flex: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.containerImg img {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.contDescription {
+  flex: 3;
+}
+.handleItems {
+  flex: 2;
+}
+.contDescription h4 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 200px;
+  font-weight: 400;
+  display: block;
+  font-weight: lighter;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+.contDescription h3 {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+}
+.btnCounts {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+  min-width: 100px;
+  height: 32px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 6px 10px 0 #31479036;
+  margin: 5px;
+}
+.remove {
+  cursor: pointer;
+}
+.add {
+  cursor: pointer;
+}
+.btnPay {
+  outline: none;
+  border: 0;
+  background-color: #314790;
+  color: #fff;
+  width: 100%;
+  border-radius: 5px;
+  height: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btnPay:hover {
+  background-color: #ffff;
+  color: #314790;
+  border: 1px solid #314790;
+}
+.contItemPay {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #f7f7f7;
+  height: 30px;
+  padding-top: 0.5rem;
+}
+.priceTotal {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 768px) {
+  .modalRight {
+    width: 100%;
+  }
+}

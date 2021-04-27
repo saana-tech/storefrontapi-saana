@@ -1,71 +1,50 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
 
+import Banner from "../components/Banner";
+import Collections from "../components/Collections";
+import Products from "../components/Products";
+import Section from "../components/Section";
+import Seo from "../components/Seo";
+
 export default function Home() {
-  const GET_PRODUCTS = gql`
-    query query {
-      shop {
-        name
-        description
-        products(first: 20) {
-          pageInfo {
-            hasNextPage
-            hasPreviousPage
-          }
-          edges {
-            node {
-              id
-              title
-              options {
-                id
-                name
-                values
-              }
-              variants(first: 250) {
-                pageInfo {
-                  hasNextPage
-                  hasPreviousPage
-                }
-                edges {
-                  node {
-                    id
-                    title
-                    selectedOptions {
-                      name
-                      value
-                    }
-                    image {
-                      src
-                    }
-                    price
-                  }
-                }
-              }
-              images(first: 250) {
-                pageInfo {
-                  hasNextPage
-                  hasPreviousPage
-                }
-                edges {
-                  node {
-                    src
-                  }
-                }
-              }
+  const GET_COLLECTIONS = gql`
+    query collections {
+      collections(first: 10) {
+        edges {
+          node {
+            id
+            title
+            handle
+            image {
+              originalSrc
             }
           }
         }
       }
     }
   `;
-
-  const { data = null, loading = false, error = null } = useQuery(GET_PRODUCTS);
-  console.log("data => ", data);
-  console.log("loading => ", loading);
-  console.log("error => ", error);
+  const { data = null, loading = false, error = null } = useQuery(
+    GET_COLLECTIONS
+  );
   return (
     <div>
-      <h1>Hello</h1>
+      <Seo />
+      <Banner />
+      <Collections
+        collection={data?.collections?.edges}
+        loading={loading}
+        error={error}
+      />
+
+      {data?.collections?.edges.length > 0 &&
+        data?.collections?.edges.map(({ node }) => {
+          return (
+            <Section key={node.id}>
+              <Products title={node.title} handle={node.handle} />
+            </Section>
+          );
+        })}
     </div>
   );
 }

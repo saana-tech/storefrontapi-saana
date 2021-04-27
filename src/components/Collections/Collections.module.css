@@ -1,0 +1,102 @@
+.containerCollection {
+  margin: 0 40px;
+}
+.containerCollection h2 {
+  font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.46;
+  letter-spacing: normal;
+  color: #111820;
+}
+.cards {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  width: 100%;
+}
+.cards h4 {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #fff;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  background-color: #11182094;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.card {
+  height: 150px;
+  border-radius: 5px;
+  margin: 0 0.5rem;
+  width: 164px;
+  min-width: 164px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.card:hover {
+  transform: scale(0.9);
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.buttonArrow {
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgb(238, 238, 238);
+  border-radius: 25px;
+  background-color: transparent;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  outline: none;
+}
+.containerCard {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.shadowRight {
+  height: 100%;
+  width: 70px;
+  position: absolute;
+  right: 0;
+  background: linear-gradient(90deg, hsla(0, 0%, 100%, 0), #fff);
+}
+
+.containerLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media only screen and (min-width: 1440px) {
+  .containerCollection {
+    max-width: 100%;
+    margin: 0 15%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .containerCollection {
+    margin: 0 10px;
+  }
+  .cards {
+    overflow: scroll;
+    white-space: nowrap;
+    display: flex;
+    width: 100%;
+  }
+}
