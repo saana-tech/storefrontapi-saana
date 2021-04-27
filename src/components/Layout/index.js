@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useQuery, gql, useMutation } from "@apollo/client";
-
 import PropTypes from "prop-types";
+
 import { StoreContext } from "../../core";
 import ModalCart from "../ModalCart";
 
@@ -9,6 +9,7 @@ import NavBar from "../NavBar";
 import Footer from "../Footer";
 import {
   handleCreateCheckoutDispatch,
+  handleGeoLocation,
   setUserDispatch,
 } from "../../core/global/actions";
 import { checkoutCustomerAssociate } from "../../graphql/gql";
@@ -28,11 +29,22 @@ const Layout = ({ children }) => {
     handleToken();
   }, [handleToken]);
 
-  const customerTokenQuery = gql`{
+  const customerTokenQuery = gql`
+  query customer {
   customer(customerAccessToken: "${token}") {
     email
     displayName
     id
+    addresses(first: 5) {
+      edges {
+        node {
+          id
+          address1
+          city
+          country
+        }
+      }
+    }
     orders(first: 5) {
       edges {
         node {
@@ -57,20 +69,24 @@ const Layout = ({ children }) => {
           totalPrice
           subtotalPrice
           processedAt
-          
-         
+          financialStatus
+          fulfillmentStatus
+          shippingAddress {
+            address1
+          }
         }
       }
     }
     defaultAddress {
       address1
     }
-
-  }
+    lastIncompleteCheckout {
+      completedAt
+      createdAt
+      paymentDue
+    }
+   }
 }
-
-
-
 `;
   const { data = null, loading = null, error = null } = useQuery(
     customerTokenQuery
@@ -81,7 +97,6 @@ const Layout = ({ children }) => {
     setUserDispatch(data?.customer, globalDispatch);
 
     try {
-      console.log("checkout id =>", checkout);
       const res = await checkoutCustomer({
         variables: {
           checkoutId: checkout.id,
@@ -101,7 +116,29 @@ const Layout = ({ children }) => {
       handleLoginUser();
     }
   }, [data, checkout?.id]);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      handleGeoLocation(
+        {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        },
+        globalDispatch
+      );
+    });
+  }, []);
+
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      alert("Available");
+    } else {
+      alert("Not Available");
+    }
+  }, []);
+
   console.log("user =>", user);
+
   return (
     <div>
       {showCart && <ModalCart />}

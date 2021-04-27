@@ -12,10 +12,10 @@ import {
 import styles from "../styles/Product.module.css";
 import { CheckoutFragment } from "../graphql/gql";
 import util from "../util";
-import Products from "../components/Products";
 import Seo from "../components/Seo";
 import IconStart from "../../public/static/svg/IconStart";
 import IconEmpty from "../../public/static/svg/IconEmpty";
+import ProductsTag from "../components/ProductsTag";
 
 const Product = () => {
   const checkoutLineItemsAdd = gql`
@@ -67,6 +67,7 @@ const Product = () => {
     const productFilter = product ? JSON.parse(product) : null;
     setProductSelect(productFilter);
   }, [router.query]);
+
   return (
     <>
       {productSelect && (
@@ -77,9 +78,9 @@ const Product = () => {
           />
           <div className={styles.headerProduct}>
             <div className={styles.col1}>
-              <img src={productSelect.imageUrl} alt={productSelect.title} />{" "}
-              <img src={productSelect.imageUrl} alt={productSelect.title} />{" "}
-              <img src={productSelect.imageUrl} alt={productSelect.title} />{" "}
+              <img src={productSelect.imageUrl} alt={productSelect.title} />
+              <img src={productSelect.imageUrl} alt={productSelect.title} />
+              <img src={productSelect.imageUrl} alt={productSelect.title} />
             </div>
             <div className={styles.col2}>
               <img src={productSelect.imageUrl} alt={productSelect.title} />
@@ -111,8 +112,20 @@ const Product = () => {
               <p>{productSelect.description}</p>
             </div>
           </div>
-          <Products title={"También te puede interesar"} extend={false} />
-          <Products title={"Otros productos"} extend={false} />
+          <ProductsTag
+            title={"También recomendamos"}
+            tag1={
+              productSelect?.tags && productSelect?.tags.length > 0
+                ? productSelect?.tags[0]
+                : ""
+            }
+            tag2={
+              productSelect?.tags && productSelect?.tags.length > 1
+                ? productSelect?.tags[0]
+                : ""
+            }
+            idCurrentProduct={productSelect?.variantId}
+          />
         </>
       )}
     </>

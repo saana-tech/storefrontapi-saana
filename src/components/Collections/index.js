@@ -1,37 +1,15 @@
 import React, { useRef } from "react";
-import { gql, useQuery } from "@apollo/client";
+import PropTypes from "prop-types";
+import { useRouter } from "next/router";
 
 import styles from "./Collections.module.css";
 import ArrowLeft from "../../../public/static/svg/ArrowLeft";
 import ArrowRight from "../../../public/static/svg/ArrowRight";
 import LoadingCollections from "./LoadingColletions";
 
-const Collections = () => {
+const Collections = ({ collection = [], error = null, loading = false }) => {
+  const router = useRouter();
   const collectionRef = useRef(null);
-  const GET_COLLECTIONS = gql`
-    {
-      shop {
-        collections(first: 10) {
-          edges {
-            node {
-              id
-              title
-              handle
-              image {
-                originalSrc
-              }
-            }
-          }
-          pageInfo {
-            hasNextPage
-          }
-        }
-      }
-    }
-  `;
-  const { data = null, loading = false, error = null } = useQuery(
-    GET_COLLECTIONS
-  );
 
   const handleDirection = (direction) => {
     if (direction === "left") {
@@ -40,6 +18,14 @@ const Collections = () => {
       collectionRef ? (collectionRef.current.scrollLeft += 200) : null;
     }
   };
+
+  const handleProductsCategory = (handle, title) => {
+    router.push({
+      pathname: "/Collection",
+      query: { handle, title },
+    });
+  };
+
   if (error) {
     return (
       <div>
@@ -71,15 +57,19 @@ const Collections = () => {
       ) : (
         <div className={styles.containerCard}>
           <div className={styles.cards} ref={collectionRef}>
-            {data &&
-              data?.shop?.collections?.edges?.map(({ node }, index) => {
-                const { title, image } = node;
-                let imageUrl = image.originalSrc;
+            {collection &&
+              collection.length > 0 &&
+              collection.map(({ node }, index) => {
+                const { title = "", image = "" } = node;
+                let imageUrl = image?.originalSrc;
                 return (
                   <div
                     key={index}
                     className={styles.card}
                     style={{ backgroundImage: `url(${imageUrl})` }}
+                    onClick={() =>
+                      handleProductsCategory(node.handle, node.title)
+                    }
                   >
                     <h4>{title}</h4>
                     <img />
@@ -92,6 +82,11 @@ const Collections = () => {
       )}
     </div>
   );
+};
+Collections.propTypes = {
+  collection: PropTypes.array,
+  error: PropTypes.object,
+  loading: PropTypes.bool,
 };
 
 export default Collections;

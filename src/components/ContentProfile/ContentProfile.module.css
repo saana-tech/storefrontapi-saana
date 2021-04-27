@@ -85,6 +85,37 @@
 .informationSidebar h4 {
   margin: 0;
 }
+.containerBtnsClose {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+.containerBtnsClose button {
+  background-color: #314790;
+  border: 0;
+  outline: none;
+  color: white;
+  border-radius: 5px;
+  height: 40px;
+  width: 120px;
+  cursor: pointer;
+}
+.containerBtnsClose button:last-child {
+  background-color: transparent;
+  border: 1px solid #314790;
+  outline: none;
+  color: #314790;
+  border-radius: 5px;
+  height: 40px;
+  width: 120px;
+  cursor: pointer;
+}
+.containerMsn {
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+  margin: 0 2rem;
+}
 @media only screen and (max-width: 1024px) {
   .userName {
     flex-direction: column;

@@ -6,6 +6,7 @@ import {
   CREATE_CHECKOUT,
   SET_USER,
   HANDLE_MODAL_LOGIN,
+  SET_COORDINATES,
 } from "./types";
 
 export const handleErrorGlobal = (payload, dispatch) => {
@@ -59,5 +60,11 @@ export const showModalLoginDispatch = (bool, dispatch) => {
   dispatch({
     type: HANDLE_MODAL_LOGIN,
     payload: bool,
+  });
+};
+export const handleGeoLocation = (coordinates, dispatch) => {
+  dispatch({
+    type: SET_COORDINATES,
+    payload: coordinates,
   });
 };

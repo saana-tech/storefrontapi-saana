@@ -90,3 +90,60 @@ export const customerAccessTokenCreate = gql`
     }
   }
 `;
+export const createAddAddressCustomer = gql`
+  mutation customerAddressCreate(
+    $customerAccessToken: String!
+    $address: MailingAddressInput!
+  ) {
+    customerAddressCreate(
+      customerAccessToken: $customerAccessToken
+      address: $address
+    ) {
+      customerAddress {
+        id
+        address1
+      }
+      customerUserErrors {
+        code
+        field
+        message
+      }
+    }
+  }
+`;
+export const selectAddressDefault = gql`
+  mutation customerDefaultAddressUpdate(
+    $customerAccessToken: String!
+    $addressId: ID!
+  ) {
+    customerDefaultAddressUpdate(
+      customerAccessToken: $customerAccessToken
+      addressId: $addressId
+    ) {
+      customer {
+        id
+        defaultAddress {
+          address1
+        }
+      }
+
+      customerUserErrors {
+        code
+        field
+        message
+      }
+    }
+  }
+`;
+export const deleteAddressCustomer = gql`
+  mutation customerAddressDelete($id: ID!, $customerAccessToken: String!) {
+    customerAddressDelete(id: $id, customerAccessToken: $customerAccessToken) {
+      customerUserErrors {
+        code
+        field
+        message
+      }
+      deletedCustomerAddressId
+    }
+  }
+`;

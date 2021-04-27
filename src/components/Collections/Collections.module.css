@@ -32,7 +32,7 @@
   border-top-right-radius: 5px;
 }
 .card {
-  height: 197px;
+  height: 150px;
   border-radius: 5px;
   margin: 0 0.5rem;
   width: 164px;
@@ -44,6 +44,7 @@
   transition: all 0.3s ease;
   position: relative;
 }
+
 .card:hover {
   transform: scale(0.9);
 }

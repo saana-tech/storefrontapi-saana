@@ -12,24 +12,16 @@ import IconCategory from "../../../public/static/svg/IconCategory";
 const Products = ({
   title = "Ofertas",
   extend = true,
-  tag1 = "jarabe",
-  tag2 = "Oral",
+  handle = "",
+  limit = 10,
 }) => {
   const router = useRouter();
   const collectionRef = useRef(null);
 
-  /*products(first: 10, query: "tag:${tag1} AND tag:${tag2}") { */
-
   const GET_PRODUCTS = gql`
-    query GetProductsByTag {
-      shop {
-        name
-        description
-        products(first: 10) {
-          pageInfo {
-            hasNextPage
-            hasPreviousPage
-          }
+    query collectionByHandle {
+      collectionByHandle(handle: "${handle}") {
+        products(first: ${limit}) {
           edges {
             node {
               id
@@ -41,15 +33,10 @@ const Products = ({
                 values
               }
               variants(first: 250) {
-                pageInfo {
-                  hasNextPage
-                  hasPreviousPage
-                }
                 edges {
                   node {
                     id
                     title
-
                     selectedOptions {
                       name
                       value
@@ -62,25 +49,21 @@ const Products = ({
                 }
               }
               images(first: 250) {
-                pageInfo {
-                  hasNextPage
-                  hasPreviousPage
-                }
                 edges {
                   node {
                     src
                   }
                 }
               }
+              tags
             }
           }
         }
       }
     }
   `;
-  const { data = null, loading = false, error = null } = useQuery(GET_PRODUCTS);
-  console.log(loading, error);
-  let products = data?.shop?.products?.edges;
+  const { data = null } = useQuery(GET_PRODUCTS);
+  let products = data?.collectionByHandle?.products?.edges;
 
   const handleProduct = (product) => {
     router.push({
@@ -95,11 +78,17 @@ const Products = ({
       collectionRef ? (collectionRef.current.scrollLeft += 200) : null;
     }
   };
+  const handleProductsCategory = () => {
+    router.push({
+      pathname: "/Collection",
+      query: { handle, title },
+    });
+  };
 
   return (
     <div className={styles.containerProducts}>
       <div className={styles.header}>
-        <h2>{title}</h2>
+        <h2 className={styles.title}>{title}</h2>
         <div className={styles.buttonsDirections}>
           <button
             className={styles.buttonArrow}
@@ -117,7 +106,8 @@ const Products = ({
       </div>
       <div className={styles.contentProducts} ref={collectionRef}>
         {products &&
-          products.map(({ node }) => {
+          products.map(({ node }, index) => {
+            console.log("node product tag =>", node);
             const { id, title, images, variants, description } = node;
             let imageUrl = images.edges[0].node.src;
             let price = variants.edges[0].node.price;
@@ -126,6 +116,8 @@ const Products = ({
             return (
               <CardProduct
                 key={id}
+                lastProduct={products.length}
+                index={index}
                 product={{
                   imageUrl,
                   price,
@@ -133,6 +125,7 @@ const Products = ({
                   title,
                   description,
                   id,
+                  tags: node.tags,
                 }}
                 handleProduct={handleProduct}
               />
@@ -147,9 +140,10 @@ const Products = ({
 
               <span>Quieres ver todos los productos de </span>
               <h4>{title}</h4>
-              <button>Ver mas</button>
+              <button type={"button"} onClick={() => handleProductsCategory()}>
+                Ver mas
+              </button>
             </div>
-            <div className={styles.shadowRight} />
           </>
         )}
       </div>
@@ -161,6 +155,8 @@ Products.propTypes = {
   tag1: PropTypes.string,
   tag2: PropTypes.string,
   extend: PropTypes.bool,
+  handle: PropTypes.string,
+  limit: PropTypes.number,
 };
 
 export default Products;

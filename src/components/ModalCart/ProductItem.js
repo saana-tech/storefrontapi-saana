@@ -71,7 +71,7 @@ const ProductItem = ({ product = null }) => {
 
   const removeLineItemInCart = async () => {
     try {
-      if (product) {
+      if (product && product.id) {
         const res = await checkoutProductRemove({
           variables: {
             checkoutId: checkout.id,
