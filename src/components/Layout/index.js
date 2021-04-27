@@ -17,7 +17,7 @@ import { checkoutCustomerAssociate } from "../../graphql/gql";
 const Layout = ({ children }) => {
   const { state } = useContext(StoreContext);
   const { globalState } = state;
-  const { showCart, checkout, user } = globalState;
+  const { showCart, checkout } = globalState;
 
   const { globalDispatch } = useContext(StoreContext);
   const [token, setToken] = useState("");
@@ -88,9 +88,7 @@ const Layout = ({ children }) => {
    }
 }
 `;
-  const { data = null, loading = null, error = null } = useQuery(
-    customerTokenQuery
-  );
+  const { data = null } = useQuery(customerTokenQuery);
   const [checkoutCustomer] = useMutation(checkoutCustomerAssociate);
 
   const handleLoginUser = async () => {
@@ -104,7 +102,6 @@ const Layout = ({ children }) => {
         },
       });
       const dataCart = res.data.checkoutCustomerAssociate.checkout;
-      console.log("Data cart =>", res);
       handleCreateCheckoutDispatch(dataCart, globalDispatch);
     } catch (error) {
       console.log("error =>", error);
@@ -136,8 +133,6 @@ const Layout = ({ children }) => {
       alert("Not Available");
     }
   }, []);
-
-  console.log("user =>", user);
 
   return (
     <div>

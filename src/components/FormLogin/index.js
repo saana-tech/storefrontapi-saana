@@ -57,9 +57,8 @@ const FormLogin = () => {
     };
 
     try {
-      const { data } = await customerCreate({ variables: { input } });
+      await customerCreate({ variables: { input } });
 
-      console.log("user =>", data);
       await handleLogin();
     } catch (error) {
       console.log("error createCustomer =>", error);
