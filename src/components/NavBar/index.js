@@ -25,7 +25,6 @@ import SelectAddress from "./SelectAddress";
 import MenuResponsive from "../MenuResponsive";
 import Search from "./Search";
 import ModalSearchResponsive from "./ModalSearchResponsive";
-import PinIcon from "../../../public/static/svg/PinIcon";
 
 const NavBar = () => {
   const { state, globalDispatch } = useContext(StoreContext);
