@@ -35,6 +35,9 @@
   flex-direction: column;
   width: 250px;
 }
+.col3 {
+  width: 100%;
+}
 
 .col1 h3 {
   margin: 0;
@@ -64,7 +67,7 @@
   outline: none;
   border-radius: 5px;
   margin-right: 1rem;
-  max-width: 300px;
+  width: 100%;
 }
 .form button {
   background-color: white;
@@ -76,6 +79,7 @@
   max-width: 300px;
   color: black;
   cursor: pointer;
+  margin-top: 20px;
 }
 .containerUl {
   display: flex;
@@ -124,6 +128,6 @@
     outline: none;
     border-radius: 5px;
     margin-right: 1rem;
-    max-width: 190px;
+    max-width: 200px;
   }
 }
