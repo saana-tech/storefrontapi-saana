@@ -5,9 +5,11 @@ import { StoreContext } from "../../core";
 
 import ArrowDown from "../../../public/static/svg/ArrowDown";
 import IconHome from "../../../public/static/svg/IconHome";
+import IconUser from "../../../public/static/svg/IconUser";
 import IconServiceLine from "../../../public/static/svg/IconServiceLine";
 import IconCloseWhite from "../../../public/static/svg/IconCloseWhite";
 import styles from "./MenuResponsive.module.css";
+import ModalConfirmation from "../ModalConfirmation";
 
 const MenuResponsive = ({
   open = false,
@@ -19,6 +21,7 @@ const MenuResponsive = ({
   const { user } = globalState;
 
   const [show, setShow] = useState(false);
+  const handleRoute = () => {};
   return (
     <>
       {open && (
@@ -54,6 +57,11 @@ const MenuResponsive = ({
                 <a>Home</a>
               </div>
               <div className={styles.separator} />
+              <div className={styles.link} onClick={() => handleRoute()}>
+                <IconUser />
+                <a>Mi perfil</a>
+              </div>
+              <div className={styles.separator} />
               <div
                 className={styles.link}
                 style={{
@@ -82,6 +90,7 @@ const MenuResponsive = ({
           </div>
         </div>
       )}
+      <ModalConfirmation />
     </>
   );
 };

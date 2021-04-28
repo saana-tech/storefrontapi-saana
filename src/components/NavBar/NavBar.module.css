@@ -587,6 +587,9 @@
 
 /* PHONE */
 @media only screen and (max-width: 767px) {
+  .title {
+    margin-top: 40px !important;
+  }
   .defaultAddress {
     max-width: 60px !important;
     text-overflow: ellipsis;
