@@ -145,7 +145,7 @@ const SelectAddress = () => {
           </span>
           <ArrowDown />
         </div>
-        {!showSelect && (
+        {showSelect && (
           <div className={styles.showSelectAddress}>
             <div className={styles.addressSave}>
               {addresses && addresses.length > 0 ? (
