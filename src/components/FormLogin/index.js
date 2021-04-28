@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useMutation } from "@apollo/client";
+import PropTypes from "prop-types";
 import styles from "./FormLogin.module.css";
 import ArrowLeft from "../../../public/static/svg/ArrowLeft";
 import { handleCreateCheckoutDispatch } from "../../core/global/actions";
@@ -13,7 +14,7 @@ import Error from "../Error";
 import { IMG_LOGIN, IMG_REGISTER } from "../../constants";
 
 //Handle login
-const FormLogin = () => {
+const FormLogin = ({ close }) => {
   const { state, globalDispatch } = useContext(StoreContext);
   const { globalState } = state;
   const { checkout } = globalState;
@@ -33,6 +34,8 @@ const FormLogin = () => {
   const [checkoutCustomer] = useMutation(checkoutCustomerAssociate);
 
   const handleRegister = async (e) => {
+    e.preventDefault();
+
     if (
       values.email === "" ||
       values.password === "" ||
@@ -48,7 +51,6 @@ const FormLogin = () => {
 
       return;
     }
-    e.preventDefault();
     const input = {
       firstName: values.fitsName,
       lastName: values.lasName,
@@ -58,8 +60,8 @@ const FormLogin = () => {
 
     try {
       await customerCreate({ variables: { input } });
-
       await handleLogin();
+      close();
     } catch (error) {
       console.log("error createCustomer =>", error);
     }
@@ -80,7 +82,6 @@ const FormLogin = () => {
         password: values.password,
       };
       const { data } = await createTokenCustomer({ variables: { input } });
-      console.log("data login customer =>", data);
       const token =
         data.customerAccessTokenCreate.customerAccessToken.accessToken;
 
@@ -98,6 +99,7 @@ const FormLogin = () => {
 
       const dataCart = res.data.checkoutCustomerAssociate.checkout;
       handleCreateCheckoutDispatch(dataCart, globalDispatch);
+      close();
     } catch (error) {
       console.log("error handleLogin", error);
       setHandleError({
@@ -120,7 +122,7 @@ const FormLogin = () => {
         {!modeRegister ? (
           <div className={styles.containerForm}>
             <div className={styles.form}>
-              <h2>!BIENVENIDOS DE NUEVO!</h2>
+              <h2 className={styles.titleModal}>!BIENVENIDOS DE NUEVO!</h2>
               <input
                 placeholder={"Correo electrónico *"}
                 name={"email"}
@@ -152,7 +154,7 @@ const FormLogin = () => {
               >
                 <ArrowLeft />
               </button>
-              <h2>!ENCANTADO DE CONOCERTE!</h2>
+              <h2 className={styles.titleModal}>!ENCANTADO DE CONOCERTE!</h2>
               <form className={styles.formRegistre} onSubmit={handleRegister}>
                 <div className={styles.userName}>
                   <input
@@ -215,5 +217,7 @@ const FormLogin = () => {
     </>
   );
 };
-
+FormLogin.propTypes = {
+  close: PropTypes.func,
+};
 export default FormLogin;

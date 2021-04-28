@@ -3,7 +3,7 @@ import PropTypes, { number } from "prop-types";
 import styles from "./Products.module.css";
 import util from "../../util";
 
-const CardProduct = ({ product, handleProduct, lastProduct, index }) => {
+const CardProduct = ({ product, handleProduct }) => {
   const { imageUrl, title, price } = product;
   return (
     <>
@@ -19,7 +19,6 @@ const CardProduct = ({ product, handleProduct, lastProduct, index }) => {
           <button onClick={() => handleProduct(product)}>AGREGAR</button>
         </div>
       </div>
-      {index === lastProduct - 1 && <div className={styles.shadowRight} />}
     </>
   );
 };

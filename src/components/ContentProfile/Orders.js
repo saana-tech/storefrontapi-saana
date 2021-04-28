@@ -30,7 +30,10 @@ const Orders = () => {
               <tr>
                 <th scope="col">Pedido</th>
                 <th scope="col">Fecha</th>
-                <td scope="col">Productos</td>
+                <th scope="col">Estado de pago</th>
+                <th scope="col">Productos</th>
+                <th scope="col">Estado de compra</th>
+
                 <th scope="col">Total</th>
               </tr>
             </thead>
@@ -38,7 +41,20 @@ const Orders = () => {
             <tbody>
               {orders &&
                 orders.map(({ node }) => {
-                  const { totalPrice, lineItems, processedAt, id } = node;
+                  console.log("node order =>", node);
+                  <td data-label="Estado de pago">
+                    {util.dateFormat(processedAt)}
+                  </td>;
+                  const {
+                    totalPrice,
+                    lineItems,
+                    processedAt,
+                    id,
+                    fulfillmentStatus,
+                    financialStatus,
+                    orderNumber,
+                  } = node;
+
                   const products = lineItems.edges;
                   return (
                     <tr key={id}>
@@ -46,20 +62,44 @@ const Orders = () => {
                         <a
                           onClick={() =>
                             handleOrder({
-                              id,
-                              products,
-                              processedAt,
                               totalPrice,
+                              lineItems,
+                              processedAt,
+                              id: orderNumber,
+                              fulfillmentStatus,
+                              financialStatus,
+                              orderNumber,
+                              address: node?.shippingAddress?.address1,
+                              products,
                             })
                           }
                           className={styles.linkOrder}
                         >
-                          {id.slice(1, 5)}
+                          {"#"}
+                          {orderNumber}
                         </a>
                       </td>
                       <td data-label="Fecha">{util.dateFormat(processedAt)}</td>
+                      <td data-label="Estado de pago">
+                        {financialStatus === "PENDING" && (
+                          <span className={styles.estatusPending}>
+                            Pendiente
+                          </span>
+                        )}
+                      </td>
                       <td data-label="Cantidad">{products.length}</td>
-                      <td data-label="Total">{util.formatCOP(totalPrice)}</td>
+                      <td data-label="Estado de orden">
+                        {fulfillmentStatus === "UNFULFILLED" && (
+                          <span className={styles.statusOrder}>
+                            No terminado
+                          </span>
+                        )}
+                      </td>
+                      <td data-label="Total">
+                        <span className={styles.totalTablet}>
+                          {util.formatCOP(totalPrice)}
+                        </span>
+                      </td>
                     </tr>
                   );
                 })}

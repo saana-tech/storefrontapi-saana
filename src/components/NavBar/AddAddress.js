@@ -23,57 +23,65 @@ const AddAddress = ({ close }) => {
   const { globalState } = state;
   const { coordinates = null } = globalState;
   const customerTokenQuery = gql`
-  query customer {
-  customer(customerAccessToken: "${token}") {
-    email
-    displayName
-    id
-  addresses(first: 5) {
-      edges {
-        node {
+    query customer {
+      customer(customerAccessToken: "${token}") {
+        email
+        displayName
         id
-        address1
-        city
-        country
-        }
-      }
-    }
-    orders(first: 5) {
-      edges {
-        node {
-          lineItems(first: 5) {
-            edges {
-              node {
-                quantity
-                title
-                variant {
-                  image {
-                    src
-                  }
-                  price
-                  sku
-                }
-              }
+        addresses(first: 5) {
+          edges {
+            node {
+              id
+              address1
+              city
+              country
             }
           }
-          id
-          currencyCode
-          totalTax
-          totalPrice
-          subtotalPrice
-          processedAt
-          
-         
+        }
+        orders(first: 5) {
+          edges {
+            node {
+              lineItems(first: 5) {
+                edges {
+                  node {
+                    quantity
+                    title
+                    variant {
+                      image {
+                        src
+                      }
+                      price
+                      sku
+                    }
+                  }
+                }
+              }
+              id
+              currencyCode
+              totalTax
+              totalPrice
+              subtotalPrice
+              processedAt
+              financialStatus
+              fulfillmentStatus
+              shippingAddress {
+                address1
+              }
+              orderNumber
+            }
+          }
+        }
+        defaultAddress {
+          address1
+        }
+        lastIncompleteCheckout {
+          completedAt
+          createdAt
+          paymentDue
         }
       }
     }
-    defaultAddress {
-      address1
-    }
-
-  }
-}
-`;
+  `;
 
   const [addAddressMutation] = useMutation(
     createAddAddressCustomer,

@@ -23,6 +23,7 @@
 .imgBanner img {
   object-fit: cover;
   max-width: 100%;
+  max-height: 200px;
 }
 .information {
   flex: 1;

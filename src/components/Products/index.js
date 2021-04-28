@@ -111,7 +111,7 @@ const Products = ({
       </div>
       <div className={styles.contentProducts} ref={collectionRef}>
         {products &&
-          products.map(({ node }, index) => {
+          products.map(({ node }) => {
             console.log("node product tag =>", node);
             const { id, title, images, variants, description } = node;
             let imageUrl = images.edges[0].node.src;
@@ -122,8 +122,6 @@ const Products = ({
             return (
               <CardProduct
                 key={id}
-                lastProduct={products.length}
-                index={index}
                 product={{
                   imageUrl,
                   price,

@@ -20,10 +20,11 @@
   flex-direction: column;
   margin: 2rem;
 }
-.form h2 {
+.titleModal {
   color: #314790;
   font-size: 40px;
   margin-bottom: 0.5rem;
+  font-weight: bold;
 }
 .form input {
   background-color: #f6f6f6;
@@ -129,11 +130,10 @@
 }
 .check {
   display: flex;
-  align-items: center;
   margin-bottom: 2rem;
 }
 .check input {
-  margin-right: 1rem;
+  margin-right: 10px;
 }
 .buttonLeft {
   background-color: white;

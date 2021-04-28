@@ -19,6 +19,7 @@
   border-radius: 15px;
   position: relative;
   transition: all 0.3s ease;
+  z-index: 999;
 }
 .modalButtonClose {
   position: absolute;
@@ -36,7 +37,7 @@
   align-items: center;
   background-color: transparent;
   outline: none;
-  z-index: 99;
+  z-index: 9999;
 }
 
 @media only screen and (max-width: 1024px) {

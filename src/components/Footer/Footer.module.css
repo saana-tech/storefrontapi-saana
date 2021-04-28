@@ -10,30 +10,32 @@
 .containerLogo img {
   width: 184px;
   height: auto;
+  object-fit: contain;
 }
 .containerFooter {
   margin-bottom: 0;
-  max-width: 1350px;
-  padding: 2rem 4rem;
+  padding: 2rem 0rem;
   display: flex;
   flex-direction: column;
+  width: 100%;
+}
+.col1 ul li a:hover,
+.col2 ul li a:hover {
+  text-decoration: underline !important;
+  cursor: pointer;
 }
 .containerBody {
   display: flex;
-  width: 100%;
 }
 .col1 {
-  flex: 1;
+  width: 300px;
 }
 .col2 {
-  flex: 1;
   display: flex;
   flex-direction: column;
+  width: 250px;
 }
-.col3 {
-  flex: 1;
-  margin-left: 2rem;
-}
+
 .col1 h3 {
   margin: 0;
 }
@@ -53,6 +55,7 @@
 }
 .form {
   margin-top: 1.5rem;
+  min-width: 400px;
 }
 .form input {
   background-color: white;
@@ -77,10 +80,15 @@
 .containerUl {
   display: flex;
 }
+.copyright {
+  padding-top: 1rem;
+  text-align: center;
+  border-top: 1px solid white;
+  margin-top: 1rem;
+}
 @media only screen and (min-width: 1440px) {
   .containerFooter {
     max-width: 100%;
-    margin: 0 15%;
   }
 }
 /* RESPONSIVE */
@@ -105,5 +113,17 @@
   }
   .col3 button {
     margin-top: 0.5rem;
+  }
+  .col1 {
+    width: 200px;
+  }
+  .form input {
+    background-color: white;
+    padding: 10px 18px;
+    border: 0;
+    outline: none;
+    border-radius: 5px;
+    margin-right: 1rem;
+    max-width: 190px;
   }
 }

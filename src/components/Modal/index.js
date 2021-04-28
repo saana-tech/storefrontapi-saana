@@ -16,7 +16,7 @@ const Modal = ({
   return (
     <>
       {open && (
-        <div className={styles.backdrop} onClick={() => handleClose()}>
+        <div className={styles.backdrop}>
           <div className={styles.modal} style={{ width, height }}>
             <div className={styles.modalButtonClose}>
               <button onClick={() => handleClose()}>

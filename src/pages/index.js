@@ -6,6 +6,7 @@ import Collections from "../components/Collections";
 import Products from "../components/Products";
 import Section from "../components/Section";
 import Seo from "../components/Seo";
+import { Container } from "react-bootstrap";
 
 export default function Home() {
   const GET_COLLECTIONS = gql`
@@ -30,21 +31,23 @@ export default function Home() {
   return (
     <div>
       <Seo />
-      <Banner />
-      <Collections
-        collection={data?.collections?.edges}
-        loading={loading}
-        error={error}
-      />
+      <Container>
+        <Banner />
+        <Collections
+          collection={data?.collections?.edges}
+          loading={loading}
+          error={error}
+        />
 
-      {data?.collections?.edges.length > 0 &&
-        data?.collections?.edges.map(({ node }) => {
-          return (
-            <Section key={node.id}>
-              <Products title={node.title} handle={node.handle} />
-            </Section>
-          );
-        })}
+        {data?.collections?.edges.length > 0 &&
+          data?.collections?.edges.map(({ node }) => {
+            return (
+              <Section key={node.id}>
+                <Products title={node.title} handle={node.handle} />
+              </Section>
+            );
+          })}
+      </Container>
     </div>
   );
 }

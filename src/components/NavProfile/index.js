@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import styles from "./NavProfile.module.css";
-import Modal from "../Modal";
+import ModalConfirmation from "../ModalConfirmation";
 import { signOffDispatch } from "../../core/global/actions";
 import { StoreContext } from "../../core";
 
@@ -54,22 +54,12 @@ const NavProfile = ({ path, setPath }) => {
           </div>
         </div>
       </div>
-      <Modal
+      <ModalConfirmation
+        action={() => handleSingOff()}
         open={modalShow}
         close={setModalShow}
-        width={"400px"}
-        height={"200px"}
-      >
-        <div className={styles.containerClose}>
-          <div className={styles.contentClose}>
-            <span>¿Estas seguro que deseas cerrar sesión?</span>
-            <div className={styles.containerBtnsClose}>
-              <button onClick={() => setModalShow(false)}>Cancelar</button>
-              <button onClick={() => handleSingOff()}>Si</button>
-            </div>
-          </div>
-        </div>
-      </Modal>
+        msn={"¿Estas seguro(a) que deseas cerrar sesión?"}
+      />
     </>
   );
 };

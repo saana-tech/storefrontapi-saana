@@ -1,17 +1,14 @@
 /* HEADER */
 .header {
-  width: 100%;
   background-color: #ffffff;
   padding: 1rem 0;
-  display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
 }
 .navPrincipal {
   display: flex;
   align-items: center;
-  width: 90% !important;
-  justify-content: space-between;
 }
 
 .logoImage {
@@ -129,7 +126,6 @@
   text-decoration: none;
   list-style: none;
   display: flex;
-  justify-content: center;
   padding: 0.2rem 0;
 }
 .containerCollection ul li {
@@ -180,6 +176,11 @@
   z-index: 99;
   background-color: white;
   width: 100%;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .iconBar {
   display: none;
@@ -429,7 +430,6 @@
   flex-direction: column;
   align-self: center;
   padding-left: 2rem;
-  position: relative;
 }
 .containerMaps {
   flex: 1;
@@ -599,6 +599,7 @@
   }
   .header {
     max-width: 100%;
+    padding-right: 1rem;
   }
   .logoImage {
     max-width: 100%;

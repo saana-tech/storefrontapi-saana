@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useMutation, gql } from "@apollo/client";
 
-import IconDelete from "../../../public/static/svg/IconDelete";
 import { StoreContext } from "../../core";
 import styles from "./ContentProfile.module.css";
 import { deleteAddressCustomer } from "../../graphql/gql";
-import Modal from "../Modal";
+import ModalConfirmation from "../ModalConfirmation";
 
 const Address = () => {
   const { state } = useContext(StoreContext);
@@ -16,59 +15,66 @@ const Address = () => {
   const [token, setToken] = useState("");
   const [itemAddress, setItemAddress] = useState("");
   const [modalDelete, setModalDelete] = useState(false);
-
   const customerTokenQuery = gql`
-  query customer {
-  customer(customerAccessToken: "${token}") {
-    email
-    displayName
-    id
-  addresses(first: 5) {
-      edges {
-        node {
+    query customer {
+      customer(customerAccessToken: "${token}") {
+        email
+        displayName
         id
-        address1
-        city
-        country
-        }
-      }
-    }
-    orders(first: 5) {
-      edges {
-        node {
-          lineItems(first: 5) {
-            edges {
-              node {
-                quantity
-                title
-                variant {
-                  image {
-                    src
-                  }
-                  price
-                  sku
-                }
-              }
+        addresses(first: 5) {
+          edges {
+            node {
+              id
+              address1
+              city
+              country
             }
           }
-          id
-          currencyCode
-          totalTax
-          totalPrice
-          subtotalPrice
-          processedAt
-          
-         
+        }
+        orders(first: 5) {
+          edges {
+            node {
+              lineItems(first: 5) {
+                edges {
+                  node {
+                    quantity
+                    title
+                    variant {
+                      image {
+                        src
+                      }
+                      price
+                      sku
+                    }
+                  }
+                }
+              }
+              id
+              currencyCode
+              totalTax
+              totalPrice
+              subtotalPrice
+              processedAt
+              financialStatus
+              fulfillmentStatus
+              shippingAddress {
+                address1
+              }
+              orderNumber
+            }
+          }
+        }
+        defaultAddress {
+          address1
+        }
+        lastIncompleteCheckout {
+          completedAt
+          createdAt
+          paymentDue
         }
       }
     }
-    defaultAddress {
-      address1
-    }
-
-  }
-}
-`;
+  `;
 
   const [deleteAddressMutation] = useMutation(deleteAddressCustomer, {
     update(cache) {
@@ -159,9 +165,12 @@ const Address = () => {
                     <td data-label="Pedido">{node.address1}</td>
                     <td data-label="Ciudad">{node.city}</td>
                     <td data-label="Opciones">
-                      <a onClick={() => handleModalRemove(node)}>
-                        <IconDelete />
-                      </a>
+                      <button
+                        onClick={() => handleModalRemove(node)}
+                        className={styles.buttonDelete}
+                      >
+                        Eliminar
+                      </button>
                     </td>
                   </tr>
                 );
@@ -169,15 +178,12 @@ const Address = () => {
           </tbody>
         </table>
       </div>
-      <Modal open={modalDelete} close={setModalDelete} width={400} height={150}>
-        <div className={styles.containerMsn}>
-          <span>Realmente deseas eliminar esta dirección</span>
-          <div className={styles.containerBtnsClose}>
-            <button onClick={() => setModalDelete(false)}>Cancelar</button>
-            <button onClick={() => handleDeleteAddress()}>Eliminar</button>
-          </div>
-        </div>
-      </Modal>
+      <ModalConfirmation
+        action={() => handleDeleteAddress()}
+        open={modalDelete}
+        close={setModalDelete}
+        msn={"¿Estas seguro(a) que deseas eliminar esta dirección?"}
+      />
     </div>
   );
 };

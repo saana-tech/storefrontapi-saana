@@ -5,6 +5,7 @@ import { Container, Row, Col, Spinner } from "react-bootstrap";
 
 import styles from "../styles/Collections.module.css";
 import CardProduct from "../components/Products/CardProduct";
+import Seo from "../components/Seo";
 import util from "../util";
 
 const Collection = () => {
@@ -78,13 +79,14 @@ const Collection = () => {
   }
   return (
     <div>
-      <div className={styles.header}>
-        <span>Categoría / {util.capitalize(title)}</span>
-        <h2>{util.capitalize(title)}</h2>
-      </div>
-      <div>
+      <Seo title={title} />
+      <Container>
+        <div className={styles.header}>
+          <span>Categoría / {util.capitalize(title)}</span>
+          <h2>{util.capitalize(title)}</h2>
+        </div>
         <div>
-          <Container>
+          <div>
             <Row xs={2} md={3} xl={4}>
               {products &&
                 products.length > 0 &&
@@ -116,9 +118,9 @@ const Collection = () => {
                   );
                 })}
             </Row>
-          </Container>
+          </div>
         </div>
-      </div>
+      </Container>
     </div>
   );
 };
