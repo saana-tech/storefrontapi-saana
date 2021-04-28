@@ -58,7 +58,9 @@
 }
 .form {
   margin-top: 1.5rem;
-  min-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .form input {
   background-color: white;
@@ -79,7 +81,6 @@
   max-width: 300px;
   color: black;
   cursor: pointer;
-  margin-top: 20px;
 }
 .containerUl {
   display: flex;
