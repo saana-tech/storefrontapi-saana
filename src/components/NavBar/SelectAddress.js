@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useMutation, gql } from "@apollo/client";
+import PropTypes from "prop-types";
 import styles from "./NavBar.module.css";
 
 import ArrowDown from "../../../public/static/svg/ArrowDown";
@@ -8,6 +9,7 @@ import Modal from "../Modal";
 import AddAddress from "./AddAddress";
 import { StoreContext } from "../../core";
 import { selectAddressDefault } from "../../graphql/gql";
+
 const SelectAddress = () => {
   const { state } = useContext(StoreContext);
   const { globalState } = state;
@@ -127,6 +129,11 @@ const SelectAddress = () => {
   }, [handleToken]);
   return (
     <>
+      <div className={styles.iconAddress}>
+        <button type={"button"} onClick={() => setShowSelect(!showSelect)}>
+          <PinIcon />
+        </button>
+      </div>
       <div className={styles.selectAddress}>
         <div
           className={styles.selectNav}
@@ -138,7 +145,7 @@ const SelectAddress = () => {
           </span>
           <ArrowDown />
         </div>
-        {showSelect && (
+        {!showSelect && (
           <div className={styles.showSelectAddress}>
             <div className={styles.addressSave}>
               {addresses && addresses.length > 0 ? (
@@ -170,6 +177,9 @@ const SelectAddress = () => {
       </Modal>
     </>
   );
+};
+SelectAddress.propTypes = {
+  visible: PropTypes.bool,
 };
 
 export default SelectAddress;

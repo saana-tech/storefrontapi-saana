@@ -25,6 +25,7 @@ import SelectAddress from "./SelectAddress";
 import MenuResponsive from "../MenuResponsive";
 import Search from "./Search";
 import ModalSearchResponsive from "./ModalSearchResponsive";
+import PinIcon from "../../../public/static/svg/PinIcon";
 
 const NavBar = () => {
   const { state, globalDispatch } = useContext(StoreContext);
@@ -102,7 +103,10 @@ const NavBar = () => {
                 />
               </div>
               <Search />
-              <SelectAddress />
+              <div className={styles.contentSelectAddress}>
+                <SelectAddress />
+              </div>
+
               <SelectServices />
               <div className={styles.btnSearchResponsive}>
                 <button onClick={() => setShowSearch(true)}>
