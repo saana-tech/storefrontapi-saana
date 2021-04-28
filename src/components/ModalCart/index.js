@@ -49,7 +49,7 @@ const ModalCart = () => {
             })
           ) : (
             <div className={styles.msnEmpty}>
-              <span className={styles.titleMsn}>Lo siento</span>
+              <span className={styles.titleMsn}>Lo sentimos</span>
 
               <span>No tienes ningún producto en tu carrito</span>
             </div>

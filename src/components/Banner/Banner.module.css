@@ -1,13 +1,11 @@
 .containerBanner {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
 }
 .banner {
   background-color: #fde7ef;
   width: 100%;
   max-width: 100%;
-  margin: 0 auto;
   padding-top: 1rem;
   border-radius: 9px;
   height: 244px;
