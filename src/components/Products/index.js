@@ -8,6 +8,7 @@ import ArrowLeft from "../../../public/static/svg/ArrowLeft";
 import ArrowRight from "../../../public/static/svg/ArrowRight";
 import CardProduct from "./CardProduct";
 import IconCategory from "../../../public/static/svg/IconCategory";
+import util from "../../util";
 
 const Products = ({
   title = "Ofertas",
@@ -35,6 +36,8 @@ const Products = ({
               variants(first: 250) {
                 edges {
                   node {
+                  sku
+
                     id
                     title
                     selectedOptions {
@@ -56,6 +59,7 @@ const Products = ({
                 }
               }
               tags
+
             }
           }
         }
@@ -64,6 +68,7 @@ const Products = ({
   `;
   const { data = null } = useQuery(GET_PRODUCTS);
   let products = data?.collectionByHandle?.products?.edges;
+  console.log("products =>", products);
 
   const handleProduct = (product) => {
     router.push({
@@ -88,7 +93,7 @@ const Products = ({
   return (
     <div className={styles.containerProducts}>
       <div className={styles.header}>
-        <h2 className={styles.title}>{title}</h2>
+        <h2 className={styles.title}>{util.capitalize(title)}</h2>
         <div className={styles.buttonsDirections}>
           <button
             className={styles.buttonArrow}
@@ -106,18 +111,17 @@ const Products = ({
       </div>
       <div className={styles.contentProducts} ref={collectionRef}>
         {products &&
-          products.map(({ node }, index) => {
+          products.map(({ node }) => {
             console.log("node product tag =>", node);
             const { id, title, images, variants, description } = node;
             let imageUrl = images.edges[0].node.src;
             let price = variants.edges[0].node.price;
             let variantId = variants.edges[0].node.id;
+            let sku = variants.edges[0].node.sku;
 
             return (
               <CardProduct
                 key={id}
-                lastProduct={products.length}
-                index={index}
                 product={{
                   imageUrl,
                   price,
@@ -126,6 +130,7 @@ const Products = ({
                   description,
                   id,
                   tags: node.tags,
+                  sku,
                 }}
                 handleProduct={handleProduct}
               />

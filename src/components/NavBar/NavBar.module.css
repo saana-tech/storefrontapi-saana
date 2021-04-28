@@ -1,23 +1,20 @@
 /* HEADER */
 .header {
-  width: 100%;
   background-color: #ffffff;
   padding: 1rem 0;
-  display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
 }
 .navPrincipal {
   display: flex;
   align-items: center;
-  width: 90% !important;
-  justify-content: space-between;
 }
 
 .logoImage {
   height: auto;
-  width: 100%;
-  max-width: 160px;
+  min-width: 150px;
+  max-width: 200px;
   cursor: pointer;
 }
 .inputSearch {
@@ -54,7 +51,7 @@
   position: relative;
 }
 .selectNav {
-  width: 173px;
+  min-width: 173px;
   height: 40px;
   padding: 8px 7.8px 7.2px 9.8px;
   border-radius: 7px;
@@ -129,7 +126,6 @@
   text-decoration: none;
   list-style: none;
   display: flex;
-  justify-content: center;
   padding: 0.2rem 0;
 }
 .containerCollection ul li {
@@ -180,6 +176,11 @@
   z-index: 99;
   background-color: white;
   width: 100%;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .iconBar {
   display: none;
@@ -218,7 +219,7 @@
 .showSelectAddress {
   background-color: white;
   position: absolute;
-  width: 100%;
+  min-width: 175px;
   -webkit-box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.75);
   box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.75);
@@ -429,7 +430,6 @@
   flex-direction: column;
   align-self: center;
   padding-left: 2rem;
-  position: relative;
 }
 .containerMaps {
   flex: 1;
@@ -444,7 +444,6 @@
 }
 .badgeInformation {
   width: 384px;
-  height: 54px;
   padding: 10px 21px 9px;
   border-radius: 6px;
   background-color: #eaeaf4;
@@ -485,10 +484,26 @@
   margin-top: 40px;
   cursor: pointer;
 }
+.iconAddress {
+  display: none;
+}
 
 /* RESPONSIVE DESIGN */
 /* TABLET */
 @media only screen and (max-width: 1024px) {
+  .selectNav {
+    min-width: 110px;
+    height: 40px;
+    padding: 8px 7.8px 7.2px 9.8px;
+    border-radius: 7px;
+    border: solid 1px #f4f4f4;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    margin: 0 1rem;
+  }
   .header {
     max-width: 100%;
   }
@@ -497,6 +512,7 @@
   }
   .logoImage {
     width: 300px;
+    height: auto;
   }
   .servicesInput {
     display: none;
@@ -574,11 +590,24 @@
 
 /* PHONE */
 @media only screen and (max-width: 767px) {
+  .title {
+    margin-top: 40px !important;
+  }
+  .defaultAddress {
+    max-width: 60px !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+  }
   .header {
     max-width: 100%;
+    padding-right: 1rem;
   }
   .logoImage {
-    max-width: 100%;
+    height: auto;
+    min-width: 150px;
+    max-width: 200px;
   }
   .inputSearchProducts {
     display: none;
@@ -588,9 +617,8 @@
   }
   .navPrincipal {
     display: flex;
-    width: 100%;
     justify-content: space-between;
-    margin: 0 10px;
+    margin: 0;
   }
   .buttonLogin {
     display: none;
@@ -648,5 +676,20 @@
   }
   .contAutocomplete {
     padding: 1rem;
+  }
+  .header {
+    justify-content: space-between;
+    padding-left: 20px;
+    width: 100%;
+  }
+  .selectNav {
+    display: none;
+  }
+  .iconAddress {
+    display: block;
+  }
+  .iconAddress button {
+    border: 0;
+    background-color: transparent;
   }
 }

@@ -1,6 +1,3 @@
-.containerProducts {
-  margin: 0 20px;
-}
 .contentProducts {
   overflow: hidden;
   white-space: nowrap;
@@ -129,12 +126,20 @@
 .iconCategory {
   margin: 0.5rem 0;
 }
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.46;
+  letter-spacing: normal;
+  color: #111820;
+}
 /* RESPONSIVE */
 /* DESKTOP BIG*/
 @media only screen and (min-width: 1440px) {
   .containerProducts {
     max-width: 100%;
-    margin: 0 15%;
   }
   .shadowRight {
     width: 120px;
@@ -163,7 +168,7 @@
       rgb(255, 255, 255)
     );
     max-height: 100%;
-    height: 450px;
+    height: 250px;
     z-index: 3;
   }
 }
@@ -173,9 +178,7 @@
   .header h2 {
     font-size: 18px;
   }
-  .header {
-    margin: 10px 10px;
-  }
+
   .containerProducts {
     margin: 0px;
   }
@@ -184,7 +187,6 @@
     white-space: nowrap;
     display: flex;
     width: 100%;
-    margin: 0 10px;
   }
   .shadowRight {
     width: 60px;
@@ -197,5 +199,12 @@
     text-transform: capitalize !important;
     font-size: 18px;
     font-weight: bold;
+  }
+  .contentProducts {
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    width: 100%;
+    margin: 0;
   }
 }

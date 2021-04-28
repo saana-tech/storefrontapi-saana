@@ -22,4 +22,17 @@ export default {
     let newDateFormat = moment(date).format("L");
     return newDateFormat;
   },
+  capitalize: (text = "") => {
+    let capitalizeText = "";
+    if (typeof text === "string") {
+      capitalizeText = text
+        .toLowerCase()
+        .split(" ")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+      return capitalizeText;
+    } else {
+      return text;
+    }
+  },
 };

@@ -3,7 +3,7 @@ import styles from "./Banner.module.css";
 
 const Banner = () => {
   const img =
-    "https://cdn.shopify.com/s/files/1/0539/3920/8366/files/banner_ensure.png?v=1617044561";
+    "https://cdn.shopify.com/s/files/1/0539/3920/8366/files/ensure_dd81229c-a366-4b69-a9c1-3b4476fcf69b.png?v=1618530443";
   return (
     <div className={styles.containerBanner}>
       <div className={styles.banner}>

@@ -1,0 +1,72 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.425);
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal {
+  background-color: white;
+  width: 400px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 0;
+  position: relative;
+  min-height: 200px;
+}
+.col1 {
+  flex: 1;
+}
+.col2 {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 20px;
+}
+.containerButtons {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.containerButtons button {
+  margin: 0 1rem;
+  border: 0;
+  outline: none;
+  border-radius: 6px;
+  width: 120px;
+  height: 40px;
+}
+.containerButtons button:last-child {
+  margin: 0 1rem;
+  border: 0;
+  outline: none;
+  border-radius: 6px;
+  width: 120px;
+  background-color: #314790;
+  color: white;
+  height: 40px;
+}
+.buttonClose {
+  position: absolute;
+  z-index: 99;
+  top: 10px;
+  left: 10px;
+}
+.buttonClose button {
+  border: 1px solid #314790;
+  background-color: white;
+  border-radius: 15px;
+  height: 30px;
+  width: 30px;
+  justify-content: center;
+  align-items: center;
+}

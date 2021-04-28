@@ -1,7 +1,11 @@
 .title {
   border-bottom: 1px solid #ebebeb;
 }
-
+.titleProduct {
+  font-weight: 600;
+  color: #818181;
+  font-size: 15px;
+}
 .linkOrder {
   color: #314790;
   cursor: pointer;
@@ -21,6 +25,7 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid #ebebeb;
+  margin: 1rem 0;
 }
 .imgProductOrder {
   flex: 1;
@@ -54,6 +59,7 @@
 }
 .priceAndQuantity span {
   color: #505050;
+  font-size: 14px;
 }
 .informationSidebar {
   display: flex;
@@ -80,7 +86,7 @@
 .informationSidebar:last-child span {
   font-size: 1.4rem;
   font-weight: bold;
-  color: black;
+  color: #314790;
 }
 .informationSidebar h4 {
   margin: 0;
@@ -115,6 +121,43 @@
   flex-direction: column;
   padding-top: 40px;
   margin: 0 2rem;
+}
+.estatusPending {
+  background-color: #ffd79d;
+  padding: 2px 10px;
+
+  border-radius: 12px;
+}
+.statusOrder {
+  background-color: #ffea8a;
+  padding: 2px 10px;
+  border-radius: 12px;
+}
+.totalTablet {
+  font-weight: bold;
+  color: #2c2c2c;
+}
+.containerInformation h3,
+.containerProducts h3 {
+  font-size: 18px;
+  font-weight: bold;
+}
+.buttonDelete {
+  background-color: rgba(255, 43, 43, 0.397);
+  border: 0;
+  border-radius: 6px;
+  width: 120px;
+  color: red;
+  height: 40px;
+  transition: all 0.3s ease;
+}
+.buttonDelete:hover {
+  background-color: rgba(255, 0, 0, 0.397);
+  border: 0;
+  border-radius: 6px;
+  width: 120px;
+  color: rgb(255, 255, 255);
+  height: 40px;
 }
 @media only screen and (max-width: 1024px) {
   .userName {

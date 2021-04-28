@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { GoogleMap, Autocomplete, Marker } from "@react-google-maps/api";
+import { GoogleMap, Marker } from "@react-google-maps/api";
 import { styleMap } from "../../constants";
 import { StoreContext } from "../../core";
 
@@ -27,9 +27,9 @@ const MapContainer = () => {
             styles: styleMap,
           }}
         >
-          <Autocomplete>
-            <input />
-          </Autocomplete>
+          {/*  <Autocomplete>
+            <input placeholder="das" />
+          </Autocomplete> */}
 
           <Marker
             position={{

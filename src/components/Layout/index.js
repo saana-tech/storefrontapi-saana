@@ -28,66 +28,67 @@ const Layout = ({ children }) => {
   useEffect(() => {
     handleToken();
   }, [handleToken]);
-
   const customerTokenQuery = gql`
-  query customer {
-  customer(customerAccessToken: "${token}") {
-    email
-    displayName
-    id
-    addresses(first: 5) {
-      edges {
-        node {
-          id
-          address1
-          city
-          country
-        }
-      }
-    }
-    orders(first: 5) {
-      edges {
-        node {
-          lineItems(first: 5) {
-            edges {
-              node {
-                quantity
-                title
-                variant {
-                  image {
-                    src
-                  }
-                  price
-                  sku
-                }
-              }
+    query customer {
+      customer(customerAccessToken: "${token}") {
+        email
+        displayName
+        id
+        addresses(first: 5) {
+          edges {
+            node {
+              id
+              address1
+              city
+              country
             }
           }
-          id
-          currencyCode
-          totalTax
-          totalPrice
-          subtotalPrice
-          processedAt
-          financialStatus
-          fulfillmentStatus
-          shippingAddress {
-            address1
+        }
+        orders(first: 5) {
+          edges {
+            node {
+              lineItems(first: 5) {
+                edges {
+                  node {
+                    quantity
+                    title
+                    variant {
+                      image {
+                        src
+                      }
+                      price
+                      sku
+                    }
+                  }
+                }
+              }
+              id
+              currencyCode
+              totalTax
+              totalPrice
+              subtotalPrice
+              processedAt
+              financialStatus
+              fulfillmentStatus
+              shippingAddress {
+                address1
+              }
+              orderNumber
+            }
           }
+        }
+        defaultAddress {
+          address1
+        }
+        lastIncompleteCheckout {
+          completedAt
+          createdAt
+          paymentDue
         }
       }
     }
-    defaultAddress {
-      address1
-    }
-    lastIncompleteCheckout {
-      completedAt
-      createdAt
-      paymentDue
-    }
-   }
-}
-`;
+  `;
+
   const { data = null } = useQuery(customerTokenQuery);
   const [checkoutCustomer] = useMutation(checkoutCustomerAssociate);
 
@@ -124,14 +125,6 @@ const Layout = ({ children }) => {
         globalDispatch
       );
     });
-  }, []);
-
-  useEffect(() => {
-    if ("geolocation" in navigator) {
-      alert("Available");
-    } else {
-      alert("Not Available");
-    }
   }, []);
 
   return (

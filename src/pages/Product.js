@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Rating from "react-rating";
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
+import { Container } from "react-bootstrap";
 
 import { StoreContext } from "../core";
 import {
@@ -10,7 +11,7 @@ import {
 } from "../core/global/actions";
 
 import styles from "../styles/Product.module.css";
-import { CheckoutFragment } from "../graphql/gql";
+import { checkoutLineItemsAdd } from "../graphql/gql";
 import util from "../util";
 import Seo from "../components/Seo";
 import IconStart from "../../public/static/svg/IconStart";
@@ -18,23 +19,6 @@ import IconEmpty from "../../public/static/svg/IconEmpty";
 import ProductsTag from "../components/ProductsTag";
 
 const Product = () => {
-  const checkoutLineItemsAdd = gql`
-    mutation checkoutLineItemsAdd(
-      $checkoutId: ID!
-      $lineItems: [CheckoutLineItemInput!]!
-    ) {
-      checkoutLineItemsAdd(checkoutId: $checkoutId, lineItems: $lineItems) {
-        userErrors {
-          message
-          field
-        }
-        checkout {
-          ...CheckoutFragment
-        }
-      }
-    }
-    ${CheckoutFragment}
-  `;
   const [checkoutItemsAdd] = useMutation(checkoutLineItemsAdd);
   const router = useRouter();
 
@@ -76,56 +60,61 @@ const Product = () => {
             title={productSelect.title}
             description={productSelect.description}
           />
-          <div className={styles.headerProduct}>
-            <div className={styles.col1}>
-              <img src={productSelect.imageUrl} alt={productSelect.title} />
-              <img src={productSelect.imageUrl} alt={productSelect.title} />
-              <img src={productSelect.imageUrl} alt={productSelect.title} />
-            </div>
-            <div className={styles.col2}>
-              <img src={productSelect.imageUrl} alt={productSelect.title} />
-            </div>
-            <div className={styles.col3}>
-              <h2 className={styles.title}>{productSelect.title}</h2>
-              <div className={styles.containerRating}>
-                <Rating
-                  initialRating={5}
-                  fullSymbol={<IconStart />}
-                  emptySymbol={<IconEmpty />}
-                />
-                <span className={styles.visits}>232 Visitas</span>
+          <Container>
+            <div className={styles.headerProduct}>
+              <div className={styles.col1}>
+                <img src={productSelect.imageUrl} alt={productSelect.title} />
+                <img src={productSelect.imageUrl} alt={productSelect.title} />
+                <img src={productSelect.imageUrl} alt={productSelect.title} />
               </div>
-              <h3 className={styles.price}>
-                {util.formatCOP(productSelect.price)}
-              </h3>
+              <div className={styles.col2}>
+                <img src={productSelect.imageUrl} alt={productSelect.title} />
+              </div>
+              <div className={styles.col3}>
+                <h2 className={styles.title}>{productSelect.title}</h2>
+                <span className={styles.sku}>Sku {productSelect.sku}</span>
+                <div className={styles.containerRating}>
+                  <Rating
+                    initialRating={5}
+                    fullSymbol={<IconStart />}
+                    emptySymbol={<IconEmpty />}
+                  />
+                  <span className={styles.visits}>232 Visitas</span>
+                </div>
+                <h3 className={styles.price}>
+                  {util.formatCOP(productSelect.price)}
+                </h3>
 
-              <button
-                className={styles.btnAdd}
-                type={"button"}
-                onClick={() => handleAddProduct()}
-              >
-                Agregar al carrito
-              </button>
-              <h3 className={styles.titleInformation}>
-                Información nutritional
-              </h3>
-              <p>{productSelect.description}</p>
+                <button
+                  className={styles.btnAdd}
+                  type={"button"}
+                  onClick={() => handleAddProduct()}
+                >
+                  Agregar al carrito
+                </button>
+                <h3 className={styles.titleInformation}>
+                  Información nutricional
+                </h3>
+                <p className={styles.description}>
+                  {productSelect.description}
+                </p>
+              </div>
             </div>
-          </div>
-          <ProductsTag
-            title={"También recomendamos"}
-            tag1={
-              productSelect?.tags && productSelect?.tags.length > 0
-                ? productSelect?.tags[0]
-                : ""
-            }
-            tag2={
-              productSelect?.tags && productSelect?.tags.length > 1
-                ? productSelect?.tags[0]
-                : ""
-            }
-            idCurrentProduct={productSelect?.variantId}
-          />
+            <ProductsTag
+              title={"También recomendamos"}
+              tag1={
+                productSelect?.tags && productSelect?.tags.length > 0
+                  ? productSelect?.tags[0]
+                  : ""
+              }
+              tag2={
+                productSelect?.tags && productSelect?.tags.length > 1
+                  ? productSelect?.tags[0]
+                  : ""
+              }
+              idCurrentProduct={productSelect?.variantId}
+            />
+          </Container>
         </>
       )}
     </>

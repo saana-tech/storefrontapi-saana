@@ -3,6 +3,19 @@ html,
 body {
   padding: 0;
   margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+input,
+input::placeholder,
+button {
   font-family: "Poppins", sans-serif !important;
 }
 
@@ -10,7 +23,7 @@ body {
   box-sizing: border-box;
 }
 .container-principal {
-  margin-top: 9rem;
+  margin-top: 7.5rem;
 }
 ul {
   list-style: none;
@@ -139,4 +152,7 @@ table th {
 .autocomplete-dropdown-container span:hover {
   text-decoration: underline;
   color: #314790;
+}
+a {
+  color: #111820;
 }

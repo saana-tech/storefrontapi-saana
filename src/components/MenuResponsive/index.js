@@ -1,24 +1,41 @@
 import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
+import { useRouter } from "next/router";
 
 import { StoreContext } from "../../core";
 
 import ArrowDown from "../../../public/static/svg/ArrowDown";
 import IconHome from "../../../public/static/svg/IconHome";
+import IconUser from "../../../public/static/svg/IconUser";
 import IconServiceLine from "../../../public/static/svg/IconServiceLine";
 import IconCloseWhite from "../../../public/static/svg/IconCloseWhite";
 import styles from "./MenuResponsive.module.css";
+import ModalConfirmation from "../ModalConfirmation";
+import { signOffDispatch } from "../../core/global/actions";
 
 const MenuResponsive = ({
   open = false,
   close = () => {},
   openModalRegister = () => {},
 }) => {
-  const { state } = useContext(StoreContext);
+  const { state, globalDispatch } = useContext(StoreContext);
   const { globalState } = state;
   const { user } = globalState;
 
+  const router = useRouter();
+
   const [show, setShow] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
+
+  const handleRoute = (route) => {
+    close(false);
+    router.push(route);
+  };
+
+  const handleSingOff = async () => {
+    await signOffDispatch(globalDispatch);
+    router.push("/");
+  };
   return (
     <>
       {open && (
@@ -41,7 +58,6 @@ const MenuResponsive = ({
                 </div>
               ) : (
                 <div className={styles.containerButtons}>
-                  <button>Crear una cuenta</button>
                   <button onClick={() => openModalRegister(true)}>
                     Iniciar sesión
                   </button>
@@ -49,11 +65,26 @@ const MenuResponsive = ({
               )}
             </div>
             <div className={styles.body}>
-              <div className={styles.link}>
+              <div className={styles.link} onClick={() => handleRoute("/")}>
                 <IconHome />
                 <a>Home</a>
               </div>
+              {user && (
+                <>
+                  <div className={styles.separator} />
+
+                  <div
+                    className={styles.link}
+                    onClick={() => handleRoute("/Profile")}
+                  >
+                    <IconUser />
+                    <a>Mi perfil</a>
+                  </div>
+                </>
+              )}
+
               <div className={styles.separator} />
+
               <div
                 className={styles.link}
                 style={{
@@ -82,6 +113,13 @@ const MenuResponsive = ({
           </div>
         </div>
       )}
+      <ModalConfirmation
+        action={() => handleSingOff()}
+        open={modalShow}
+        close={setModalShow}
+        msn={"¿Estas seguro(a) que deseas cerrar sesión?"}
+      />
+      ;
     </>
   );
 };

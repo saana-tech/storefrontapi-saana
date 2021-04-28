@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
+import { Container } from "react-bootstrap";
 
 import { StoreContext } from "../../core";
 import { LOGO } from "../../constants";
@@ -48,9 +49,7 @@ const NavBar = () => {
   `;
   const [showNav, setShowNav] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const { data = null, loading = false, error = null } = useQuery(
-    GET_COLLECTIONS
-  );
+  const { data = null } = useQuery(GET_COLLECTIONS);
 
   const handleOpenCart = () => {
     handleShowCartDispatch(!showCart, globalDispatch);
@@ -88,79 +87,84 @@ const NavBar = () => {
     });
   };
 
-  console.log("user ====>", user);
   return (
     <>
-      <div className={styles.containerNav}>
-        <header className={styles.header}>
-          <nav className={styles.navPrincipal}>
-            <div>
-              <img
-                className={styles.logoImage}
-                src={LOGO}
-                alt={"Saanafarma logo"}
-                onClick={() => router.push("/")}
-              />
-            </div>
-            <Search />
-            <SelectAddress />
-            <SelectServices />
-            <div className={styles.btnSearchResponsive}>
-              <button onClick={() => setShowSearch(true)}>
-                <SearchIcon />
-              </button>
-            </div>
-            <div className={styles.contCart} onClick={() => handleOpenCart()}>
-              {checkout &&
-                checkout.lineItems &&
-                checkout.lineItems.edges.length > 0 && (
-                  <div className={styles.badge}>
-                    {checkout.lineItems.edges.length}
-                  </div>
-                )}
-              <CartIcon />
-            </div>
-            <div className={styles.iconBar} onClick={() => setShowNav(true)}>
-              <IconMenuBar />
-            </div>
-            <div className={styles.buttonLogin}>
-              {user ? (
-                <span onClick={() => router.push("/Profile")}>
-                  <IconUser /> {user.displayName}
-                </span>
-              ) : (
-                <button onClick={() => setShowModal(true)}>
-                  Iniciar sesión
-                </button>
-              )}
-            </div>
-          </nav>
+      <Container>
+        <div className={styles.containerNav}>
+          <header className={styles.header}>
+            <nav className={styles.navPrincipal}>
+              <div>
+                <img
+                  className={styles.logoImage}
+                  src={LOGO}
+                  alt={"Saanafarma logo"}
+                  onClick={() => router.push("/")}
+                />
+              </div>
+              <Search />
+              <div className={styles.contentSelectAddress}>
+                <SelectAddress />
+              </div>
 
-          {/* CATEGORY */}
-        </header>
-        <div className={styles.containerCollection}>
-          <ul>
-            {data &&
-              data?.collections?.edges.map(({ node }, index) => {
-                const { title } = node;
-                return (
-                  <li key={index}>
-                    <a
-                      onClick={() =>
-                        handleProductsCategory(node.handle, node.title)
-                      }
-                    >
-                      {title}
-                    </a>
-                  </li>
-                );
-              })}
-          </ul>
-          <div className={styles.shadow} />
+              <SelectServices />
+              <div className={styles.btnSearchResponsive}>
+                <button onClick={() => setShowSearch(true)}>
+                  <SearchIcon />
+                </button>
+              </div>
+              <div className={styles.contCart} onClick={() => handleOpenCart()}>
+                {checkout &&
+                  checkout.lineItems &&
+                  checkout.lineItems.edges.length > 0 && (
+                    <div className={styles.badge}>
+                      {checkout.lineItems.edges.length}
+                    </div>
+                  )}
+                <CartIcon />
+              </div>
+              <div className={styles.iconBar} onClick={() => setShowNav(true)}>
+                <IconMenuBar />
+              </div>
+              <div className={styles.buttonLogin}>
+                {user ? (
+                  <span onClick={() => router.push("/Profile")}>
+                    <IconUser /> {user.displayName}
+                  </span>
+                ) : (
+                  <button onClick={() => setShowModal(true)}>
+                    Iniciar sesión
+                  </button>
+                )}
+              </div>
+            </nav>
+
+            {/* CATEGORY */}
+          </header>
+          <div className={styles.containerCollection}>
+            <ul>
+              {data &&
+                data?.collections?.edges.map(({ node }, index) => {
+                  const { title } = node;
+                  return (
+                    <li key={index}>
+                      <a
+                        onClick={() =>
+                          handleProductsCategory(node.handle, node.title)
+                        }
+                      >
+                        {title}
+                      </a>
+                    </li>
+                  );
+                })}
+            </ul>
+            <div className={styles.shadow} />
+          </div>
         </div>
-      </div>
+      </Container>
+
       <Modal open={modalLogin} close={setShowModal}>
-        <FormLogin />
+        <FormLogin close={() => setShowModal(false)} />
       </Modal>
       <MenuResponsive
         open={showNav}
