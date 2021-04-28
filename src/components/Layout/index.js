@@ -127,14 +127,6 @@ const Layout = ({ children }) => {
     });
   }, []);
 
-  useEffect(() => {
-    if ("geolocation" in navigator) {
-      alert("Available");
-    } else {
-      alert("Not Available");
-    }
-  }, []);
-
   return (
     <div>
       {showCart && <ModalCart />}
