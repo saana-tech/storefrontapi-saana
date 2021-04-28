@@ -201,7 +201,8 @@
     font-weight: bold;
   }
   .contentProducts {
-    overflow: hidden;
+    overflow: scroll;
+
     white-space: nowrap;
     display: flex;
     width: 100%;
