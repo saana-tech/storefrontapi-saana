@@ -58,7 +58,6 @@ const MenuResponsive = ({
                 </div>
               ) : (
                 <div className={styles.containerButtons}>
-                  <button>Crear una cuenta</button>
                   <button onClick={() => openModalRegister(true)}>
                     Iniciar sesión
                   </button>

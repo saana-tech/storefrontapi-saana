@@ -24,6 +24,10 @@
   text-decoration: underline !important;
   cursor: pointer;
 }
+.col1 ul li a,
+.col2 ul li a {
+  font-size: 12px;
+}
 .containerBody {
   display: flex;
 }
@@ -41,13 +45,16 @@
 
 .col1 h3 {
   margin: 0;
+  font-size: 22px;
 }
 .col2 h3 {
   margin: 0;
+  font-size: 22px;
 }
 .col1 ul li {
   margin-left: -2rem !important;
   margin-bottom: 0.5rem;
+  font-size: 14px;
 }
 .col2 ul li {
   margin-left: -2rem !important;
@@ -55,6 +62,7 @@
 
 .col3 h3 {
   margin: 0;
+  font-size: 22px;
 }
 .form {
   margin-top: 1.5rem;
@@ -99,9 +107,6 @@
 /* RESPONSIVE */
 /* TABLET */
 @media only screen and (max-width: 1024px) {
-  .form button {
-    margin-top: 1rem;
-  }
   .col3 {
     margin: 0;
   }
@@ -116,11 +121,13 @@
     padding: 2rem;
     max-width: 100%;
   }
-  .col3 button {
-    margin-top: 0.5rem;
-  }
+
   .col1 {
     width: 200px;
+  }
+  .form {
+    align-items: center;
+    justify-content: center;
   }
   .form input {
     background-color: white;
