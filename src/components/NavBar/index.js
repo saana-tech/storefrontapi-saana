@@ -1,7 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { Container } from "react-bootstrap";
 
 import { StoreContext } from "../../core";
 import { LOGO } from "../../constants";
