@@ -198,6 +198,7 @@
   -webkit-box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.75);
   box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  z-index: 99;
 }
 .selectServices {
   position: relative;
@@ -225,6 +226,7 @@
   box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.75);
   padding: 1rem;
   border-radius: 5px;
+  z-index: 99;
 }
 .separator {
   border-top: 1px solid #74747418;
@@ -342,7 +344,7 @@
 .iconClose {
   position: absolute;
   right: 35px;
-  top: 10px;
+  top: 35px;
   background-color: #f8f8f8;
   cursor: pointer;
 }
