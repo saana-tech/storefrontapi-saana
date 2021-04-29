@@ -73,6 +73,7 @@ const Search = () => {
           )}
         </div>
       </div>
+
       {!loading && valueSearch.length > 0 && data?.products?.edges.length > 0 && (
         <>
           <div className={styles.iconClose} onClick={() => clearInput()}>
