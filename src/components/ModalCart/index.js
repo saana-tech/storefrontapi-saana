@@ -44,7 +44,6 @@ const ModalCart = () => {
           checkout.lineItems &&
           checkout.lineItems?.edges?.length > 0 ? (
             checkout.lineItems?.edges.map(({ node }) => {
-              console.log("item =>", node);
               return <ProductItem key={node.id} product={node} />;
             })
           ) : (

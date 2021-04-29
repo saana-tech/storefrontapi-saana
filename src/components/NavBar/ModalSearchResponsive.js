@@ -64,6 +64,7 @@ const ModalSearchResponsive = ({ open, close }) => {
           >
             <CloseIcon />
           </div>
+          <h4 className={styles.labelSearchR}>¿Qué estás buscando hoy?</h4>{" "}
           <div className={styles.modalInputSearch}>
             <input
               placeholder={"Escribe el nombre de tu producto"}

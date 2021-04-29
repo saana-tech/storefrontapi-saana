@@ -28,6 +28,9 @@
   margin-right: 0.8rem;
   border-bottom: 1px solid #e5edef;
 }
+.header h2 {
+  font-size: 18px;
+}
 .body {
   flex: 6;
   overflow-x: auto;
@@ -83,6 +86,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
+  margin-right: 10px;
 }
 .contDescription {
   flex: 3;
@@ -100,6 +104,7 @@
   font-weight: lighter;
   margin-bottom: 0.5rem;
   margin-top: 0.5rem;
+  font-size: 18px;
 }
 .contDescription h3 {
   font-size: 14px;

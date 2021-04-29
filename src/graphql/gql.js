@@ -164,3 +164,51 @@ export const checkoutLineItemsAdd = gql`
   }
   ${CheckoutFragment}
 `;
+export const checkoutLineItemsRemove = gql`
+  mutation checkoutLineItemsRemove($checkoutId: ID!, $lineItemIds: [ID!]!) {
+    checkoutLineItemsRemove(
+      checkoutId: $checkoutId
+      lineItemIds: $lineItemIds
+    ) {
+      userErrors {
+        message
+        field
+      }
+      checkout {
+        ...CheckoutFragment
+      }
+    }
+  }
+  ${CheckoutFragment}
+`;
+
+export const checkoutLineItemsUpdateSchema = gql`
+  mutation checkoutLineItemsUpdate(
+    $checkoutId: ID!
+    $lineItems: [CheckoutLineItemUpdateInput!]!
+  ) {
+    checkoutLineItemsUpdate(checkoutId: $checkoutId, lineItems: $lineItems) {
+      userErrors {
+        message
+        field
+      }
+      checkout {
+        ...CheckoutFragment
+      }
+    }
+  }
+  ${CheckoutFragment}
+`;
+export const GET_COLLECTIONS = gql`
+  query {
+    collections(first: 10) {
+      edges {
+        node {
+          id
+          title
+          handle
+        }
+      }
+    }
+  }
+`;

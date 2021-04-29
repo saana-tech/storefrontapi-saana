@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useQuery, gql } from "@apollo/client";
+import { Spinner } from "react-bootstrap";
 
 import SearchIcon from "../../../public/static/svg/SearchIcon";
 import CloseIcon from "../../../public/static/svg/CloseIcon";
@@ -50,14 +51,12 @@ const Search = () => {
     }
   }
 }`;
-  const { data = null, loading = false, error = null } = useQuery(
-    QUERY_PRODUCT
-  );
+  const { data = null, loading = false } = useQuery(QUERY_PRODUCT);
 
-  console.log("loading =>", loading);
-  console.log("error =>", error);
   return (
     <div className={styles.containerSearch}>
+      <h4 className={styles.labelSearch}>¿Qué estás buscando hoy?</h4>
+
       <div className={styles.inputSearchProducts}>
         <input
           className={styles.inputSearch}
@@ -67,7 +66,11 @@ const Search = () => {
           placeholder={"Escribe el nombre de tu producto"}
         />
         <div className={styles.iconSearch}>
-          <SearchIcon />
+          {loading ? (
+            <Spinner animation="border" role="status" size={"sm"} />
+          ) : (
+            <SearchIcon />
+          )}
         </div>
       </div>
       {!loading && valueSearch.length > 0 && data?.products?.edges.length > 0 && (

@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { Container } from "react-bootstrap";
 
@@ -17,7 +17,7 @@ import {
   handleShowCartDispatch,
   showModalLoginDispatch,
 } from "../../core/global/actions";
-import { createCheckoutSchema } from "../../graphql/gql";
+import { createCheckoutSchema, GET_COLLECTIONS } from "../../graphql/gql";
 import Modal from "../Modal";
 import FormLogin from "../FormLogin";
 import SelectServices from "./SelectServices";
@@ -34,19 +34,7 @@ const NavBar = () => {
   const { showCart, checkout, user, modalLogin } = globalState;
 
   const router = useRouter();
-  const GET_COLLECTIONS = gql`
-    query {
-      collections(first: 10) {
-        edges {
-          node {
-            id
-            title
-            handle
-          }
-        }
-      }
-    }
-  `;
+
   const [showNav, setShowNav] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const { data = null } = useQuery(GET_COLLECTIONS);
@@ -101,7 +89,6 @@ const NavBar = () => {
                   onClick={() => router.push("/")}
                 />
               </div>
-              <Search />
               <div className={styles.contentSelectAddress}>
                 <SelectAddress />
               </div>
@@ -141,6 +128,8 @@ const NavBar = () => {
             {/* CATEGORY */}
           </header>
           <div className={styles.containerCollection}>
+            <Search />
+
             <ul>
               {data &&
                 data?.collections?.edges.map(({ node }, index) => {

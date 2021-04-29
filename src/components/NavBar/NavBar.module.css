@@ -18,7 +18,7 @@
   cursor: pointer;
 }
 .inputSearch {
-  width: 362px;
+  width: 100%;
   height: 40px;
   padding: 9px 13.6px 8px 13px;
   border-radius: 7px;
@@ -42,7 +42,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 40px;
+  right: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -258,6 +258,7 @@
 }
 .containerSearch {
   position: relative;
+  margin: 1rem;
 }
 .contResult {
   background-color: white;
@@ -360,7 +361,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 60px;
 }
 .modalInputSearch input {
   background-color: #f8f8f8;
@@ -487,7 +487,18 @@
 .iconAddress {
   display: none;
 }
-
+.labelSearch {
+  font-size: 18px;
+  color: #191919;
+  margin-left: 12px;
+}
+.labelSearchR {
+  font-size: 18px;
+  margin-top: 40px;
+  color: #191919;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
 /* RESPONSIVE DESIGN */
 /* TABLET */
 @media only screen and (max-width: 1024px) {
@@ -691,5 +702,8 @@
   .iconAddress button {
     border: 0;
     background-color: transparent;
+  }
+  .labelSearch {
+    display: none;
   }
 }
