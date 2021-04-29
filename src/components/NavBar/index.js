@@ -89,7 +89,7 @@ const NavBar = () => {
                   onClick={() => router.push("/")}
                 />
               </div>
-              <div style={{ margin: "0 128px" }} />
+              <div className="separatorNav" />
               <div className={styles.contentSelectAddress}>
                 <SelectAddress />
               </div>

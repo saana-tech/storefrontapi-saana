@@ -156,3 +156,14 @@ table th {
 a {
   color: #111820;
 }
+.separatorNav {
+  margin: 0 128px;
+}
+@media only screen and (max-width: 768px) {
+  .container-principal {
+    margin-top: 7.5rem;
+  }
+  .separatorNav {
+    margin: 0;
+  }
+}
