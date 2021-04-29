@@ -9,11 +9,12 @@ import Modal from "../Modal";
 import AddAddress from "./AddAddress";
 import { StoreContext } from "../../core";
 import { selectAddressDefault } from "../../graphql/gql";
+import { showModalLoginDispatch } from "../../core/global/actions";
 
 const SelectAddress = () => {
-  const { state } = useContext(StoreContext);
+  const { state, globalDispatch } = useContext(StoreContext);
   const { globalState } = state;
-  const { user = null } = globalState;
+  const { user = null, modalLogin } = globalState;
 
   const [showSelect, setShowSelect] = useState(false);
   const [showMaps, setShowMaps] = useState(false);
@@ -124,6 +125,14 @@ const SelectAddress = () => {
   const handleToken = () => {
     setToken(localStorage.getItem("token"));
   };
+  const handleAddAddress = () => {
+    if (!user) {
+      setShowMaps(false);
+      showModalLoginDispatch(!modalLogin, globalDispatch);
+      return;
+    }
+    setShowMaps(true);
+  };
   useEffect(() => {
     handleToken();
   }, [handleToken]);
@@ -165,7 +174,7 @@ const SelectAddress = () => {
             </div>
             <div className={styles.separator} />
             <div className={styles.btnAdd}>
-              <button type={"button"} onClick={() => setShowMaps(true)}>
+              <button type={"button"} onClick={() => handleAddAddress()}>
                 Agregar
               </button>
             </div>
