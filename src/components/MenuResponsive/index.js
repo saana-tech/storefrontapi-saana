@@ -77,7 +77,7 @@ const MenuResponsive = ({
                     className={styles.link}
                     onClick={() => handleRoute("/Profile")}
                   >
-                    <IconUser />
+                    <IconUser color={"#88ceb3"} />
                     <a>Mi perfil</a>
                   </div>
                 </>

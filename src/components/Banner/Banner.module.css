@@ -3,7 +3,7 @@
   justify-content: center;
 }
 .banner {
-  background-color: #fde7ef;
+  background-color: #88ceb3;
   width: 100%;
   max-width: 100%;
   padding-top: 1rem;
@@ -52,7 +52,6 @@
 /* PHONE */
 @media only screen and (max-width: 768px) {
   .banner {
-    background-color: #fde7ef;
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
@@ -64,7 +63,6 @@
     align-items: center;
   }
   .information h2 {
-    color: #314790;
     font-weight: 700;
     margin: 0;
     font-size: 16px;
@@ -72,7 +70,6 @@
     margin-bottom: 0.5rem;
   }
   .information span {
-    color: #314790;
     font-size: 12px;
     margin-top: 0.2rem;
     margin-left: 0.5rem;
