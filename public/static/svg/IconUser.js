@@ -1,4 +1,5 @@
 import * as React from "react";
+import PropTypes from "prop-types";
 
 function IconUser(props) {
   const { color = "#314790" } = props;
@@ -30,5 +31,8 @@ function IconUser(props) {
     </svg>
   );
 }
+IconUser.propTypes = {
+  color: PropTypes.string,
+};
 
 export default IconUser;
