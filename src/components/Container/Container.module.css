@@ -2,8 +2,8 @@
   margin: 0 5%;
 }
 
-@media only screen and (min-width: 1650px) {
+@media only screen and (min-width: 1500px) {
   .container {
-    margin: 0 20%;
+    margin: 0 8%;
   }
 }
