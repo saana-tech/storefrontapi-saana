@@ -3,12 +3,14 @@
   background-color: #ffffff;
   padding: 1rem 0;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
 }
 .navPrincipal {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  align-self: center;
+  margin: 0 5%;
 }
 
 .logoImage {
@@ -18,14 +20,13 @@
   cursor: pointer;
 }
 .inputSearch {
-  width: 362px;
+  width: 100%;
   height: 40px;
   padding: 9px 13.6px 8px 13px;
   border-radius: 7px;
   background-color: #f8f8f8;
   outline: none;
   border: 0;
-  margin: 0 1rem;
 }
 .inputSearch::placeholder {
   opacity: 0.87;
@@ -42,7 +43,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 40px;
+  right: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -100,7 +101,12 @@
   height: 40px;
   padding: 9px 15px 8px;
   border-radius: 6px;
-  background-color: #314790;
+  background: linear-gradient(
+    174deg,
+    rgba(154, 193, 178, 1) 0%,
+    rgba(81, 156, 172, 1) 70%,
+    rgba(81, 156, 172, 1) 100%
+  );
   border: 0;
   color: white;
   margin: 0 1rem;
@@ -113,10 +119,10 @@
   border-radius: 6px;
   background-color: white;
   border: 0;
-  color: #314790;
+  color: #88ceb3;
   margin: 0 1rem;
   cursor: pointer;
-  border: 1px solid #314790;
+  border: 1px solid #88ceb3;
   transition: all 0.3s ease;
 }
 .containerCollection {
@@ -141,7 +147,7 @@
   color: #191919;
 }
 .containerCollection ul li a:hover {
-  background-color: #314790 !important;
+  background-color: #88ceb3 !important;
   color: white;
   border-radius: 3px;
   transition: all 0.3s ease;
@@ -198,6 +204,7 @@
   -webkit-box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.75);
   box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  z-index: 99;
 }
 .selectServices {
   position: relative;
@@ -210,7 +217,7 @@
   transition: all 0.3s ease;
 }
 .selectContent a:hover {
-  color: #314790;
+  color: #88ceb3;
   text-decoration: underline;
 }
 .selectAddress {
@@ -225,6 +232,7 @@
   box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.75);
   padding: 1rem;
   border-radius: 5px;
+  z-index: 99;
 }
 .separator {
   border-top: 1px solid #74747418;
@@ -235,7 +243,7 @@
 .btnAdd button {
   width: 100%;
   height: 40px;
-  background-color: #314790;
+  background-color: #88ceb3;
   border: 0;
   color: white;
   border-radius: 5px;
@@ -244,8 +252,8 @@
 }
 .btnAdd button:hover {
   background-color: white;
-  border: 1px solid #314790;
-  color: #314790;
+  border: 1px solid #88ceb3;
+  color: #88ceb3;
 }
 .addressSave a {
   text-decoration: underline;
@@ -254,18 +262,21 @@
   cursor: pointer;
 }
 .addressSave a:hover {
-  color: #314790;
+  color: #88ceb3;
 }
 .containerSearch {
   position: relative;
+  margin: 1rem;
+  width: 50%;
 }
 .contResult {
   background-color: white;
   max-height: 300px;
-  width: 85%;
+  width: 100%;
   border-radius: 5px;
   position: absolute;
-  right: 30px;
+  right: 0;
+  left: 0;
   -webkit-box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.75);
   box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.75);
@@ -305,7 +316,7 @@
   transition: all 0.3s ease;
 }
 .productSearch:hover {
-  background-color: #314790;
+  background-color: #88ceb3;
   color: white !important;
   border-radius: 5px;
 }
@@ -333,7 +344,7 @@
   margin-right: 0.5rem;
 }
 .titleSearch {
-  color: #314790;
+  color: #88ceb3;
 }
 .priceSearch {
   font-size: 0.8rem;
@@ -341,7 +352,7 @@
 .iconClose {
   position: absolute;
   right: 35px;
-  top: 10px;
+  top: 35px;
   background-color: #f8f8f8;
   cursor: pointer;
 }
@@ -360,7 +371,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 60px;
 }
 .modalInputSearch input {
   background-color: #f8f8f8;
@@ -410,7 +420,7 @@
 }
 .inputAutocomplete {
   border: 0;
-  border-bottom: 2px solid #314790;
+  border-bottom: 2px solid #88ceb3;
   width: 384px;
   padding: 0 1rem;
   height: 40px;
@@ -440,7 +450,7 @@
   font-weight: bold;
   line-height: 1.15;
   letter-spacing: normal;
-  color: #314790;
+  color: #88ceb3;
 }
 .badgeInformation {
   width: 384px;
@@ -456,7 +466,7 @@
   font-size: 12px;
   line-height: 1.5;
   text-align: center;
-  color: #314790;
+  color: #88ceb3;
 }
 .disabledButton {
   width: 384px;
@@ -476,7 +486,7 @@
   height: 49px;
   padding: 13px 161px 12px 136px;
   border-radius: 7px;
-  background-color: #314790;
+  background-color: #88ceb3;
   color: #ffffff;
   font-size: 17px;
   outline: none;
@@ -487,7 +497,18 @@
 .iconAddress {
   display: none;
 }
-
+.labelSearch {
+  font-size: 18px;
+  color: #191919;
+  text-align: center;
+}
+.labelSearchR {
+  font-size: 18px;
+  margin-top: 40px;
+  color: #191919;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
 /* RESPONSIVE DESIGN */
 /* TABLET */
 @media only screen and (max-width: 1024px) {
@@ -508,7 +529,7 @@
     max-width: 100%;
   }
   .inputSearchProducts input {
-    max-width: 250px;
+    max-width: 100%;
   }
   .logoImage {
     width: 300px;
@@ -609,9 +630,7 @@
     min-width: 150px;
     max-width: 200px;
   }
-  .inputSearchProducts {
-    display: none;
-  }
+
   .servicesInput {
     display: none;
   }
@@ -691,5 +710,32 @@
   .iconAddress button {
     border: 0;
     background-color: transparent;
+  }
+  .labelSearch {
+    display: none;
+  }
+  .contResult {
+    background-color: white;
+    width: 100%;
+    right: 0;
+    left: 0;
+    border-radius: 5px;
+    position: absolute;
+    -webkit-box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: -1px 2px 5px 0px rgba(0, 0, 0, 0.75);
+    padding: 5px;
+    overflow: auto;
+    z-index: 99;
+  }
+  .containerSearch {
+    width: 90%;
+  }
+  .iconClose {
+    position: absolute;
+    right: 4px;
+    top: 6px;
+    background-color: #f8f8f8;
+    cursor: pointer;
   }
 }

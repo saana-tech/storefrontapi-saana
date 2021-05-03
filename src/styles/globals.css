@@ -23,7 +23,7 @@ button {
   box-sizing: border-box;
 }
 .container-principal {
-  margin-top: 7.5rem;
+  margin-top: 15rem;
 }
 ul {
   list-style: none;
@@ -32,7 +32,7 @@ button {
   outline: none;
 }
 .activeLink {
-  color: #314790 !important;
+  color: #88ceb3 !important;
 }
 table {
   border: 1px solid #ccc;
@@ -151,8 +151,19 @@ table th {
 }
 .autocomplete-dropdown-container span:hover {
   text-decoration: underline;
-  color: #314790;
+  color: #88ceb3;
 }
 a {
   color: #111820;
+}
+.separatorNav {
+  margin: 0 128px;
+}
+@media only screen and (max-width: 768px) {
+  .container-principal {
+    margin-top: 11rem;
+  }
+  .separatorNav {
+    margin: 0;
+  }
 }

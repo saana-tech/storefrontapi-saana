@@ -45,7 +45,7 @@
 }
 .btnAdd {
   border-radius: 6px;
-  background-color: #314790;
+  background-color: #88ceb3;
   outline: none;
   border: 0;
   cursor: pointer;
@@ -60,8 +60,8 @@
 .btnAdd:hover {
   transition: all 0.3s all;
   background-color: #ffffff;
-  color: #314790;
-  border: 1px solid #314790;
+  color: #88ceb3;
+  border: 1px solid #88ceb3;
 }
 .titleInformation {
   font-size: 21px;

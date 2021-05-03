@@ -12,7 +12,7 @@ function IconHome(props) {
       <g
         data-name="Icon feather-home"
         fill="none"
-        stroke="#314790"
+        stroke="#88ceb3"
         strokeLinecap="round"
         strokeLinejoin="round"
       >

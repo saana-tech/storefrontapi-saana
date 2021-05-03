@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const Seo = ({
   title = "Saanafarma | salud para todos",
-  description = "Saana farma productos farma al alcanza de la palma de tu mano",
+  description = "Saana farma productos farma al alcancé de la palma de tu mano",
   keywords = "saaan farma, farmacia, delivery,domicilio",
   author = "saana salud",
   copyright = "saana salud CALMMM",

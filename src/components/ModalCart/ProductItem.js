@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import PropTypes from "prop-types";
 
 import { handleCreateCheckoutDispatch } from "../../core/global/actions";
-import { CheckoutFragment } from "../../graphql/gql";
+import {
+  checkoutLineItemsRemove,
+  checkoutLineItemsUpdateSchema,
+} from "../../graphql/gql";
 import styles from "./ModalCart.module.css";
 import { StoreContext } from "../../core";
 import util from "../../util";
@@ -13,41 +16,7 @@ const ProductItem = ({ product = null }) => {
   const { globalState } = state;
   const { checkout } = globalState;
   const { variant, quantity } = product;
-  const checkoutLineItemsRemove = gql`
-    mutation checkoutLineItemsRemove($checkoutId: ID!, $lineItemIds: [ID!]!) {
-      checkoutLineItemsRemove(
-        checkoutId: $checkoutId
-        lineItemIds: $lineItemIds
-      ) {
-        userErrors {
-          message
-          field
-        }
-        checkout {
-          ...CheckoutFragment
-        }
-      }
-    }
-    ${CheckoutFragment}
-  `;
 
-  const checkoutLineItemsUpdateSchema = gql`
-    mutation checkoutLineItemsUpdate(
-      $checkoutId: ID!
-      $lineItems: [CheckoutLineItemUpdateInput!]!
-    ) {
-      checkoutLineItemsUpdate(checkoutId: $checkoutId, lineItems: $lineItems) {
-        userErrors {
-          message
-          field
-        }
-        checkout {
-          ...CheckoutFragment
-        }
-      }
-    }
-    ${CheckoutFragment}
-  `;
   const [checkoutLineItemsUpdate] = useMutation(checkoutLineItemsUpdateSchema);
   const [checkoutProductRemove] = useMutation(checkoutLineItemsRemove);
 
@@ -94,7 +63,6 @@ const ProductItem = ({ product = null }) => {
       await removeLineItemInCart();
       return;
     }
-    console.log("si coge");
     updateProductsCart(quantity - 1);
   };
 

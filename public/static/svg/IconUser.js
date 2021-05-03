@@ -1,6 +1,8 @@
 import * as React from "react";
+import PropTypes from "prop-types";
 
 function IconUser(props) {
+  const { color = "#314790" } = props;
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +14,7 @@ function IconUser(props) {
       <g
         data-name="Icon feather-user"
         fill="none"
-        stroke="#314790"
+        stroke={color}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={2}
@@ -29,5 +31,8 @@ function IconUser(props) {
     </svg>
   );
 }
+IconUser.propTypes = {
+  color: PropTypes.string,
+};
 
 export default IconUser;

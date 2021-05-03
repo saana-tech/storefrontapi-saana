@@ -12,7 +12,7 @@ function IconCloseModal(props) {
       <path
         data-name="Icon ionic-md-close"
         d="M18 1.8L16.2 0 9 7.2 1.8 0 0 1.8 7.2 9 0 16.2 1.8 18 9 10.8l7.2 7.2 1.8-1.8L10.8 9z"
-        fill="#314790"
+        fill="#88ceb3"
       />
     </svg>
   );
