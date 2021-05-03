@@ -49,10 +49,6 @@ const DetailOrder = ({ order }) => {
           <span>{products.length}</span>
         </div>{" "}
         <div className={styles.informationSidebar}>
-          <h4>Estado de pago</h4>
-          <span>{"Esperando"}</span>
-        </div>
-        <div className={styles.informationSidebar}>
           <h4>Dirección de entrega</h4>
           <span>{order?.address}</span>
         </div>

@@ -90,9 +90,7 @@ const Orders = () => {
                       <td data-label="Cantidad">{products.length}</td>
                       <td data-label="Estado de orden">
                         {fulfillmentStatus === "UNFULFILLED" && (
-                          <span className={styles.statusOrder}>
-                            No terminado
-                          </span>
+                          <span className={styles.statusOrder}>Esperando</span>
                         )}
                       </td>
                       <td data-label="Total">
