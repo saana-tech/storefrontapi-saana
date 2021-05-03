@@ -6,7 +6,7 @@ import Collections from "../components/Collections";
 import Products from "../components/Products";
 import Section from "../components/Section";
 import Seo from "../components/Seo";
-import { Container } from "react-bootstrap";
+import Container from "../components/Container";
 
 export default function Home() {
   const GET_COLLECTIONS = gql`

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container } from "react-bootstrap";
+import Container from "../Container";
 import styles from "./Footer.module.css";
 
 const Footer = () => {

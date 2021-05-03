@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Rating from "react-rating";
 import { useMutation } from "@apollo/client";
-import { Container } from "react-bootstrap";
 
 import { StoreContext } from "../core";
 import {
@@ -17,6 +16,7 @@ import Seo from "../components/Seo";
 import IconStart from "../../public/static/svg/IconStart";
 import IconEmpty from "../../public/static/svg/IconEmpty";
 import ProductsTag from "../components/ProductsTag";
+import Container from "../components/Container";
 
 const Product = () => {
   const [checkoutItemsAdd] = useMutation(checkoutLineItemsAdd);

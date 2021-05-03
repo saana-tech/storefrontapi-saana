@@ -316,7 +316,7 @@
   transition: all 0.3s ease;
 }
 .productSearch:hover {
-  background-color: #88ceb3;
+  background-color: #314790;
   color: white !important;
   border-radius: 5px;
 }
@@ -344,7 +344,7 @@
   margin-right: 0.5rem;
 }
 .titleSearch {
-  color: #88ceb3;
+  color: #314790;
 }
 .priceSearch {
   font-size: 0.8rem;

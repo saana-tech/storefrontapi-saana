@@ -1,12 +1,13 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { gql, useQuery } from "@apollo/client";
-import { Container, Row, Col, Spinner } from "react-bootstrap";
+import { Row, Col, Spinner } from "react-bootstrap";
 
 import styles from "../styles/Collections.module.css";
 import CardProduct from "../components/Products/CardProduct";
 import Seo from "../components/Seo";
 import util from "../util";
+import Container from "../components/Container";
 
 const Collection = () => {
   const router = useRouter();
