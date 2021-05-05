@@ -508,6 +508,10 @@
   margin-left: 20px;
   margin-bottom: 20px;
 }
+.contentRightNav {
+  display: flex;
+  align-items: center;
+}
 /* RESPONSIVE DESIGN */
 /* DESKTOP BIG */
 @media only screen and (min-width: 1650px) {
