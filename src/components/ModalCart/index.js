@@ -1,16 +1,22 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext } from "react";
+import { useMutation } from "@apollo/client";
+
 import util from "../../util";
 import styles from "./ModalCart.module.css";
 import { StoreContext } from "../../core";
 import CloseIcon from "../../../public/static/svg/CloseIcon";
 import {
+  handleCreateCheckoutDispatch,
   handleShowCartDispatch,
   //showModalLoginDispatch,
 } from "../../core/global/actions";
 import ProductItem from "./ProductItem";
+import { createCheckoutSchema } from "../../graphql/gql";
 
 const ModalCart = () => {
   const { state, globalDispatch } = useContext(StoreContext);
+  const [createCheckout] = useMutation(createCheckoutSchema);
+
   const { globalState } = state;
   const {
     showCart,
@@ -28,7 +34,23 @@ const ModalCart = () => {
       return;
     } */
     window.open(checkout.webUrl);
+    handleCreateCheckout();
   };
+
+  const handleCreateCheckout = useCallback(async () => {
+    try {
+      const res = await createCheckout({
+        variables: {
+          input: {},
+        },
+      });
+      const dataCart = res.data.checkoutCreate.checkout;
+
+      handleCreateCheckoutDispatch(dataCart, globalDispatch);
+    } catch (error) {
+      console.log("error create checkout =>", error);
+    }
+  }, []);
 
   return (
     <div className={styles.backdrop}>
