@@ -129,7 +129,7 @@ const Address = () => {
       await deleteAddressMutation({ variables: input });
       setModalDelete(false);
     } catch (error) {
-      console.log("error =>", error);
+      console.log("error", error);
     }
   };
 

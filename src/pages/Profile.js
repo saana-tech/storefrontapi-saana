@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container } from "react-bootstrap";
+import Container from "../components/Container";
 import ContentProfile from "../components/ContentProfile";
 import NavProfile from "../components/NavProfile";
 import styles from "../styles/Profile.module.css";

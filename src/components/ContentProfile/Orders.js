@@ -41,7 +41,6 @@ const Orders = () => {
             <tbody>
               {orders &&
                 orders.map(({ node }) => {
-                  console.log("node order =>", node);
                   <td data-label="Estado de pago">
                     {util.dateFormat(processedAt)}
                   </td>;
@@ -90,9 +89,7 @@ const Orders = () => {
                       <td data-label="Cantidad">{products.length}</td>
                       <td data-label="Estado de orden">
                         {fulfillmentStatus === "UNFULFILLED" && (
-                          <span className={styles.statusOrder}>
-                            No terminado
-                          </span>
+                          <span className={styles.statusOrder}>Esperando</span>
                         )}
                       </td>
                       <td data-label="Total">

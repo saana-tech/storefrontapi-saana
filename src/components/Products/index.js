@@ -68,7 +68,6 @@ const Products = ({
   `;
   const { data = null } = useQuery(GET_PRODUCTS);
   let products = data?.collectionByHandle?.products?.edges;
-  console.log("products =>", products);
 
   const handleProduct = (product) => {
     router.push({
@@ -112,7 +111,6 @@ const Products = ({
       <div className={styles.contentProducts} ref={collectionRef}>
         {products &&
           products.map(({ node }) => {
-            console.log("node product tag =>", node);
             const { id, title, images, variants, description } = node;
             let imageUrl = images.edges[0].node.src;
             let price = variants.edges[0].node.price;

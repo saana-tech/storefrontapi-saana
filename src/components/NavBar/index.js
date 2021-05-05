@@ -24,6 +24,7 @@ import SelectAddress from "./SelectAddress";
 import MenuResponsive from "../MenuResponsive";
 import Search from "./Search";
 import ModalSearchResponsive from "./ModalSearchResponsive";
+import Container from "../Container";
 
 const NavBar = () => {
   const { state, globalDispatch } = useContext(StoreContext);
@@ -77,77 +78,79 @@ const NavBar = () => {
   return (
     <>
       <div className={styles.containerNav}>
-        <header className={styles.header}>
-          <nav className={styles.navPrincipal}>
-            <div>
-              <img
-                className={styles.logoImage}
-                src={LOGO}
-                alt={"Saanafarma logo"}
-                onClick={() => router.push("/")}
-              />
-            </div>
-            <div className="separatorNav" />
-            <div className={styles.contentSelectAddress}>
-              <SelectAddress />
-            </div>
+        <Container>
+          <header className={styles.header}>
+            <nav className={styles.navPrincipal}>
+              <div>
+                <img
+                  className={styles.logoImage}
+                  src={LOGO}
+                  alt={"Saanafarma logo"}
+                  onClick={() => router.push("/")}
+                />
+              </div>
+              <div className="separatorNav" />
+              <div className={styles.contentSelectAddress}>
+                <SelectAddress />
+              </div>
 
-            <SelectServices />
-            {/*    <div className={styles.btnSearchResponsive}>
+              <SelectServices />
+              {/*    <div className={styles.btnSearchResponsive}>
                 <button onClick={() => setShowSearch(true)}>
                   <SearchIcon />
                 </button>
               </div> */}
-            <div className={styles.contCart} onClick={() => handleOpenCart()}>
-              {checkout &&
-                checkout.lineItems &&
-                checkout.lineItems.edges.length > 0 && (
-                  <div className={styles.badge}>
-                    {checkout.lineItems.edges.length}
-                  </div>
+              <div className={styles.contCart} onClick={() => handleOpenCart()}>
+                {checkout &&
+                  checkout.lineItems &&
+                  checkout.lineItems.edges.length > 0 && (
+                    <div className={styles.badge}>
+                      {checkout.lineItems.edges.length}
+                    </div>
+                  )}
+                <CartIcon />
+              </div>
+              <div className={styles.iconBar} onClick={() => setShowNav(true)}>
+                <IconMenuBar />
+              </div>
+              <div className={styles.buttonLogin}>
+                {user ? (
+                  <span onClick={() => router.push("/Profile")}>
+                    <IconUser /> {user.displayName}
+                  </span>
+                ) : (
+                  <button onClick={() => setShowModal(true)}>
+                    Iniciar sesión
+                  </button>
                 )}
-              <CartIcon />
-            </div>
-            <div className={styles.iconBar} onClick={() => setShowNav(true)}>
-              <IconMenuBar />
-            </div>
-            <div className={styles.buttonLogin}>
-              {user ? (
-                <span onClick={() => router.push("/Profile")}>
-                  <IconUser /> {user.displayName}
-                </span>
-              ) : (
-                <button onClick={() => setShowModal(true)}>
-                  Iniciar sesión
-                </button>
-              )}
-            </div>
-          </nav>
+              </div>
+            </nav>
 
-          {/* CATEGORY */}
-        </header>
-        <Search />
+            {/* CATEGORY */}
+          </header>
+          <Search />
 
-        <div className={styles.containerCollection}>
-          <ul>
-            {data &&
-              data?.collections?.edges.map(({ node }, index) => {
-                const { title } = node;
-                return (
-                  <li key={index}>
-                    <a
-                      onClick={() =>
-                        handleProductsCategory(node.handle, node.title)
-                      }
-                    >
-                      {title}
-                    </a>
-                  </li>
-                );
-              })}
-          </ul>
-          <div className={styles.shadow} />
-        </div>
+          <div className={styles.containerCollection}>
+            <ul>
+              {data &&
+                data?.collections?.edges.map(({ node }, index) => {
+                  const { title } = node;
+                  return (
+                    <li key={index}>
+                      <a
+                        onClick={() =>
+                          handleProductsCategory(node.handle, node.title)
+                        }
+                      >
+                        {title}
+                      </a>
+                    </li>
+                  );
+                })}
+            </ul>
+            <div className={styles.shadow} />
+          </div>
+        </Container>
       </div>
 
       <Modal open={modalLogin} close={setShowModal}>

@@ -71,9 +71,6 @@
 }
 .form {
   margin-top: 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .form input {
   background-color: white;
@@ -83,6 +80,7 @@
   border-radius: 5px;
   margin-right: 1rem;
   width: 100%;
+  max-width: 300px;
 }
 .form button {
   background-color: white;
@@ -107,6 +105,9 @@
 @media only screen and (min-width: 1440px) {
   .containerFooter {
     max-width: 100%;
+  }
+  .form {
+    display: block;
   }
 }
 /* RESPONSIVE */

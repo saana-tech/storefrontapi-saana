@@ -6,7 +6,6 @@ import styles from "./ContentProfile.module.css";
 
 const DetailOrder = ({ order }) => {
   const { products } = order;
-  console.log("order =>", order);
   return (
     <div className={styles.containerModalDetailOrder}>
       <div className={styles.containerProducts}>
@@ -48,10 +47,6 @@ const DetailOrder = ({ order }) => {
           <h4>Cantidad de productos</h4>
           <span>{products.length}</span>
         </div>{" "}
-        <div className={styles.informationSidebar}>
-          <h4>Estado de pago</h4>
-          <span>{"Esperando"}</span>
-        </div>
         <div className={styles.informationSidebar}>
           <h4>Dirección de entrega</h4>
           <span>{order?.address}</span>

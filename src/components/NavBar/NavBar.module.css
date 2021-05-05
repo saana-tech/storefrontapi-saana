@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: space-between;
   align-self: center;
-  margin: 0 5%;
+  width: 100%;
 }
 
 .logoImage {
@@ -18,6 +18,7 @@
   min-width: 150px;
   max-width: 200px;
   cursor: pointer;
+  object-fit: contain;
 }
 .inputSearch {
   width: 100%;
@@ -143,7 +144,7 @@
   margin-right: 0.5rem;
   padding: 0 0.5rem;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 18px;
   color: #191919;
 }
 .containerCollection ul li a:hover {
@@ -181,7 +182,6 @@
   top: 0;
   z-index: 99;
   background-color: white;
-  width: 100%;
   right: 0;
   left: 0;
   display: flex;
@@ -267,7 +267,6 @@
 .containerSearch {
   position: relative;
   margin: 1rem;
-  width: 50%;
 }
 .contResult {
   background-color: white;
@@ -316,7 +315,7 @@
   transition: all 0.3s ease;
 }
 .productSearch:hover {
-  background-color: #88ceb3;
+  background-color: #314790;
   color: white !important;
   border-radius: 5px;
 }
@@ -344,7 +343,7 @@
   margin-right: 0.5rem;
 }
 .titleSearch {
-  color: #88ceb3;
+  color: #314790;
 }
 .priceSearch {
   font-size: 0.8rem;
@@ -510,6 +509,14 @@
   margin-bottom: 20px;
 }
 /* RESPONSIVE DESIGN */
+/* DESKTOP BIG */
+@media only screen and (min-width: 1650px) {
+  .containerSearch {
+    position: relative;
+    margin: 1rem;
+    margin: 1rem 20%;
+  }
+}
 /* TABLET */
 @media only screen and (max-width: 1024px) {
   .selectNav {
@@ -575,7 +582,7 @@
     margin-right: 0.5rem;
     padding: 0 0.5rem;
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 18px !important;
     color: #191919;
     width: 100%;
     display: block;
@@ -629,6 +636,7 @@
     height: auto;
     min-width: 150px;
     max-width: 200px;
+    object-fit: contain;
   }
 
   .servicesInput {
@@ -667,7 +675,7 @@
     margin-right: 0.5rem;
     padding: 0 0.5rem;
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 18px;
     color: #191919;
     width: 100%;
     display: block;
