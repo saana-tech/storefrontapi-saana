@@ -10,7 +10,6 @@ import {
 } from "./types";
 
 export const handleErrorGlobal = (payload, dispatch) => {
-  console.log(payload);
   setLoadingGlobal(false, dispatch);
   dispatch({ type: HANDLE_ERROR_GLOBAL, payload });
 

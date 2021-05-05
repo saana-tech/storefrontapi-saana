@@ -189,7 +189,6 @@ const AddAddress = ({ close }) => {
       <div className="autocomplete-dropdown-container">
         {loading && <div>Buscando...</div>}
         {suggestions.map((suggestion, index) => {
-          console.log("suggestion =>", suggestion);
           return (
             <div
               {...getSuggestionItemProps(suggestion)}

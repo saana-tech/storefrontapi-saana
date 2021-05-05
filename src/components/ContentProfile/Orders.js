@@ -41,7 +41,6 @@ const Orders = () => {
             <tbody>
               {orders &&
                 orders.map(({ node }) => {
-                  console.log("node order =>", node);
                   <td data-label="Estado de pago">
                     {util.dateFormat(processedAt)}
                   </td>;

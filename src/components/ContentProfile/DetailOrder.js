@@ -6,7 +6,6 @@ import styles from "./ContentProfile.module.css";
 
 const DetailOrder = ({ order }) => {
   const { products } = order;
-  console.log("order =>", order);
   return (
     <div className={styles.containerModalDetailOrder}>
       <div className={styles.containerProducts}>

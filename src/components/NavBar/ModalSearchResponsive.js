@@ -36,11 +36,7 @@ const ModalSearchResponsive = ({ open, close }) => {
     }
   }
 }`;
-  const { data = null, loading = false, error = null } = useQuery(
-    QUERY_PRODUCT
-  );
-  console.log("loading =>", loading);
-  console.log("error =>", error);
+  const { data = null } = useQuery(QUERY_PRODUCT);
   const clearInput = () => {
     setValueSearch("");
   };
