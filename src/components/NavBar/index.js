@@ -90,39 +90,47 @@ const NavBar = () => {
                 />
               </div>
               <div className="separatorNav" />
-              <div className={styles.contentSelectAddress}>
-                <SelectAddress />
-              </div>
+              <div className={styles.contentRightNav}>
+                <div className={styles.contentSelectAddress}>
+                  <SelectAddress />
+                </div>
 
-              <SelectServices />
-              {/*    <div className={styles.btnSearchResponsive}>
+                <SelectServices />
+                {/*    <div className={styles.btnSearchResponsive}>
                 <button onClick={() => setShowSearch(true)}>
                   <SearchIcon />
                 </button>
               </div> */}
-              <div className={styles.contCart} onClick={() => handleOpenCart()}>
-                {checkout &&
-                  checkout.lineItems &&
-                  checkout.lineItems.edges.length > 0 && (
-                    <div className={styles.badge}>
-                      {checkout.lineItems.edges.length}
-                    </div>
+                <div
+                  className={styles.contCart}
+                  onClick={() => handleOpenCart()}
+                >
+                  {checkout &&
+                    checkout.lineItems &&
+                    checkout.lineItems.edges.length > 0 && (
+                      <div className={styles.badge}>
+                        {checkout.lineItems.edges.length}
+                      </div>
+                    )}
+                  <CartIcon />
+                </div>
+                <div
+                  className={styles.iconBar}
+                  onClick={() => setShowNav(true)}
+                >
+                  <IconMenuBar />
+                </div>
+                <div className={styles.buttonLogin}>
+                  {user ? (
+                    <span onClick={() => router.push("/Profile")}>
+                      <IconUser /> {user.displayName}
+                    </span>
+                  ) : (
+                    <button onClick={() => setShowModal(true)}>
+                      Iniciar sesión
+                    </button>
                   )}
-                <CartIcon />
-              </div>
-              <div className={styles.iconBar} onClick={() => setShowNav(true)}>
-                <IconMenuBar />
-              </div>
-              <div className={styles.buttonLogin}>
-                {user ? (
-                  <span onClick={() => router.push("/Profile")}>
-                    <IconUser /> {user.displayName}
-                  </span>
-                ) : (
-                  <button onClick={() => setShowModal(true)}>
-                    Iniciar sesión
-                  </button>
-                )}
+                </div>
               </div>
             </nav>
 

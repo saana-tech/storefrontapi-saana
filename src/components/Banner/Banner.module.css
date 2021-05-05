@@ -16,12 +16,12 @@
 .imgBanner {
   flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 .imgBanner img {
   object-fit: cover;
-  max-width: 100%;
-  max-height: 200px;
+  width: 600px;
+  height: auto;
 }
 .information {
   flex: 1;
@@ -46,6 +46,11 @@
   .banner {
     padding: 1rem;
     max-width: 100%;
+  }
+  .imgBanner img {
+    object-fit: cover;
+    width: 200px;
+    height: auto;
   }
 }
 
@@ -76,5 +81,10 @@
   }
   .subtitle {
     margin-top: 0.5rem !important;
+  }
+  .imgBanner img {
+    object-fit: cover;
+    width: 150px;
+    height: auto;
   }
 }
