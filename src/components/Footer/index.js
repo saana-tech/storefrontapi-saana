@@ -65,13 +65,18 @@ const Footer = () => {
             </div>
           </div>
           <div className={styles.copyright}>
-            <span>© 2021 SAANA. Todos los derechos reservados</span>{" "}
-            <img
-              onClick={() => window.open("https://www.sic.gov.co/", "_blank")}
-              className={styles.badge}
-              src={"/static/img/superitc.png"}
-              alt={"Super intendencia de industria y comercio"}
-            />
+            <div>
+              <img
+                onClick={() => window.open("https://www.sic.gov.co/", "_blank")}
+                className={styles.badge}
+                src={"/static/img/superitc.png"}
+                alt={"Super intendencia de industria y comercio"}
+              />
+            </div>
+            <div>
+              <span>© 2021 SAANA. Todos los derechos reservados</span>{" "}
+            </div>
+            <div />
           </div>
         </div>
       </Container>
