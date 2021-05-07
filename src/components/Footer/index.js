@@ -71,7 +71,13 @@ const Footer = () => {
                 className={styles.badge}
                 src={"/static/img/superitc.png"}
                 alt={"Super intendencia de industria y comercio"}
-              />
+              />{" "}
+              {/*     <img
+                onClick={() => window.open("https://www.sic.gov.co/", "_blank")}
+                className={styles.badge}
+                src={"/static/img/mercadopago.png"}
+                alt={"Super intendencia de industria y comercio"}
+              /> */}
             </div>
             <div>
               <span>© 2021 SAANA. Todos los derechos reservados</span>{" "}

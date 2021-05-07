@@ -12,6 +12,7 @@ import {
 } from "../../core/global/actions";
 import ProductItem from "./ProductItem";
 import { createCheckoutSchema } from "../../graphql/gql";
+import Notification from "../Notification";
 
 const ModalCart = () => {
   const { state, globalDispatch } = useContext(StoreContext);
@@ -90,6 +91,7 @@ const ModalCart = () => {
             <CloseIcon />
           </div>
         </div>
+
         <div className={styles.body}>
           {checkout &&
           checkout.lineItems &&
@@ -124,6 +126,9 @@ const ModalCart = () => {
                 {util.formatCOP(checkout.totalPrice)}
               </div>
             </div>
+            {checkout &&
+              checkout.lineItems &&
+              checkout.lineItems?.edges?.length > 0 && <Notification />}
             <div>
               <div className={styles.tycPay}>
                 <input
