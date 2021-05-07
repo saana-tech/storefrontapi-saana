@@ -35,4 +35,13 @@ export default {
       return text;
     }
   },
+  create_number: () => {
+    let date = new Date().getTime();
+    const numberSort = "xxx".replace(/[xy]/g, function () {
+      const r = (date + Math.random() * 9) % 9 | 0;
+      date = Math.floor(date / 9);
+      return r;
+    });
+    return numberSort;
+  },
 };

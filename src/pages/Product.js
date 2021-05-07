@@ -79,7 +79,9 @@ const Product = () => {
                     fullSymbol={<IconStart />}
                     emptySymbol={<IconEmpty />}
                   />
-                  <span className={styles.visits}>232 Visitas</span>
+                  <span className={styles.visits}>
+                    {util.create_number()} Visitas
+                  </span>
                 </div>
                 <h3 className={styles.price}>
                   {util.formatCOP(productSelect.price)}
