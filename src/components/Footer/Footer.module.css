@@ -8,6 +8,7 @@
   width: 100%;
   margin-top: 6rem;
   color: white;
+  position: relative;
 }
 .containerLogo {
   margin-bottom: 2rem;
@@ -32,6 +33,7 @@
 .col1 ul li a,
 .col2 ul li a {
   font-size: 12px;
+  color: white;
 }
 .containerBody {
   display: flex;
@@ -101,6 +103,13 @@
   text-align: center;
   border-top: 1px solid white;
   margin-top: 1rem;
+}
+.badge {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  position: absolute;
+  cursor: pointer;
 }
 @media only screen and (min-width: 1440px) {
   .containerFooter {

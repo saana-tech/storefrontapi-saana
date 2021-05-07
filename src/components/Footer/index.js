@@ -40,7 +40,12 @@ const Footer = () => {
                 <h3>Contacto</h3>
                 <ul>
                   <li>
-                    <a>+57 333 033 3435</a>
+                    <a href="tel:+573330333435">+57 333 033 3435</a>
+                  </li>
+                  <li>
+                    <a href="mailto:atencionalusuario@saana.com.co">
+                      atencionalusuario@saana.com.co
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -60,7 +65,13 @@ const Footer = () => {
             </div>
           </div>
           <div className={styles.copyright}>
-            <span>© 2021 SAANA. Todos los derechos reservados</span>
+            <span>© 2021 SAANA. Todos los derechos reservados</span>{" "}
+            <img
+              onClick={() => window.open("https://www.sic.gov.co/", "_blank")}
+              className={styles.badge}
+              src={"/static/img/superitc.png"}
+              alt={"Super intendencia de industria y comercio"}
+            />
           </div>
         </div>
       </Container>

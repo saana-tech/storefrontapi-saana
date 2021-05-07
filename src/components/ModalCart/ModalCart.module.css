@@ -145,6 +145,15 @@
   color: #88ceb3;
   border: 1px solid #88ceb3;
 }
+.btnPayDisabled {
+  outline: none;
+  border: 0;
+  background-color: #c9c9c9;
+  color: #fff;
+  width: 100%;
+  border-radius: 5px;
+  height: 40px;
+}
 .contItemPay {
   display: flex;
   justify-content: space-between;
@@ -156,7 +165,23 @@
   font-size: 1.2rem;
   font-weight: bold;
 }
-
+.tycPay {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+.tycPay input {
+  margin-right: 10px;
+}
+.tycPay a {
+  color: #314790 !important;
+  text-decoration: underline !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.tycPay a:hover {
+  color: #010618 !important;
+}
 @media only screen and (max-width: 768px) {
   .modalRight {
     width: 100%;
