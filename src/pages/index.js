@@ -7,6 +7,7 @@ import Products from "../components/Products";
 import Section from "../components/Section";
 import Seo from "../components/Seo";
 import Container from "../components/Container";
+import Whatsapp from "../components/Whatsapp";
 
 export default function Home() {
   const GET_COLLECTIONS = gql`
@@ -48,6 +49,7 @@ export default function Home() {
             );
           })}
       </Container>
+      <Whatsapp />
     </div>
   );
 }
