@@ -64,6 +64,7 @@
   justify-content: space-between;
   cursor: pointer;
   margin: 0 1rem;
+  font-family: "AvenirNextLTPro" !important;
 }
 .servicesInput {
   width: 173px;
@@ -77,6 +78,7 @@
   justify-content: space-between;
   cursor: pointer;
   margin: 0 1rem;
+  font-family: "AvenirNextLTPro" !important;
 }
 .contCart {
   position: relative;
@@ -261,6 +263,7 @@
   display: block;
   margin-bottom: 0.5rem;
   cursor: pointer;
+  font-family: "AvenirNextLTPro" !important;
 }
 .addressSave a:hover {
   color: #304890;
@@ -512,6 +515,12 @@
 .contentRightNav {
   display: flex;
   align-items: center;
+}
+.titleCollection {
+  font-family: "AvenirNextLTPro" !important;
+}
+.userName {
+  font-family: "AvenirNextLTPro" !important;
 }
 /* RESPONSIVE DESIGN */
 /* DESKTOP BIG */

@@ -122,7 +122,10 @@ const NavBar = () => {
                 </div>
                 <div className={styles.buttonLogin}>
                   {user ? (
-                    <span onClick={() => router.push("/Profile")}>
+                    <span
+                      onClick={() => router.push("/Profile")}
+                      className={styles.userName}
+                    >
                       <IconUser /> {user.displayName}
                     </span>
                   ) : (
@@ -146,6 +149,7 @@ const NavBar = () => {
                   return (
                     <li key={index}>
                       <a
+                        className={styles.titleCollection}
                         onClick={() =>
                           handleProductsCategory(node.handle, node.title)
                         }

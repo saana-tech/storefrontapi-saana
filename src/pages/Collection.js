@@ -31,6 +31,7 @@ const Collection = () => {
               
                 edges {
                   node {
+                    sku
                     id
                     title
 

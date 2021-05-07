@@ -37,8 +37,7 @@ const Products = ({
                 edges {
                   node {
                   sku
-
-                    id
+                   id
                     title
                     selectedOptions {
                       name

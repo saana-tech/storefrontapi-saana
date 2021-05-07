@@ -1,4 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+@font-face {
+  font-family: "AvenirNextLTPro";
+  src: url("../../public/static/fonts/Avenir/AvenirNextLTPro-Regular.otf");
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "utopia";
+  src: url("../../public/static/fonts/utopia/UtopiaStd-Regular.otf");
+  font-style: normal;
+  font-display: swap;
+}
+
 html,
 body {
   padding: 0;
@@ -10,13 +24,19 @@ h3,
 h4,
 h5,
 h6,
+button,
+span {
+  font-family: "AvenirNextLTPro" !important;
+  font-weight: bold;
+}
+
 p,
 span,
-a,
 input,
-input::placeholder,
-button {
-  font-family: "Poppins", sans-serif !important;
+input,
+a,
+li::placeholder {
+  font-family: "utopia" !important;
 }
 
 * {
