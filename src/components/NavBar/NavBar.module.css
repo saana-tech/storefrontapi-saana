@@ -102,11 +102,12 @@
   height: 40px;
   padding: 9px 15px 8px;
   border-radius: 6px;
+  background: rgb(198, 119, 119);
   background: linear-gradient(
-    174deg,
-    rgba(154, 193, 178, 1) 0%,
-    rgba(81, 156, 172, 1) 70%,
-    rgba(81, 156, 172, 1) 100%
+    90deg,
+    rgba(198, 119, 119, 1) 0%,
+    rgba(128, 136, 193, 1) 48%,
+    rgba(128, 113, 171, 1) 100%
   );
   border: 0;
   color: white;
@@ -120,10 +121,10 @@
   border-radius: 6px;
   background-color: white;
   border: 0;
-  color: #88ceb3;
+  color: #304890;
   margin: 0 1rem;
   cursor: pointer;
-  border: 1px solid #88ceb3;
+  border: 1px solid #304890;
   transition: all 0.3s ease;
 }
 .containerCollection {
@@ -148,7 +149,7 @@
   color: #191919;
 }
 .containerCollection ul li a:hover {
-  background-color: #88ceb3 !important;
+  background-color: #304890 !important;
   color: white;
   border-radius: 3px;
   transition: all 0.3s ease;
@@ -217,7 +218,7 @@
   transition: all 0.3s ease;
 }
 .selectContent a:hover {
-  color: #88ceb3;
+  color: #304890;
   text-decoration: underline;
 }
 .selectAddress {
@@ -243,7 +244,7 @@
 .btnAdd button {
   width: 100%;
   height: 40px;
-  background-color: #88ceb3;
+  background-color: #304890;
   border: 0;
   color: white;
   border-radius: 5px;
@@ -252,8 +253,8 @@
 }
 .btnAdd button:hover {
   background-color: white;
-  border: 1px solid #88ceb3;
-  color: #88ceb3;
+  border: 1px solid #304890;
+  color: #304890;
 }
 .addressSave a {
   text-decoration: underline;
@@ -262,7 +263,7 @@
   cursor: pointer;
 }
 .addressSave a:hover {
-  color: #88ceb3;
+  color: #304890;
 }
 .containerSearch {
   position: relative;
@@ -419,7 +420,7 @@
 }
 .inputAutocomplete {
   border: 0;
-  border-bottom: 2px solid #88ceb3;
+  border-bottom: 2px solid #304890;
   width: 384px;
   padding: 0 1rem;
   height: 40px;
@@ -449,7 +450,7 @@
   font-weight: bold;
   line-height: 1.15;
   letter-spacing: normal;
-  color: #88ceb3;
+  color: #304890;
 }
 .badgeInformation {
   width: 384px;
@@ -465,7 +466,7 @@
   font-size: 12px;
   line-height: 1.5;
   text-align: center;
-  color: #88ceb3;
+  color: #304890;
 }
 .disabledButton {
   width: 384px;
@@ -485,7 +486,7 @@
   height: 49px;
   padding: 13px 161px 12px 136px;
   border-radius: 7px;
-  background-color: #88ceb3;
+  background-color: #304890;
   color: #ffffff;
   font-size: 17px;
   outline: none;

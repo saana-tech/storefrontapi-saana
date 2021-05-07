@@ -120,7 +120,7 @@
   height: 32px;
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 6px 10px 0 #88ceb336;
+  box-shadow: 0 6px 10px 0 #30489036;
   margin: 5px;
 }
 .remove {
@@ -132,7 +132,7 @@
 .btnPay {
   outline: none;
   border: 0;
-  background-color: #88ceb3;
+  background-color: #304890;
   color: #fff;
   width: 100%;
   border-radius: 5px;
@@ -142,8 +142,8 @@
 }
 .btnPay:hover {
   background-color: #ffff;
-  color: #88ceb3;
-  border: 1px solid #88ceb3;
+  color: #304890;
+  border: 1px solid #304890;
 }
 .btnPayDisabled {
   outline: none;

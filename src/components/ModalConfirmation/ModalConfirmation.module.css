@@ -51,7 +51,7 @@
   outline: none;
   border-radius: 6px;
   width: 120px;
-  background-color: #88ceb3;
+  background-color: #304890;
   color: white;
   height: 40px;
 }
@@ -62,7 +62,7 @@
   left: 10px;
 }
 .buttonClose button {
-  border: 1px solid #88ceb3;
+  border: 1px solid #304890;
   background-color: white;
   border-radius: 15px;
   height: 30px;

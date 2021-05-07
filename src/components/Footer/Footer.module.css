@@ -1,9 +1,10 @@
 .footerPrincipal {
+  background: rgb(198, 119, 119);
   background: linear-gradient(
-    174deg,
-    rgba(154, 193, 178, 1) 0%,
-    rgba(81, 156, 172, 1) 70%,
-    rgba(81, 156, 172, 1) 100%
+    90deg,
+    rgba(198, 119, 119, 1) 0%,
+    rgba(128, 136, 193, 1) 48%,
+    rgba(128, 113, 171, 1) 100%
   );
   width: 100%;
   margin-top: 6rem;
