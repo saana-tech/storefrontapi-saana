@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Rating from "react-rating";
 import { useMutation } from "@apollo/client";
 
 import { StoreContext } from "../core";
@@ -13,8 +12,6 @@ import styles from "../styles/Product.module.css";
 import { checkoutLineItemsAdd } from "../graphql/gql";
 import util from "../util";
 import Seo from "../components/Seo";
-import IconStart from "../../public/static/svg/IconStart";
-import IconEmpty from "../../public/static/svg/IconEmpty";
 import ProductsTag from "../components/ProductsTag";
 import Container from "../components/Container";
 
@@ -73,16 +70,7 @@ const Product = () => {
               <div className={styles.col3}>
                 <h2 className={styles.title}>{productSelect.title}</h2>
                 <span className={styles.sku}>Sku {productSelect.sku}</span>
-                <div className={styles.containerRating}>
-                  <Rating
-                    initialRating={5}
-                    fullSymbol={<IconStart />}
-                    emptySymbol={<IconEmpty />}
-                  />
-                  <span className={styles.visits}>
-                    {util.create_number()} Visitas
-                  </span>
-                </div>
+
                 <h3 className={styles.price}>
                   {util.formatCOP(productSelect.price)}
                 </h3>
