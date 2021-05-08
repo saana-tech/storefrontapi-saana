@@ -48,7 +48,7 @@ const Footer = () => {
             </div>
 
             <div className={styles.col2}>
-              <h3>Atención de PQR´s</h3>
+              <h3>¿Tienes alguna duda o comentario?</h3>
               <ul>
                 <li>
                   <a href="mailto:atencionalusuario@saana.com.co">
