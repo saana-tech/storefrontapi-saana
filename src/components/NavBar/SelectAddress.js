@@ -150,7 +150,7 @@ const SelectAddress = () => {
         >
           <PinIcon />
           <span className={styles.defaultAddress}>
-            {defaultAddress ? defaultAddress : "Bogota"}
+            {defaultAddress ? defaultAddress : "Bogotá"}
           </span>
           <ArrowDown />
         </div>

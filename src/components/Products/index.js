@@ -37,8 +37,7 @@ const Products = ({
                 edges {
                   node {
                   sku
-
-                    id
+                   id
                     title
                     selectedOptions {
                       name
@@ -110,7 +109,7 @@ const Products = ({
       </div>
       <div className={styles.contentProducts} ref={collectionRef}>
         {products &&
-          products.map(({ node }) => {
+          products.map(({ node }, index) => {
             const { id, title, images, variants, description } = node;
             let imageUrl = images.edges[0].node.src;
             let price = variants.edges[0].node.price;
@@ -119,6 +118,7 @@ const Products = ({
 
             return (
               <CardProduct
+                index={index}
                 key={id}
                 product={{
                   imageUrl,

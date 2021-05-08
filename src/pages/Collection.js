@@ -1,13 +1,12 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { gql, useQuery } from "@apollo/client";
-import { Row, Col, Spinner } from "react-bootstrap";
+import { Row, Col, Spinner, Container } from "react-bootstrap";
 
 import styles from "../styles/Collections.module.css";
 import CardProduct from "../components/Products/CardProduct";
 import Seo from "../components/Seo";
 import util from "../util";
-import Container from "../components/Container";
 
 const Collection = () => {
   const router = useRouter();
@@ -32,6 +31,7 @@ const Collection = () => {
               
                 edges {
                   node {
+                    sku
                     id
                     title
 
@@ -91,7 +91,7 @@ const Collection = () => {
             <Row xs={2} md={3} xl={4}>
               {products &&
                 products.length > 0 &&
-                products.map(({ node }) => {
+                products.map(({ node }, index) => {
                   const { id, title, images, variants, description } = node;
                   let imageUrl = images.edges[0].node.src;
                   let price = variants.edges[0].node.price;
@@ -102,6 +102,7 @@ const Collection = () => {
                     <Col key={id}>
                       <div style={{ margin: "10px 0" }}>
                         <CardProduct
+                          index={index}
                           product={{
                             imageUrl,
                             price,

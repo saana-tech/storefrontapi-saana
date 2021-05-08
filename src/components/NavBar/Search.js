@@ -53,6 +53,11 @@ const Search = () => {
 }`;
   const { data = null, loading = false } = useQuery(QUERY_PRODUCT);
 
+  const handleSearchProduct = () => {
+    const url = `https://api.whatsapp.com/send?phone=573152738113&text=Estoy%20buscando%20${valueSearch}`;
+    util.openWebTab(url);
+  };
+
   return (
     <div className={styles.containerSearch}>
       <h4 className={styles.labelSearch}>¿Qué estás buscando hoy?</h4>
@@ -74,13 +79,13 @@ const Search = () => {
         </div>
       </div>
 
-      {!loading && valueSearch.length > 0 && data?.products?.edges.length > 0 && (
+      {!loading && valueSearch.length > 0 && (
         <>
           <div className={styles.iconClose} onClick={() => clearInput()}>
             <CloseIcon />
           </div>
           <div className={styles.contResult}>
-            {data?.products?.edges &&
+            {data?.products?.edges && data?.products?.edges.length > 0 ? (
               data?.products?.edges.map(({ node }, index) => {
                 const { description, title, images, variants } = node;
                 const imageUrl = images.edges[0].node.src;
@@ -112,7 +117,27 @@ const Search = () => {
                     </div>
                   </div>
                 );
-              })}
+              })
+            ) : (
+              <div className={styles.containerWsMsn}>
+                <div className={styles.whatsappMsn}>
+                  <h2>
+                    ¿No encuentras{" "}
+                    <span className={styles.keyword}>{valueSearch}</span>?
+                  </h2>
+                  <span>
+                    No te preocupes haz click{" "}
+                    <a
+                      onClick={() => handleSearchProduct()}
+                      className={styles.callToAction}
+                    >
+                      aquí
+                    </a>{" "}
+                    y te lo buscamos
+                  </span>
+                </div>
+              </div>
+            )}
           </div>
         </>
       )}

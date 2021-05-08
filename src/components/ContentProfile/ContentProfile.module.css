@@ -7,7 +7,7 @@
   font-size: 15px;
 }
 .linkOrder {
-  color: #88ceb3;
+  color: #304890;
   cursor: pointer;
 }
 .linkOrder:hover {
@@ -86,7 +86,7 @@
 .informationSidebar:last-child span {
   font-size: 1.4rem;
   font-weight: bold;
-  color: #88ceb3;
+  color: #304890;
 }
 .informationSidebar h4 {
   margin: 0;
@@ -97,7 +97,7 @@
   margin-top: 2rem;
 }
 .containerBtnsClose button {
-  background-color: #88ceb3;
+  background-color: #304890;
   border: 0;
   outline: none;
   color: white;
@@ -108,9 +108,9 @@
 }
 .containerBtnsClose button:last-child {
   background-color: transparent;
-  border: 1px solid #88ceb3;
+  border: 1px solid #304890;
   outline: none;
-  color: #88ceb3;
+  color: #304890;
   border-radius: 5px;
   height: 40px;
   width: 120px;

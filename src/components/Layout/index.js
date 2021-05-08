@@ -7,6 +7,7 @@ import ModalCart from "../ModalCart";
 
 import NavBar from "../NavBar";
 import Footer from "../Footer";
+import Whatsapp from "../Whatsapp";
 import {
   handleCreateCheckoutDispatch,
   handleGeoLocation,
@@ -132,6 +133,8 @@ const Layout = ({ children }) => {
       {showCart && <ModalCart />}
       <NavBar />
       <div className="container-principal">{children}</div>
+      <Whatsapp />
+
       <Footer />
     </div>
   );

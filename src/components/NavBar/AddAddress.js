@@ -160,7 +160,7 @@ const AddAddress = ({ close }) => {
       address: {
         address1: address,
         address2: address,
-        city: "Bogota",
+        city: "Bogotá",
       },
     };
 

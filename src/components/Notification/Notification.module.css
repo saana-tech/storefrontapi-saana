@@ -1,0 +1,12 @@
+.notification {
+  border: 1px solid #81b19a;
+  color: #81b19a;
+  border-radius: 5px;
+  padding: 5px 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.close {
+  cursor: pointer;
+}
