@@ -25,6 +25,7 @@ import MenuResponsive from "../MenuResponsive";
 import Search from "./Search";
 import ModalSearchResponsive from "./ModalSearchResponsive";
 import Container from "../Container";
+import { motion } from "framer-motion";
 
 const NavBar = () => {
   const { state, globalDispatch } = useContext(StoreContext);
@@ -77,7 +78,24 @@ const NavBar = () => {
 
   return (
     <>
-      <div className={styles.containerNav}>
+      <motion.div
+        className={styles.containerNav}
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: {
+            scale: 0.8,
+            opacity: 0,
+          },
+          visible: {
+            scale: 1,
+            opacity: 1,
+            transition: {
+              delay: 0.4,
+            },
+          },
+        }}
+      >
         <Container>
           <header className={styles.header}>
             <nav className={styles.navPrincipal}>
@@ -163,7 +181,7 @@ const NavBar = () => {
             <div className={styles.shadow} />
           </div>
         </Container>
-      </div>
+      </motion.div>
 
       <Modal open={modalLogin} close={setShowModal}>
         <FormLogin close={() => setShowModal(false)} />

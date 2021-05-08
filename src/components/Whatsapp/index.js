@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+
 import IconWhatsapp from "../../../public/static/svg/IconWhatsapp";
 import styles from "./Whatsapp.module.css";
 
@@ -14,7 +16,12 @@ const Whatsapp = () => {
   return (
     <>
       {show && (
-        <button
+        <motion.button
+          animate={{
+            scale: [2, 1.5, 2, 1, 1],
+            rotate: [0, 0, 270, 270, 0],
+            borderRadius: ["10%", "20%", "30%", "40%", "50%"],
+          }}
           className={styles.button}
           onClick={() =>
             window.open(
@@ -24,7 +31,7 @@ const Whatsapp = () => {
           }
         >
           <IconWhatsapp />
-        </button>
+        </motion.button>
       )}
     </>
   );
