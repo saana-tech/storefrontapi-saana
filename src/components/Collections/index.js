@@ -6,6 +6,7 @@ import styles from "./Collections.module.css";
 import ArrowLeft from "../../../public/static/svg/ArrowLeft";
 import ArrowRight from "../../../public/static/svg/ArrowRight";
 import LoadingCollections from "./LoadingColletions";
+import { motion } from "framer-motion";
 
 const Collections = ({ collection = [], error = null, loading = false }) => {
   const router = useRouter();
@@ -62,8 +63,24 @@ const Collections = ({ collection = [], error = null, loading = false }) => {
               collection.map(({ node }, index) => {
                 const { title = "", image = "" } = node;
                 let imageUrl = image?.originalSrc;
+                const delay = parseFloat("0." + index + 2);
                 return (
-                  <div
+                  <motion.div
+                    initial="hidden"
+                    animate="visible"
+                    variants={{
+                      hidden: {
+                        scale: 0.8,
+                        opacity: 0,
+                      },
+                      visible: {
+                        scale: 1,
+                        opacity: 1,
+                        transition: {
+                          delay,
+                        },
+                      },
+                    }}
                     key={index}
                     className={styles.card}
                     style={{ backgroundImage: `url(${imageUrl})` }}
@@ -73,7 +90,7 @@ const Collections = ({ collection = [], error = null, loading = false }) => {
                   >
                     <h4>{title}</h4>
                     <img />
-                  </div>
+                  </motion.div>
                 );
               })}
           </div>

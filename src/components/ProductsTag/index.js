@@ -104,7 +104,7 @@ const ProductsTag = ({
           </div>
           <div className={styles.contentProducts} ref={collectionRef}>
             {products &&
-              products.map(({ node }) => {
+              products.map(({ node }, index) => {
                 const { id, title, images, variants, description } = node;
                 let imageUrl = images.edges[0].node.src;
                 let price = variants.edges[0].node.price;
@@ -115,6 +115,7 @@ const ProductsTag = ({
                   <Fragment key={id}>
                     {idCurrentProduct.includes(variantId) ? null : (
                       <CardProduct
+                        index={index}
                         product={{
                           imageUrl,
                           price,

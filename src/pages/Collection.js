@@ -88,10 +88,10 @@ const Collection = () => {
         </div>
         <div>
           <div>
-            <Row xs={2} md={3} xl={4}>
+            <Row xs={2} md={3} xl={5}>
               {products &&
                 products.length > 0 &&
-                products.map(({ node }) => {
+                products.map(({ node }, index) => {
                   const { id, title, images, variants, description } = node;
                   let imageUrl = images.edges[0].node.src;
                   let price = variants.edges[0].node.price;
@@ -102,6 +102,7 @@ const Collection = () => {
                     <Col key={id}>
                       <div style={{ margin: "10px 0" }}>
                         <CardProduct
+                          index={index}
                           product={{
                             imageUrl,
                             price,

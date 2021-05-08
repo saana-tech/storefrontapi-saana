@@ -212,6 +212,9 @@
 .selectServices {
   position: relative;
 }
+.selectServices a {
+  font-weight: bold !important;
+}
 .selectContent a {
   cursor: pointer;
   display: block;
