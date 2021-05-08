@@ -71,4 +71,8 @@ export default {
       return h >= a && h <= c;
     };
   },
+
+  resetString: (str) => {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  },
 };

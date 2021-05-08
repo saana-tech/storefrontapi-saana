@@ -11,7 +11,8 @@ import {
 } from "../../graphql/gql";
 import { StoreContext } from "../../core";
 import Error from "../Error";
-import { IMG_LOGIN, IMG_REGISTER } from "../../constants";
+import { IMG_LOGIN, IMG_REGISTER, TYC } from "../../constants";
+import util from "../../util";
 
 //Handle login
 const FormLogin = ({ close }) => {
@@ -198,7 +199,12 @@ const FormLogin = ({ close }) => {
 
                   <label>
                     He leído y acepto los{" "}
-                    <a className={styles.linkTyC}>Términos y condiciones</a>
+                    <a
+                      onClick={() => util.openWebTab(TYC)}
+                      className={styles.linkTyC}
+                    >
+                      Términos y condiciones
+                    </a>
                   </label>
                 </div>
 

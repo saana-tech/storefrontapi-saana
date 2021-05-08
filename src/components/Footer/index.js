@@ -1,17 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import Container from "../Container";
 import styles from "./Footer.module.css";
 import util from "../../util";
 import { AVISO_PRIVACIDAD, TRATAMIENTO_DATOS, TYC } from "../../constants";
 
 const Footer = () => {
-  const [value, setValue] = useState("");
   const logo =
     "https://cdn.shopify.com/s/files/1/0539/3920/8366/files/logo_saana_farma_white.png?v=1617333776";
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
   return (
     <footer className={styles.footerPrincipal}>
       <Container>
@@ -47,26 +43,19 @@ const Footer = () => {
                   <li>
                     <a href="tel:+573330333435">+57 333 033 3435</a>
                   </li>
-                  <li>
-                    <a href="mailto:atencionalusuario@saana.com.co">
-                      atencionalusuario@saana.com.co
-                    </a>
-                  </li>
                 </ul>
               </div>
             </div>
 
-            <div className={styles.col3}>
-              <h3>Newsletter </h3>
-              <form className={styles.form} onSubmit={handleSubmit}>
-                <input
-                  type={"email"}
-                  value={value}
-                  onChange={(e) => setValue(e.target.value)}
-                  placeholder={"Dirección de correo electrónico"}
-                />
-                <button type={"submit"}>Suscribirse</button>
-              </form>
+            <div className={styles.col2}>
+              <h3>Atención de PQR´s</h3>
+              <ul>
+                <li>
+                  <a href="mailto:atencionalusuario@saana.com.co">
+                    Atención de PQR´s en atencionalusuario@saana.com.co
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
           <div className={styles.copyright}>

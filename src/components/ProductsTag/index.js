@@ -79,7 +79,6 @@ const ProductsTag = ({
       collectionRef ? (collectionRef.current.scrollLeft += 200) : null;
     }
   };
-  console.log("products =>", products);
 
   return (
     <>

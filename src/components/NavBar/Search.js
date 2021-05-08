@@ -67,7 +67,7 @@ const Search = () => {
           className={styles.inputSearch}
           type={"text"}
           value={valueSearch}
-          onChange={(e) => setValueSearch(e.target.value)}
+          onChange={(e) => setValueSearch(util.resetString(e.target.value))}
           placeholder={"Escribe el nombre de tu producto"}
         />
         <div className={styles.iconSearch}>
