@@ -13,6 +13,7 @@ import {
 import ProductItem from "./ProductItem";
 import { createCheckoutSchema } from "../../graphql/gql";
 import Notification from "../Notification";
+import { AVISO_PRIVACIDAD, TRATAMIENTO_DATOS, TYC } from "../../constants";
 
 const ModalCart = () => {
   const { state, globalDispatch } = useContext(StoreContext);
@@ -61,13 +62,6 @@ const ModalCart = () => {
 
   const handleOnChange = (name, value) => {
     setMultiCheck({ ...multiCheck, [name]: value });
-  };
-
-  const handleOpenTyC = () => {
-    window.open(
-      "https://firebasestorage.googleapis.com/v0/b/saana-it-solutions.appspot.com/o/SAANA%20OCUPACIONAL%2005-05-2021%20(2).pdf?alt=media&token=12b18cb6-0afa-47da-9351-7f3f0a5b7dab",
-      "_blank"
-    );
   };
 
   const handleTyc = useCallback(() => {
@@ -136,7 +130,7 @@ const ModalCart = () => {
                   onChange={() => handleOnChange("check1", !multiCheck.check1)}
                   checked={multiCheck.check1}
                 />
-                <a onClick={() => handleOpenTyC()}>
+                <a onClick={() => util.openWebTab(AVISO_PRIVACIDAD)}>
                   Acepta política de privacidad
                 </a>
               </div>
@@ -146,7 +140,10 @@ const ModalCart = () => {
                   checked={multiCheck.check2}
                   onChange={() => handleOnChange("check2", !multiCheck.check2)}
                 />
-                <a>Aceptar términos y condiciones</a>
+
+                <a onClick={() => util.openWebTab(TYC)}>
+                  Aceptar términos y condiciones
+                </a>
               </div>
 
               <div className={styles.tycPay}>
@@ -155,7 +152,9 @@ const ModalCart = () => {
                   checked={multiCheck.check3}
                   onChange={() => handleOnChange("check3", !multiCheck.check3)}
                 />
-                <a>Acepta política de tratamiento de datos</a>
+                <a onClick={() => util.openWebTab(TRATAMIENTO_DATOS)}>
+                  Acepta política de tratamiento de datos
+                </a>
               </div>
               <button
                 disabled={disabled}

@@ -522,6 +522,28 @@
 .userName {
   font-family: "AvenirNextLTPro" !important;
 }
+.containerWsMsn {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+.whatsappMsn h2 {
+  font-size: 22px;
+}
+.whatsappMsn span {
+  font-size: 16px;
+}
+.keyword {
+  font-weight: bold;
+  font-size: 22px;
+  text-transform: uppercase;
+  color: #585858;
+}
+.callToAction {
+  color: #304890;
+  text-decoration: underline;
+  cursor: pointer;
+}
 /* RESPONSIVE DESIGN */
 /* DESKTOP BIG */
 @media only screen and (min-width: 1650px) {

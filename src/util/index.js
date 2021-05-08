@@ -44,4 +44,8 @@ export default {
     });
     return numberSort;
   },
+
+  openWebTab: (link) => {
+    window.open(link, "_blank");
+  },
 };

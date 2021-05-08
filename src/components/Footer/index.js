@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Container from "../Container";
 import styles from "./Footer.module.css";
+import util from "../../util";
+import { AVISO_PRIVACIDAD, TRATAMIENTO_DATOS, TYC } from "../../constants";
 
 const Footer = () => {
   const [value, setValue] = useState("");
@@ -20,19 +22,22 @@ const Footer = () => {
           <div className={styles.containerBody}>
             <div className={styles.containerUl}>
               <div className={styles.col1}>
-                <h3>Saana</h3>
+                <h3>Legal</h3>
                 <ul>
                   <li>
-                    <a>Saana consulta</a>
-                  </li>
-                  <li>
-                    <a>Saana lab</a>
+                    <a onClick={() => util.openWebTab(TRATAMIENTO_DATOS)}>
+                      Tratamiento de datos
+                    </a>
                   </li>{" "}
                   <li>
-                    <a>Política y privacidad</a>
+                    <a onClick={() => util.openWebTab(AVISO_PRIVACIDAD)}>
+                      Política y privacidad
+                    </a>
                   </li>{" "}
                   <li>
-                    <a>Términos y condiciones</a>
+                    <a onClick={() => util.openWebTab(TYC)}>
+                      Términos y condiciones
+                    </a>
                   </li>
                 </ul>
               </div>
