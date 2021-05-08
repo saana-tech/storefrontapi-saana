@@ -76,6 +76,7 @@ const ModalCart = () => {
   useEffect(() => {
     handleTyc();
   }, [handleTyc]);
+
   return (
     <div className={styles.backdrop}>
       <div className={styles.modalRight}>
@@ -109,7 +110,7 @@ const ModalCart = () => {
             </div>{" "}
             <div className={styles.contItemPay}>
               <div>Impuestos</div>
-              <div>{util.formatCOP(0)}</div>
+              <div>{util.formatCOP(checkout.totalTax)}</div>
             </div>
             <div
               className={styles.contItemPay}

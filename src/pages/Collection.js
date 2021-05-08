@@ -88,7 +88,7 @@ const Collection = () => {
         </div>
         <div>
           <div>
-            <Row xs={2} md={3} xl={4}>
+            <Row xs={2} md={3} xl={5}>
               {products &&
                 products.length > 0 &&
                 products.map(({ node }, index) => {

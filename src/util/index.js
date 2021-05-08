@@ -1,5 +1,14 @@
 import moment from "moment";
 
+const formatMoment = (time) => {
+  const regexp = /\d\d:\d\d(:\d\d)?/;
+  if (regexp.test(time)) {
+    const units = time.split(":");
+    return +units[0] * 3600 + +units[1] * 60 + (+units[2] || 0);
+  }
+  return null;
+};
+
 export default {
   formatCOP: (number) => {
     let num = Number(number);
@@ -47,5 +56,19 @@ export default {
 
   openWebTab: (link) => {
     window.open(link, "_blank");
+  },
+  generateSchedule: (openingTime, closeTime) => {
+    let a = formatMoment(openingTime);
+    let c = formatMoment(closeTime);
+
+    return function (hora) {
+      const h = formatMoment(hora);
+
+      if (a > c) {
+        return h >= a || h <= c;
+      }
+
+      return h >= a && h <= c;
+    };
   },
 };
