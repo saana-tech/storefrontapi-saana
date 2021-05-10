@@ -161,7 +161,7 @@ const FormPqr = () => {
             </label>
           </div>
           <ReCAPTCHA
-            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA}
+            sitekey={"6Ld8vM4aAAAAAMLQkRYrFqoLj-wANba9deGQlahh"}
             onChange={onChange}
           />
           <button
