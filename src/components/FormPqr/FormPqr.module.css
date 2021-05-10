@@ -110,6 +110,18 @@
 .link:hover {
   text-decoration: underline !important;
 }
+.textGray {
+  color: #9c9c9c;
+  font-size: 16px;
+}
+.inputAuthorization {
+  display: flex;
+  align-items: center;
+}
+.label {
+  color: #363636;
+  font-weight: 400;
+}
 @media only screen and (max-width: 767px) {
   .textarea {
     width: 100%;

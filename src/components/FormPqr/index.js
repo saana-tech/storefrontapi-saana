@@ -130,12 +130,21 @@ const FormPqr = () => {
             <option>Sugerencia</option>
           </select>
 
-          <h4 className={styles.titleSection}>Motivo de solicitud</h4>
+          <h4 className={styles.titleSection}>
+            Motivo de la solicitud{" "}
+            <span className={styles.textGray}>
+              {values.reasonForRequest.length} {"/5000"}
+            </span>
+          </h4>
 
           <textarea
             className={styles.textarea}
             placeholder={"Descripción"}
-          ></textarea>
+            maxLength={5000}
+            name={"reasonForRequest"}
+            value={values.reasonForRequest}
+            onChange={(e) => onChangeText(e.target.name, e.target.value)}
+          />
           <div className={styles.note}>
             <p>
               (si es el caso, adjuntar documentos que sustenten la solicitud.
@@ -144,7 +153,9 @@ const FormPqr = () => {
               jpg y png.
             </p>
           </div>
-          <h4 className={styles.titleSection}>Documentos (OPCIONAL)</h4>
+          <h4 className={styles.titleSection}>
+            Documentos <span className={styles.textGray}>{"(OPCIONAL)"}</span>
+          </h4>
 
           <input type={"file"} accept={".pdf .jpg"} />
           <textarea
@@ -154,11 +165,24 @@ const FormPqr = () => {
           <div className={styles.checkTyC}>
             <input type={"checkbox"} />
             <label>
-              He leído y Acepto el acuerdo de{" "}
+              He leído y acepto la{" "}
               <a className={styles.link}>
-                confidencialidad y protección de datos
+                política de tratamiento de datos personales
               </a>
             </label>
+          </div>
+          <div className={styles.inputAuthorization}>
+            <div>
+              <span>Autorizo el envió de información traves de</span>
+            </div>
+
+            <div>
+              <div className={styles.checkTyC}>
+                <input type={"checkbox"} />
+
+                <span className={styles.label}>Correo electrónico</span>
+              </div>
+            </div>
           </div>
           <ReCAPTCHA
             sitekey={"6Ld8vM4aAAAAAMLQkRYrFqoLj-wANba9deGQlahh"}
