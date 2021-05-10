@@ -60,7 +60,22 @@ const FormLogin = ({ close }) => {
     };
 
     try {
-      await customerCreate({ variables: { input } });
+      const { data } = await customerCreate({ variables: { input } });
+      data.customerCreate.userErrors.forEach(function (error) {
+        if (error.field) {
+          setHandleError({
+            error: error.message,
+            msn: "Todos los campos son obligatorios",
+          });
+          return;
+        } else {
+          setHandleError({
+            error: error.message,
+            msn: "Todos los campos son obligatorios",
+          });
+          return;
+        }
+      });
       await handleLogin();
       close();
     } catch (error) {
@@ -83,24 +98,42 @@ const FormLogin = ({ close }) => {
         password: values.password,
       };
       const { data } = await createTokenCustomer({ variables: { input } });
-      const token =
-        data.customerAccessTokenCreate.customerAccessToken.accessToken;
+      if (data) {
+        const token =
+          data.customerAccessTokenCreate.customerAccessToken.accessToken;
 
-      const expireTime =
-        data.customerAccessTokenCreate.customerAccessToken.expiresAt;
-      localStorage.setItem("token", token);
-      localStorage.setItem("expireTime", expireTime);
+        const expireTime =
+          data.customerAccessTokenCreate.customerAccessToken.expiresAt;
+        localStorage.setItem("token", token);
+        localStorage.setItem("expireTime", expireTime);
 
-      const res = await checkoutCustomer({
-        variables: {
-          checkoutId: checkout.id,
-          customerAccessToken: token,
-        },
-      });
+        const res = await checkoutCustomer({
+          variables: {
+            checkoutId: checkout.id,
+            customerAccessToken: token,
+          },
+        });
 
-      const dataCart = res.data.checkoutCustomerAssociate.checkout;
-      handleCreateCheckoutDispatch(dataCart, globalDispatch);
-      close();
+        const dataCart = res.data.checkoutCustomerAssociate.checkout;
+        handleCreateCheckoutDispatch(dataCart, globalDispatch);
+        close();
+      } else {
+        data.customerCreate.userErrors.forEach(function (error) {
+          if (error.field) {
+            setHandleError({
+              error: error.message,
+              msn: "Todos los campos son obligatorios",
+            });
+            return;
+          } else {
+            setHandleError({
+              error: error.message,
+              msn: "Todos los campos son obligatorios",
+            });
+            return;
+          }
+        });
+      }
     } catch (error) {
       console.log("error handleLogin", error);
       setHandleError({

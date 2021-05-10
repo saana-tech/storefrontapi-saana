@@ -174,4 +174,10 @@
   .userName {
     flex-direction: column;
   }
+  .containerFormContainer {
+    display: block;
+  }
+  .containerForm {
+    height: 100%;
+  }
 }
