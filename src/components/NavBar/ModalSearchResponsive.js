@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import CloseIcon from "../../../public/static/svg/CloseIcon";
 import styles from "./NavBar.module.css";
 import util from "../../util";
+import { IMAGE_URL_DISABLED } from "../../constants";
 const ModalSearchResponsive = ({ open, close }) => {
   const router = useRouter();
   const [valueSearch, setValueSearch] = useState("");
@@ -71,7 +72,7 @@ const ModalSearchResponsive = ({ open, close }) => {
             <div>
               {data?.products?.edges.map(({ node }, index) => {
                 const { description, title, images, variants } = node;
-                const imageUrl = images.edges[0].node.src;
+                const imageUrl = images?.edges[0]?.node?.src;
                 const price = variants.edges[0].node.price;
                 const id = variants.edges[0].node.id;
                 return (
@@ -80,7 +81,7 @@ const ModalSearchResponsive = ({ open, close }) => {
                     className={styles.productResponsive}
                     onClick={() =>
                       handleProduct({
-                        imageUrl,
+                        imageUrl: imageUrl ? imageUrl : IMAGE_URL_DISABLED,
                         price,
                         variantId: id,
                         title,
@@ -90,7 +91,10 @@ const ModalSearchResponsive = ({ open, close }) => {
                     }
                   >
                     <div className={styles.smallImg}>
-                      <img src={imageUrl} alt={title} />
+                      <img
+                        src={imageUrl ? imageUrl : IMAGE_URL_DISABLED}
+                        alt={title}
+                      />
                     </div>
                     <div className={styles.informationResponsiveProduct}>
                       <span>{title}</span>

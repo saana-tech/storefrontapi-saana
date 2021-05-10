@@ -7,6 +7,7 @@ import CloseIcon from "../../../public/static/svg/CloseIcon";
 import styles from "./NavBar.module.css";
 import util from "../../util";
 import { useRouter } from "next/router";
+import { IMAGE_URL_DISABLED } from "../../constants";
 
 const Search = () => {
   const router = useRouter();
@@ -88,7 +89,7 @@ const Search = () => {
             {data?.products?.edges && data?.products?.edges.length > 0 ? (
               data?.products?.edges.map(({ node }, index) => {
                 const { description, title, images, variants } = node;
-                const imageUrl = images.edges[0].node.src;
+                const imageUrl = images?.edges[0]?.node?.src;
                 const price = variants.edges[0].node.price;
                 const id = variants.edges[0].node.id;
                 return (
@@ -97,7 +98,7 @@ const Search = () => {
                     className={styles.productSearch}
                     onClick={() =>
                       handleProduct({
-                        imageUrl,
+                        imageUrl: imageUrl ? imageUrl : IMAGE_URL_DISABLED,
                         price,
                         variantId: id,
                         title,
@@ -107,7 +108,10 @@ const Search = () => {
                     }
                   >
                     <div className={styles.contImgSearch}>
-                      <img src={imageUrl} alt={title} />
+                      <img
+                        src={imageUrl ? imageUrl : IMAGE_URL_DISABLED}
+                        alt={title}
+                      />
                     </div>
                     <div className={styles.informationSearch}>
                       <span className={styles.titleSearch}>{title}</span>

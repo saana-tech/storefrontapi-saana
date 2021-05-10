@@ -9,6 +9,7 @@ import ArrowRight from "../../../public/static/svg/ArrowRight";
 import CardProduct from "./CardProduct";
 import IconCategory from "../../../public/static/svg/IconCategory";
 import util from "../../util";
+import { IMAGE_URL_DISABLED } from "../../constants";
 
 const Products = ({
   title = "Ofertas",
@@ -97,13 +98,17 @@ const Products = ({
             className={styles.buttonArrow}
             onClick={() => handleDirection("left")}
           >
-            <ArrowLeft />
+            <div className={styles.svgIconArrow}>
+              <ArrowLeft />
+            </div>
           </button>
           <button
             className={styles.buttonArrow}
             onClick={() => handleDirection("right")}
           >
-            <ArrowRight />
+            <div className={styles.svgIconArrow}>
+              <ArrowRight />
+            </div>
           </button>
         </div>
       </div>
@@ -111,7 +116,7 @@ const Products = ({
         {products &&
           products.map(({ node }, index) => {
             const { id, title, images, variants, description } = node;
-            let imageUrl = images.edges[0].node.src;
+            let imageUrl = images?.edges[0]?.node?.src;
             let price = variants.edges[0].node.price;
             let variantId = variants.edges[0].node.id;
             let sku = variants.edges[0].node.sku;
@@ -121,7 +126,7 @@ const Products = ({
                 index={index}
                 key={id}
                 product={{
-                  imageUrl,
+                  imageUrl: imageUrl ? imageUrl : IMAGE_URL_DISABLED,
                   price,
                   variantId,
                   title,
