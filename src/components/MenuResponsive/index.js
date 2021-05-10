@@ -33,7 +33,9 @@ const MenuResponsive = ({
   };
 
   const handleSingOff = async () => {
-    await signOffDispatch(globalDispatch);
+    signOffDispatch(globalDispatch);
+    setModalShow(false);
+    close(false);
     router.push("/");
   };
   return (
@@ -54,7 +56,9 @@ const MenuResponsive = ({
               </div>
               {user ? (
                 <div className={styles.containerSingOff}>
-                  <button>Cerrar sesión</button>
+                  <button onClick={() => setModalShow(true)}>
+                    Cerrar sesión
+                  </button>
                 </div>
               ) : (
                 <div className={styles.containerButtons}>
