@@ -8,7 +8,6 @@ import ArrowLeft from "../../../public/static/svg/ArrowLeft";
 import ArrowRight from "../../../public/static/svg/ArrowRight";
 import CardProduct from "../Products/CardProduct";
 import { Fragment } from "react";
-import { IMAGE_URL_DISABLED } from "../../constants";
 
 const ProductsTag = ({
   title = "Ofertas",
@@ -117,7 +116,9 @@ const ProductsTag = ({
                       <CardProduct
                         index={index}
                         product={{
-                          imageUrl: imageUrl ? imageUrl : IMAGE_URL_DISABLED,
+                          imageUrl: imageUrl
+                            ? imageUrl
+                            : "/static/img/imgDisabled.png",
                           price,
                           variantId,
                           title,

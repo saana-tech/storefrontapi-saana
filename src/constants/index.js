@@ -171,4 +171,3 @@ export const AVISO_PRIVACIDAD =
   "https://firebasestorage.googleapis.com/v0/b/saana-it-solutions.appspot.com/o/AVISO%20DE%20PRIVACIDAD.pdf?alt=media&token=85b88b57-de02-485c-9646-7327e2ddc2ab";
 export const TYC =
   "https://firebasestorage.googleapis.com/v0/b/saana-it-solutions.appspot.com/o/TERMINOS%20Y%20CONDICIONES.pdf?alt=media&token=cc5bc127-bd82-436c-8182-bef9fd212be3";
-export const IMAGE_URL_DISABLED = "../../public/static/img/imgDisabled.png";
