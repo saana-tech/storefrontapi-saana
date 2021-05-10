@@ -104,7 +104,9 @@ const Collection = () => {
                         <CardProduct
                           index={index}
                           product={{
-                            imageUrl,
+                            imageUrl: imageUrl
+                              ? imageUrl
+                              : "/static/img/imgDisabled.png",
                             price,
                             variantId,
                             title,

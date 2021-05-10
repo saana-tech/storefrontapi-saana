@@ -7,7 +7,6 @@ import CloseIcon from "../../../public/static/svg/CloseIcon";
 import styles from "./NavBar.module.css";
 import util from "../../util";
 import { useRouter } from "next/router";
-import { IMAGE_URL_DISABLED } from "../../constants";
 
 const Search = () => {
   const router = useRouter();
@@ -98,7 +97,9 @@ const Search = () => {
                     className={styles.productSearch}
                     onClick={() =>
                       handleProduct({
-                        imageUrl: imageUrl ? imageUrl : IMAGE_URL_DISABLED,
+                        imageUrl: imageUrl
+                          ? imageUrl
+                          : "/static/img/imgDisabled.png",
                         price,
                         variantId: id,
                         title,
@@ -109,7 +110,9 @@ const Search = () => {
                   >
                     <div className={styles.contImgSearch}>
                       <img
-                        src={imageUrl ? imageUrl : IMAGE_URL_DISABLED}
+                        src={
+                          imageUrl ? imageUrl : "/static/img/imgDisabled.png"
+                        }
                         alt={title}
                       />
                     </div>

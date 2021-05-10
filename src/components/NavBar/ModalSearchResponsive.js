@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 import CloseIcon from "../../../public/static/svg/CloseIcon";
 import styles from "./NavBar.module.css";
 import util from "../../util";
-import { IMAGE_URL_DISABLED } from "../../constants";
 const ModalSearchResponsive = ({ open, close }) => {
   const router = useRouter();
   const [valueSearch, setValueSearch] = useState("");
@@ -81,7 +80,9 @@ const ModalSearchResponsive = ({ open, close }) => {
                     className={styles.productResponsive}
                     onClick={() =>
                       handleProduct({
-                        imageUrl: imageUrl ? imageUrl : IMAGE_URL_DISABLED,
+                        imageUrl: imageUrl
+                          ? imageUrl
+                          : "/static/img/imgDisabled.png",
                         price,
                         variantId: id,
                         title,
@@ -92,7 +93,9 @@ const ModalSearchResponsive = ({ open, close }) => {
                   >
                     <div className={styles.smallImg}>
                       <img
-                        src={imageUrl ? imageUrl : IMAGE_URL_DISABLED}
+                        src={
+                          imageUrl ? imageUrl : "/static/img/imgDisabled.png"
+                        }
                         alt={title}
                       />
                     </div>

@@ -9,7 +9,6 @@ import ArrowRight from "../../../public/static/svg/ArrowRight";
 import CardProduct from "./CardProduct";
 import IconCategory from "../../../public/static/svg/IconCategory";
 import util from "../../util";
-import { IMAGE_URL_DISABLED } from "../../constants";
 
 const Products = ({
   title = "Ofertas",
@@ -126,7 +125,7 @@ const Products = ({
                 index={index}
                 key={id}
                 product={{
-                  imageUrl: imageUrl ? imageUrl : IMAGE_URL_DISABLED,
+                  imageUrl: imageUrl ? imageUrl : "/static/img/imgDisabled.png",
                   price,
                   variantId,
                   title,
