@@ -25,11 +25,12 @@ const Search = () => {
   };
 
   const QUERY_PRODUCT = gql`  {
-  products(query: "title: ${valueSearch}", first: 10) {
+  : "title: ${valueSearch}", first: 10) {
     edges {
       node {
-        id
-        title
+             sku
+              id
+              title
         description
         images(first: 10) {
           edges {
