@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Router from "next/router";
 import Head from "next/head";
 
@@ -32,6 +32,23 @@ const MyApp = ({ Component, pageProps, router }) => {
     tracesSampleRate: 1.0,
     release: "@saanafarma" + process.env.npm_package_version,
   });
+  useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/sw.js").then(
+          function (registration) {
+            console.log(
+              "Service Worker registration successful with scope: ",
+              registration.scope
+            );
+          },
+          function (err) {
+            console.log("Service Worker registration failed: ", err);
+          }
+        );
+      });
+    }
+  }, []);
   return (
     <ApolloProvider client={client}>
       <Head>

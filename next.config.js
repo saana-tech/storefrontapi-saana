@@ -1,6 +1,6 @@
 const withPWA = require("next-pwa");
-
-module.exports = withPWA({
+const withOffline = require("next-offline");
+const nextConfig = withPWA({
   future: { webpack5: true },
   pwa: {
     dest: "public",
@@ -25,3 +25,4 @@ module.exports = withPWA({
     ],
   },
 });
+module.exports = withOffline(nextConfig);

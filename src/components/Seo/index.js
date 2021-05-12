@@ -3,7 +3,7 @@ import Head from "next/head";
 import PropTypes from "prop-types";
 
 const Seo = ({
-  title = "Saanafarma | salud para todos",
+  title = "Saanafarma | Salud Para Todos",
   description = "Saana farma productos farma al alcancé de la palma de tu mano",
   keywords = "saaan farma, farmacia, delivery,domicilio",
   author = "saana salud",
