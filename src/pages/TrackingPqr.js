@@ -68,7 +68,7 @@ const TrackingPqr = () => {
         {!pqr ? (
           <div>
             <div>
-              <h1>Seguimientos de PQR</h1>
+              <h1>Seguimiento de PQR</h1>
               <span>Para continuar ingrese el numero de radicado</span>
               <form className={styles.formSearch} onSubmit={handleSearch}>
                 <input

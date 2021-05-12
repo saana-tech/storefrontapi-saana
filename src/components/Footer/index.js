@@ -23,16 +23,16 @@ const Footer = () => {
           <div className={styles.containerBody}>
             <div className={styles.containerUl}>
               <div className={styles.col1}>
-                <h3>Legal</h3>
+                <h3>Información de interés</h3>
                 <ul>
                   <li>
                     <a onClick={() => util.openWebTab(TRATAMIENTO_DATOS)}>
-                      Tratamiento de datos
+                      Política de tratamiento de datos
                     </a>
                   </li>{" "}
                   <li>
                     <a onClick={() => util.openWebTab(AVISO_PRIVACIDAD)}>
-                      Política y privacidad
+                      Aviso de privacidad
                     </a>
                   </li>{" "}
                   <li>
