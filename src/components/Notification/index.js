@@ -5,23 +5,21 @@ import { generateSchedule } from "../../helper/time";
 import styles from "./Notification.module.css";
 
 const Notification = () => {
+  const init = new Date(
+    "Mon Dec 14 2020 08:00:56 GMT-0500 (hora estándar de Colombia)"
+  );
+  const finish = new Date(
+    "Mon Dec 14 2020 16:00:56 GMT-0500 (hora estándar de Colombia)"
+  );
   let openHour = generateSchedule(
-    moment(
-      Date.parse(
-        "Mon Dec 14 2020 08:00:56 GMT-0500 (hora estándar de Colombia)"
-      )
-    ).format("HH:MM"),
-    moment(
-      Date.parse(
-        "Mon Dec 14 2020 16:00:56 GMT-0500 (hora estándar de Colombia)"
-      )
-    ).format("HH:MM")
+    moment(Date.parse(init)).format("HH:MM"),
+    moment(Date.parse(finish)).format("HH:MM")
   );
 
   const [show, setShow] = useState(false);
 
   const handleMsn = () => {
-    const hour = "Wed May 12 2021 16:05:03 GMT-0500 (hora de verano central)";
+    const hour = new Date();
     let sumByhour = moment(hour, "YYYY-MM-DD HH:mm").format("HH:MM");
 
     let response = openHour(sumByhour);
