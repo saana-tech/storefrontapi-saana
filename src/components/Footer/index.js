@@ -21,35 +21,33 @@ const Footer = () => {
             <img src={logo} alt={"Saanafarma logo"} />
           </div>
           <div className={styles.containerBody}>
-            <div className={styles.containerUl}>
-              <div className={styles.col1}>
-                <h3>Información de interés</h3>
-                <ul>
-                  <li>
-                    <a onClick={() => util.openWebTab(TRATAMIENTO_DATOS)}>
-                      Política de tratamiento de datos
-                    </a>
-                  </li>{" "}
-                  <li>
-                    <a onClick={() => util.openWebTab(AVISO_PRIVACIDAD)}>
-                      Aviso de privacidad
-                    </a>
-                  </li>{" "}
-                  <li>
-                    <a onClick={() => util.openWebTab(TYC)}>
-                      Términos y condiciones
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div className={styles.col2}>
-                <h3>Contacto</h3>
-                <ul>
-                  <li>
-                    <a href="tel:+573330333435">+57 333 033 3435</a>
-                  </li>
-                </ul>
-              </div>
+            <div className={styles.col1}>
+              <h3>Información de interés</h3>
+              <ul>
+                <li>
+                  <a onClick={() => util.openWebTab(TRATAMIENTO_DATOS)}>
+                    Política de tratamiento de datos
+                  </a>
+                </li>{" "}
+                <li>
+                  <a onClick={() => util.openWebTab(AVISO_PRIVACIDAD)}>
+                    Aviso de privacidad
+                  </a>
+                </li>{" "}
+                <li>
+                  <a onClick={() => util.openWebTab(TYC)}>
+                    Términos y condiciones
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className={styles.col2}>
+              <h3>Contacto</h3>
+              <ul>
+                <li>
+                  <a href="tel:+573330333435">+57 333 033 3435</a>
+                </li>
+              </ul>
             </div>
 
             <div className={styles.col2}>
