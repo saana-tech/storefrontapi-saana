@@ -1,14 +1,14 @@
+import moment from "moment";
 import React, { useEffect, useState } from "react";
-/* import moment from "moment"; */
 import IconCloseNotification from "../../../public/static/svg/IconCloseNotification";
+import { generateSchedule } from "../../helper/time";
 import styles from "./Notification.module.css";
-/* import util from "../../util"; */
 
 const Notification = () => {
-  /*   let openHour = util.generateSchedule(
+  let openHour = generateSchedule(
     moment(
       Date.parse(
-        "Mon Dec 14 2020 06:00:56 GMT-0500 (hora estándar de Colombia)"
+        "Mon Dec 14 2020 08:00:56 GMT-0500 (hora estándar de Colombia)"
       )
     ).format("HH:MM"),
     moment(
@@ -16,34 +16,33 @@ const Notification = () => {
         "Mon Dec 14 2020 16:00:56 GMT-0500 (hora estándar de Colombia)"
       )
     ).format("HH:MM")
-  ); */
+  );
 
   const [show, setShow] = useState(false);
+
+  const handleMsn = () => {
+    const hour = "Wed May 12 2021 16:05:03 GMT-0500 (hora de verano central)";
+    let sumByhour = moment(hour, "YYYY-MM-DD HH:mm").format("HH:MM");
+
+    let response = openHour(sumByhour);
+    if (response) {
+      return "Su pedido se entrega en un máximo de 12 horas";
+    } else {
+      return "Su pedido se entregara mañana";
+    }
+  };
 
   useEffect(() => {
     setTimeout(() => {
       setShow(true);
     }, 1000);
   }, []);
-  /*   const currentDay = moment(
-    "2021-05-08T16:00:39-05:00",
-    "YYYY-MM-DD HH:mm"
-  ).format("HH:mm"); */
-
-  /* const handleMsn = () => {
-    const response = openHour(currentDay);
-    if (!response) {
-      return "Su pedido sera entregado mañana después de las 6 am";
-    } else {
-      return "Tiempo máximo de entrega 12 horas";
-    }
-  }; */
 
   return (
     <>
       {show && (
         <div className={styles.notification}>
-          <span>{"Tiempo máximo de entrega 12 horas"}</span>
+          <span>{handleMsn()}</span>
           <div className={styles.close} onClick={() => setShow(false)}>
             <IconCloseNotification />
           </div>

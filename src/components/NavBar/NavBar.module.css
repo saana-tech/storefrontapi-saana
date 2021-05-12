@@ -64,8 +64,8 @@
   justify-content: space-between;
   cursor: pointer;
   margin: 0 1rem;
-  font-family: "AvenirNextLTPro" !important;
 }
+
 .servicesInput {
   width: 173px;
   height: 40px;
@@ -78,7 +78,6 @@
   justify-content: space-between;
   cursor: pointer;
   margin: 0 1rem;
-  font-family: "AvenirNextLTPro" !important;
 }
 .contCart {
   position: relative;
@@ -212,9 +211,7 @@
 .selectServices {
   position: relative;
 }
-.selectServices a {
-  font-weight: bold !important;
-}
+
 .selectContent a {
   cursor: pointer;
   display: block;
@@ -266,7 +263,6 @@
   display: block;
   margin-bottom: 0.5rem;
   cursor: pointer;
-  font-family: "AvenirNextLTPro" !important;
 }
 .addressSave a:hover {
   color: #304890;
@@ -519,12 +515,7 @@
   display: flex;
   align-items: center;
 }
-.titleCollection {
-  font-family: "AvenirNextLTPro" !important;
-}
-.userName {
-  font-family: "AvenirNextLTPro" !important;
-}
+
 .containerWsMsn {
   display: flex;
   justify-content: center;

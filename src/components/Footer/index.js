@@ -1,10 +1,15 @@
 import React from "react";
+import { useRouter } from "next/router";
 import Container from "../Container";
 import styles from "./Footer.module.css";
 import util from "../../util";
 import { AVISO_PRIVACIDAD, TRATAMIENTO_DATOS, TYC } from "../../constants";
 
 const Footer = () => {
+  const router = useRouter();
+  const handleRoute = (route) => {
+    router.push(route);
+  };
   const logo =
     "https://cdn.shopify.com/s/files/1/0539/3920/8366/files/logo_saana_farma_white.png?v=1617333776";
 
@@ -18,16 +23,16 @@ const Footer = () => {
           <div className={styles.containerBody}>
             <div className={styles.containerUl}>
               <div className={styles.col1}>
-                <h3>Legal</h3>
+                <h3>Información de interés</h3>
                 <ul>
                   <li>
                     <a onClick={() => util.openWebTab(TRATAMIENTO_DATOS)}>
-                      Tratamiento de datos
+                      Política de tratamiento de datos
                     </a>
                   </li>{" "}
                   <li>
                     <a onClick={() => util.openWebTab(AVISO_PRIVACIDAD)}>
-                      Política y privacidad
+                      Aviso de privacidad
                     </a>
                   </li>{" "}
                   <li>
@@ -48,11 +53,14 @@ const Footer = () => {
             </div>
 
             <div className={styles.col2}>
-              <h3>¿Tienes alguna duda o comentario?</h3>
+              <h3>PQRS</h3>
               <ul>
                 <li>
-                  <a href="mailto:atencionalusuario@saana.com.co">
-                    Atención de PQR´s en atencionalusuario@saana.com.co
+                  <a onClick={() => handleRoute("/Pqr")}>Crear PQR</a>
+                </li>{" "}
+                <li>
+                  <a onClick={() => handleRoute("/TrackingPqr")}>
+                    Seguimiento PQR
                   </a>
                 </li>
               </ul>

@@ -75,4 +75,33 @@ export default {
   resetString: (str) => {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   },
+  genereID: () => {
+    let date = new Date().getTime();
+    const uuid = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx".replace(
+      /[xy]/g,
+      function (c) {
+        const r = (date + Math.random() * 16) % 16 | 0;
+        date = Math.floor(date / 16);
+        return (c == "x" ? r : (r & 0x3) | 0x8).toString(16);
+      }
+    );
+    return uuid;
+  },
+  genereIdMin: () => {
+    let date = new Date().getTime();
+    const uuid = "xxxxxx".replace(/[xy]/g, function (c) {
+      const r = (date + Math.random() * 16) % 16 | 0;
+      date = Math.floor(date / 16);
+      return (c == "x" ? r : (r & 0x3) | 0x8).toString(16);
+    });
+    return uuid;
+  },
+  get_fileExtension: (filename) => {
+    return filename.split(".").pop();
+  },
+  validateEmail: (email) => {
+    const re =
+      /^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s@\\"]+)*)|(\\".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  },
 };
