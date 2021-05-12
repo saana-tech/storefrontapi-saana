@@ -1,17 +1,26 @@
 import React from "react";
+import Router from "next/router";
 import { ApolloProvider } from "@apollo/client";
 import PropTypes from "prop-types";
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 import { motion } from "framer-motion";
 
+import NProgress from "nprogress"; //nprogress module
+
 import "normalize.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "nprogress/nprogress.css";
+
 import "../styles/globals.css";
 
 import Layout from "../components/Layout";
 import client from "../graphql";
 import Store from "../core";
+
+Router.events.on("routeChangeStart", () => NProgress.start());
+Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
 
 const MyApp = ({ Component, pageProps, router }) => {
   Sentry.init({

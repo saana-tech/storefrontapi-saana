@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 .containerForm h2 {
   font-weight: bold;
@@ -124,6 +125,12 @@
 }
 .msnAuthorization {
   margin-right: 10px;
+}
+.iconCheck {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
 @media only screen and (max-width: 767px) {
   .textarea {

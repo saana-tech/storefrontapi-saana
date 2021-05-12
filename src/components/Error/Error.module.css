@@ -1,14 +1,14 @@
 .containerError {
   position: fixed;
-  top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   left: 0;
   right: 0;
+  z-index: 999;
 }
 .badge {
-  background-color: rgba(255, 0, 0, 0.658);
+  background-color: rgba(255, 0, 0, 0.685);
   color: white;
   padding: 1rem;
   border-radius: 5px;

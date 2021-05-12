@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { motion } from "framer-motion";
+
 import styles from "./Error.module.css";
 
 const Error = ({ msn = "", open = false, setHandleError = () => {} }) => {
@@ -26,9 +28,22 @@ const Error = ({ msn = "", open = false, setHandleError = () => {} }) => {
     <>
       {open && (
         <div className={styles.containerError}>
-          <div className={styles.badge} onClick={() => closeClick()}>
-            <span>{msn}</span>
-          </div>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {
+                opacity: 0,
+              },
+              visible: {
+                opacity: 1,
+              },
+            }}
+            className={styles.badge}
+            onClick={() => closeClick()}
+          >
+            <span> {msn}</span>
+          </motion.div>
         </div>
       )}
     </>
