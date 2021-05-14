@@ -132,7 +132,7 @@ const ModalCart = () => {
                   checked={multiCheck.check1}
                 />
                 <a onClick={() => util.openWebTab(AVISO_PRIVACIDAD)}>
-                  Acepta política de privacidad
+                  He leído y acepto el aviso de privacidad
                 </a>
               </div>
               <div className={styles.tycPay}>
@@ -143,7 +143,7 @@ const ModalCart = () => {
                 />
 
                 <a onClick={() => util.openWebTab(TYC)}>
-                  Aceptar términos y condiciones
+                  He leído y Acepto términos y condiciones
                 </a>
               </div>
 
@@ -154,7 +154,7 @@ const ModalCart = () => {
                   onChange={() => handleOnChange("check3", !multiCheck.check3)}
                 />
                 <a onClick={() => util.openWebTab(TRATAMIENTO_DATOS)}>
-                  Acepta política de tratamiento de datos
+                  He leído y Acepto política de tratamiento de datos
                 </a>
               </div>
               <button

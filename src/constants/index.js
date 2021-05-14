@@ -166,9 +166,9 @@ export const styleMap = [
 ];
 
 export const TRATAMIENTO_DATOS =
-  "https://firebasestorage.googleapis.com/v0/b/saana-it-solutions.appspot.com/o/TRATAMIENTO%20DE%20INFORMACI%C3%93N%20Y%20DE%20PROTECCI%C3%93N%20DE%20DATOS%20PERSONALES.pdf?alt=media&token=38856a5b-fb2f-4db7-a9f4-acfff7f3113b";
+  "https://firebasestorage.googleapis.com/v0/b/saana-it-solutions.appspot.com/o/NUEVA%20POL%C3%8DTICA%20DE%20TRATAMIENTO%20DE%20INFORMACI%C3%93N%20Y%20DE%20PROTECCI%C3%93N%20DE%20DATOS%20PERSONALES%20(12-05-2021).pdf?alt=media&token=a042d2b3-4ee9-4dcd-b15e-daa863bdc3b7";
 export const AVISO_PRIVACIDAD =
-  "https://firebasestorage.googleapis.com/v0/b/saana-it-solutions.appspot.com/o/AVISO%20DE%20PRIVACIDAD.pdf?alt=media&token=85b88b57-de02-485c-9646-7327e2ddc2ab";
+  "https://firebasestorage.googleapis.com/v0/b/saana-it-solutions.appspot.com/o/AVISO%20DE%20PRIVACIDAD%20CALMM%20SAS%20(11-05-2021).pdf?alt=media&token=66e6d589-ed60-4926-a705-c2b560084359";
 export const TYC =
   "https://firebasestorage.googleapis.com/v0/b/saana-it-solutions.appspot.com/o/TERMINOS%20Y%20CONDICIONES.pdf?alt=media&token=cc5bc127-bd82-436c-8182-bef9fd212be3";
 export const TEMPLATE_ID = "d-99fcbaf32feb4b41ba62546ca8c04dbf";
