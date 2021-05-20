@@ -169,7 +169,7 @@ const SelectAddress = () => {
                   );
                 })
               ) : (
-                <span>No ahi direcciones</span>
+                <span>No hay direcciones</span>
               )}
             </div>
             <div className={styles.separator} />
