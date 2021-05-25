@@ -65,7 +65,7 @@ const Footer = () => {
               <ul>
                 <li>
                   <a onClick={() => handleRoute("/Pqr")}>Crear PQR</a>
-                </li>{" "}
+                </li>
                 <li>
                   <a onClick={() => handleRoute("/TrackingPqr")}>
                     Seguimiento PQR
