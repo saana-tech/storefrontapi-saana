@@ -5,6 +5,9 @@
   flex-direction: row;
   width: 100%;
 }
+.titleCollection {
+  display: block;
+}
 .navPrincipal {
   display: flex;
   align-items: center;
