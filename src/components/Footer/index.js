@@ -30,11 +30,6 @@ const Footer = () => {
                   </a>
                 </li>{" "}
                 <li>
-                  <a onClick={() => util.openWebTab(AVISO_PRIVACIDAD)}>
-                    Aviso de privacidad
-                  </a>
-                </li>{" "}
-                <li>
                   <a onClick={() => util.openWebTab(TYC)}>
                     Términos y condiciones
                   </a>
