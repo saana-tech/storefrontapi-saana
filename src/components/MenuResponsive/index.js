@@ -108,8 +108,8 @@ const MenuResponsive = ({
               {show && (
                 <div className={styles.subMenu}>
                   <ul>
-                    <li>Saana lab</li>
-                    <li>Saana consulta</li>
+                    <li>SaanaLab</li>
+                    <li>SaanaConsulta</li>
                   </ul>
                 </div>
               )}

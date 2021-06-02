@@ -69,7 +69,14 @@ const ProductItem = ({ product = null }) => {
   return (
     <div className={styles.containerProduct}>
       <div className={styles.containerImg}>
-        <img src={variant.image.src} alt={product.title} />
+        <img
+          src={
+            variant?.image?.src
+              ? variant.image.src
+              : "/static/img/imgDisabled.png"
+          }
+          alt={product.title}
+        />
       </div>
       <div className={styles.contDescription}>
         <h4>{product.title}</h4>

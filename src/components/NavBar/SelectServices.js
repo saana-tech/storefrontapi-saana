@@ -18,7 +18,7 @@ const SelectServices = () => {
       </div>
       {show && (
         <div className={styles.selectContent}>
-          <a>Saana lab</a> <a>Saana consulta</a>{" "}
+          <a>SaanaLab</a> <a>SaanaConsulta</a>{" "}
         </div>
       )}
     </div>

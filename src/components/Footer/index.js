@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Container from "../Container";
 import styles from "./Footer.module.css";
 import util from "../../util";
-import { AVISO_PRIVACIDAD, TRATAMIENTO_DATOS, TYC } from "../../constants";
+import { TRATAMIENTO_DATOS, TYC } from "../../constants";
 
 const Footer = () => {
   const router = useRouter();
@@ -30,11 +30,6 @@ const Footer = () => {
                   </a>
                 </li>{" "}
                 <li>
-                  <a onClick={() => util.openWebTab(AVISO_PRIVACIDAD)}>
-                    Aviso de privacidad
-                  </a>
-                </li>{" "}
-                <li>
                   <a onClick={() => util.openWebTab(TYC)}>
                     Términos y condiciones
                   </a>
@@ -45,7 +40,17 @@ const Footer = () => {
               <h3>Contacto</h3>
               <ul>
                 <li>
-                  <a href="tel:+573330333435">+57 333 033 3435</a>
+                  <a href="tel:+57333 0333534">+57 333 0333534</a>
+                </li>
+                <li>
+                  <a href="mailto:atencionalusuario@saana.com.co">
+                    atencionalusuario@saana.com.co
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:notificacionesjudiciales@saana.com.co">
+                    notificacionesjudiciales@saana.com.co
+                  </a>
                 </li>
               </ul>
             </div>
@@ -55,7 +60,7 @@ const Footer = () => {
               <ul>
                 <li>
                   <a onClick={() => handleRoute("/Pqr")}>Crear PQR</a>
-                </li>{" "}
+                </li>
                 <li>
                   <a onClick={() => handleRoute("/TrackingPqr")}>
                     Seguimiento PQR

@@ -46,6 +46,7 @@ const Search = () => {
             node {
               id
               price
+              sku
             }
           }
         }
@@ -93,6 +94,7 @@ const Search = () => {
                 const imageUrl = images?.edges[0]?.node?.src;
                 const price = variants.edges[0].node.price;
                 const id = variants.edges[0].node.id;
+                const sku = variants.edges[0].node.sku;
                 return (
                   <div
                     key={index}
@@ -107,6 +109,7 @@ const Search = () => {
                         title,
                         description,
                         id,
+                        sku,
                       })
                     }
                   >
