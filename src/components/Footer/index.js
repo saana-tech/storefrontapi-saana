@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Container from "../Container";
 import styles from "./Footer.module.css";
 import util from "../../util";
-import { AVISO_PRIVACIDAD, TRATAMIENTO_DATOS, TYC } from "../../constants";
+import { TRATAMIENTO_DATOS, TYC } from "../../constants";
 
 const Footer = () => {
   const router = useRouter();
