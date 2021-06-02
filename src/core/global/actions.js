@@ -1,3 +1,5 @@
+import { db } from "../../config/firebase";
+import util from "../../util";
 import {
   HANDLE_ERROR_GLOBAL,
   LOADING_GLOBAL,
@@ -66,4 +68,16 @@ export const handleGeoLocation = (coordinates, dispatch) => {
     type: SET_COORDINATES,
     payload: coordinates,
   });
+};
+
+export const handleSaveSearch = async (keyboard) => {
+  const id = util.genereID();
+  try {
+    await db
+      .collection("search")
+      .doc(id)
+      .set({ keyboard, date: new Date(), id });
+  } catch (error) {
+    console.log("handleSaveSearch:error =>", error);
+  }
 };
