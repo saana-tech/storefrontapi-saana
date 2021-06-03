@@ -7,12 +7,14 @@ import CloseIcon from "../../../public/static/svg/CloseIcon";
 import styles from "./NavBar.module.css";
 import util from "../../util";
 import { useRouter } from "next/router";
+import { handleSaveSearch } from "../../core/global/actions";
 
 const Search = () => {
   const router = useRouter();
   const [valueSearch, setValueSearch] = useState("");
 
   const clearInput = () => {
+    handleSaveSearch(valueSearch);
     setValueSearch("");
   };
 
