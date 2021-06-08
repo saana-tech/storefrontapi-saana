@@ -13,8 +13,8 @@ const Search = () => {
   const router = useRouter();
   const [valueSearch, setValueSearch] = useState("");
 
-  const clearInput = () => {
-    handleSaveSearch(valueSearch);
+  const clearInput = async () => {
+    await handleSaveSearch(valueSearch);
     setValueSearch("");
   };
 
