@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useQuery, gql, useMutation } from "@apollo/client";
 import PropTypes from "prop-types";
+import { useRouter } from "next/router";
 
 import { StoreContext } from "../../core";
 import ModalCart from "../ModalCart";
@@ -16,11 +17,13 @@ import {
 import { checkoutCustomerAssociate } from "../../graphql/gql";
 
 const Layout = ({ children }) => {
-  const { state } = useContext(StoreContext);
+  const router = useRouter();
+  let { t } = router.query;
+
+  const { state, globalDispatch } = useContext(StoreContext);
   const { globalState } = state;
   const { showCart, checkout } = globalState;
 
-  const { globalDispatch } = useContext(StoreContext);
   const [token, setToken] = useState("");
 
   const handleToken = () => {
@@ -31,7 +34,7 @@ const Layout = ({ children }) => {
   }, [handleToken]);
   const customerTokenQuery = gql`
     query customer {
-      customer(customerAccessToken: "${token}") {
+      customer(customerAccessToken: "${t ? t : token}") {
         email
         displayName
         id
