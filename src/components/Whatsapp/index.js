@@ -25,7 +25,7 @@ const Whatsapp = () => {
           className={styles.button}
           onClick={() =>
             window.open(
-              "https://api.whatsapp.com/send?phone=573330333534",
+              "https://api.whatsapp.com/send?phone=573152738113",
               "_blank"
             )
           }

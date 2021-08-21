@@ -40,7 +40,7 @@ const Footer = () => {
               <h3>Contacto</h3>
               <ul>
                 <li>
-                  <a href="tel:+57333 0333534">+57 333 0333534</a>
+                  <a href="tel:+573152738113">+57 315 273 8113</a>
                 </li>
                 <li>
                   <a href="mailto:atencionalusuario@saana.com.co">

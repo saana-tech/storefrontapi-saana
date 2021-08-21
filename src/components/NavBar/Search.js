@@ -57,7 +57,7 @@ const Search = () => {
   const { data = null, loading = false } = useQuery(QUERY_PRODUCT);
 
   const handleSearchProduct = () => {
-    const url = `https://api.whatsapp.com/send?phone=573330333534&text=Estoy%20buscando%20${valueSearch}`;
+    const url = `https://api.whatsapp.com/send?phone=573152738113&text=Estoy%20buscando%20${valueSearch}`;
     util.openWebTab(url);
   };
 
