@@ -41,7 +41,7 @@ const ModalCart = () => {
       showModalLoginDispatch(!modalLogin, globalDispatch);
       return;
     } */
-    window.open(checkout.webUrl);
+    window.open(checkout.webUrl, "_blank");
     handleCreateCheckout();
   };
 

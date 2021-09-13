@@ -143,7 +143,10 @@ const NavBar = () => {
                   {user ? (
                     <span
                       onClick={() =>
-                        window.open("https://www.saana.com.co/Profile")
+                        window.open(
+                          "https://www.saana.com.co/Profile",
+                          "_blank"
+                        )
                       }
                       className={styles.userName}
                     >
