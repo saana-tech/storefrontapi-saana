@@ -17,13 +17,10 @@ const Layout = ({ children }) => {
   let { t: tokenParams } = router?.query;
 
   const { state, globalDispatch, authDispatch } = useContext(StoreContext);
-  const { globalState, authState } = state;
+  const { globalState } = state;
   const { showCart } = globalState;
-  const { user } = authState;
 
   const [token, setToken] = useState("");
-  console.log("user", user);
-  console.log("token:token que recibo", tokenParams);
 
   const handleToken = () => {
     setToken(localStorage.getItem("token"));
