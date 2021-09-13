@@ -14,7 +14,7 @@ import { getUserDispatch, KEY_SECRET } from "../../core/auth/actions";
 
 const Layout = ({ children }) => {
   const router = useRouter();
-  let { t } = router.query;
+  let { t: tokenParams } = router?.query;
 
   const { state, globalDispatch, authDispatch } = useContext(StoreContext);
   const { globalState, authState } = state;
@@ -23,7 +23,7 @@ const Layout = ({ children }) => {
 
   const [token, setToken] = useState("");
   console.log("user", user);
-  console.log("token", token);
+  console.log("token:token que recibo", tokenParams);
 
   const handleToken = () => {
     setToken(localStorage.getItem("token"));
@@ -52,17 +52,28 @@ const Layout = ({ children }) => {
           getUserDispatch(id, authDispatch);
         }
       }
-      if (t) {
-        const { id = "" } = jwt.verify(token, KEY_SECRET);
-        getUserDispatch(id, authDispatch);
-      }
     } catch (error) {
       console.log("error", error);
     }
-  }, [token, t]);
+  }, [token, tokenParams]);
+
+  const loginSubscriptionParams = useCallback(() => {
+    try {
+      if (tokenParams) {
+        const { id = "" } = jwt.verify(tokenParams, KEY_SECRET);
+        getUserDispatch(id, authDispatch);
+      }
+    } catch (error) {
+      console.log("error:loginSubscriptionParams", error);
+    }
+  }, [tokenParams]);
 
   useEffect(() => {
     loginSubscription();
+  }, [loginSubscription]);
+
+  useEffect(() => {
+    loginSubscriptionParams();
   }, [loginSubscription]);
 
   return (
