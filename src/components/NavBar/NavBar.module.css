@@ -416,12 +416,12 @@
   flex: 1;
 }
 .buttonLogin span {
-  width: 136px;
   margin-left: 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-left: 1rem;
 }
 .inputAutocomplete {
   border: 0;
