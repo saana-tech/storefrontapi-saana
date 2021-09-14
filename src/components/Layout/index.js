@@ -10,15 +10,23 @@ import NavBar from "../NavBar";
 import Footer from "../Footer";
 import Whatsapp from "../Whatsapp";
 import { handleGeoLocation } from "../../core/global/actions";
-import { getUserDispatch, KEY_SECRET } from "../../core/auth/actions";
+import {
+  getUserDispatch,
+  KEY_SECRET,
+  setLoading,
+} from "../../core/auth/actions";
+import { getAffiliationsPackages } from "../../core/packages/actions";
+import Loading from "../Loading";
 
 const Layout = ({ children }) => {
   const router = useRouter();
   let { t: tokenParams } = router?.query;
 
-  const { state, globalDispatch, authDispatch } = useContext(StoreContext);
-  const { globalState } = state;
+  const { state, globalDispatch, authDispatch, packageDispatch } =
+    useContext(StoreContext);
+  const { authState, globalState } = state;
   const { showCart } = globalState;
+  const { user, loading } = authState;
 
   const [token, setToken] = useState("");
 
@@ -65,6 +73,14 @@ const Layout = ({ children }) => {
     }
   }, [tokenParams]);
 
+  const handleSearchPackage = useCallback(async () => {
+    if (user) {
+      setLoading(true, authDispatch);
+      await getAffiliationsPackages(user.id.toString(), packageDispatch);
+      setLoading(false, authDispatch);
+    }
+  }, [user]);
+
   useEffect(() => {
     loginSubscription();
   }, [loginSubscription]);
@@ -72,6 +88,14 @@ const Layout = ({ children }) => {
   useEffect(() => {
     loginSubscriptionParams();
   }, [loginSubscription]);
+
+  useEffect(() => {
+    handleSearchPackage();
+  }, [handleSearchPackage]);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div>

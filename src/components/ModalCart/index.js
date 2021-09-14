@@ -19,11 +19,16 @@ const ModalCart = () => {
   const { state, globalDispatch } = useContext(StoreContext);
   const [createCheckout] = useMutation(createCheckoutSchema);
 
-  const { globalState } = state;
+  const { globalState, packageState } = state;
+  const { packages = [] } = packageState;
+
+  const afiliation = packages && packages.length > 0 ? packages[0] : null;
   const {
     showCart,
     checkout, // user, modalLogin
   } = globalState;
+
+  console.log("packageState", afiliation.valid);
   const [multiCheck, setMultiCheck] = useState({
     check1: false,
     check2: false,
