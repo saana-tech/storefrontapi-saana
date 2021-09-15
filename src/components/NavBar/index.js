@@ -31,8 +31,9 @@ const NavBar = () => {
   const { state, globalDispatch } = useContext(StoreContext);
   const [createCheckout] = useMutation(createCheckoutSchema);
 
-  const { globalState } = state;
-  const { showCart, checkout, user, modalLogin } = globalState;
+  const { globalState, authState } = state;
+  const { user } = authState;
+  const { showCart, checkout, modalLogin } = globalState;
 
   const router = useRouter();
 
@@ -141,10 +142,16 @@ const NavBar = () => {
                 <div className={styles.buttonLogin}>
                   {user ? (
                     <span
-                      onClick={() => router.push("/Profile")}
+                      onClick={() =>
+                        window.open(
+                          "https://www.saana.com.co/Profile",
+                          "_blank"
+                        )
+                      }
                       className={styles.userName}
                     >
-                      <IconUser /> {user.displayName}
+                      <IconUser />
+                      {user.nombre}
                     </span>
                   ) : (
                     <button onClick={() => setShowModal(true)}>

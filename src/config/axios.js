@@ -1,12 +1,10 @@
 import axios from "axios";
-const cors_api_url = "https://cors-anywhere.herokuapp.com/";
 
 const clientAxios = axios.create({
-  baseURL: cors_api_url + "https://saana-tech.myshopify.com/",
-  headers: {
-    "Access-Control-Allow-Origin": "*",
-    "X-Shopify-Storefront-Access-Token": process.env.NEXT_PUBLIC_TOKEN,
-  },
+  baseURL: process.env.NEXT_PUBLIC_URL_BASE,
 });
+
+clientAxios.defaults.headers.common["Authorization"] =
+  process.env.NEXT_PUBLIC_TOKEN_RES;
 
 export default clientAxios;

@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useQuery, gql, useMutation } from "@apollo/client";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useRouter } from "next/router";
+import jwt from "jsonwebtoken";
 
 import { StoreContext } from "../../core";
 import ModalCart from "../ModalCart";
@@ -9,20 +9,24 @@ import ModalCart from "../ModalCart";
 import NavBar from "../NavBar";
 import Footer from "../Footer";
 import Whatsapp from "../Whatsapp";
+import { handleGeoLocation } from "../../core/global/actions";
 import {
-  handleCreateCheckoutDispatch,
-  handleGeoLocation,
-  setUserDispatch,
-} from "../../core/global/actions";
-import { checkoutCustomerAssociate } from "../../graphql/gql";
+  getUserDispatch,
+  KEY_SECRET,
+  setLoading,
+} from "../../core/auth/actions";
+import { getAffiliationsPackages } from "../../core/packages/actions";
+import Loading from "../Loading";
 
 const Layout = ({ children }) => {
   const router = useRouter();
-  let { t } = router.query;
+  let { t: tokenParams } = router?.query;
 
-  const { state, globalDispatch } = useContext(StoreContext);
-  const { globalState } = state;
-  const { showCart, checkout } = globalState;
+  const { state, globalDispatch, authDispatch, packageDispatch } =
+    useContext(StoreContext);
+  const { authState, globalState } = state;
+  const { showCart } = globalState;
+  const { user, loading } = authState;
 
   const [token, setToken] = useState("");
 
@@ -32,92 +36,6 @@ const Layout = ({ children }) => {
   useEffect(() => {
     handleToken();
   }, [handleToken]);
-  const customerTokenQuery = gql`
-    query customer {
-      customer(customerAccessToken: "${t ? t : token}") {
-        email
-        displayName
-        id
-        addresses(first: 5) {
-          edges {
-            node {
-              id
-              address1
-              city
-              country
-            }
-          }
-        }
-        orders(first: 5) {
-          edges {
-            node {
-              lineItems(first: 5) {
-                edges {
-                  node {
-                    quantity
-                    title
-                    variant {
-                      image {
-                        src
-                      }
-                      price
-                      sku
-                    }
-                  }
-                }
-              }
-              id
-              currencyCode
-              totalTax
-              totalPrice
-              subtotalPrice
-              processedAt
-              financialStatus
-              fulfillmentStatus
-              shippingAddress {
-                address1
-              }
-              orderNumber
-            }
-          }
-        }
-        defaultAddress {
-          address1
-        }
-        lastIncompleteCheckout {
-          completedAt
-          createdAt
-          paymentDue
-        }
-      }
-    }
-  `;
-
-  const { data = null } = useQuery(customerTokenQuery);
-  const [checkoutCustomer] = useMutation(checkoutCustomerAssociate);
-
-  const handleLoginUser = async () => {
-    setUserDispatch(data?.customer, globalDispatch);
-
-    try {
-      const res = await checkoutCustomer({
-        variables: {
-          checkoutId: checkout.id,
-          customerAccessToken: token,
-        },
-      });
-      const dataCart = res.data.checkoutCustomerAssociate.checkout;
-      handleCreateCheckoutDispatch(dataCart, globalDispatch);
-    } catch (error) {
-      console.log("error =>", error);
-    }
-  };
-
-  useEffect(() => {
-    if (data?.customer && checkout.id) {
-      handleLoginUser();
-    }
-  }, [data, checkout?.id]);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -130,6 +48,54 @@ const Layout = ({ children }) => {
       );
     });
   }, []);
+
+  const loginSubscription = useCallback(async () => {
+    try {
+      if (token) {
+        const { id = "" } = jwt.verify(token, KEY_SECRET);
+        if (id) {
+          getUserDispatch(id, authDispatch);
+        }
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }, [token, tokenParams]);
+
+  const loginSubscriptionParams = useCallback(() => {
+    try {
+      if (tokenParams) {
+        const { id = "" } = jwt.verify(tokenParams, KEY_SECRET);
+        getUserDispatch(id, authDispatch);
+      }
+    } catch (error) {
+      console.log("error:loginSubscriptionParams", error);
+    }
+  }, [tokenParams]);
+
+  const handleSearchPackage = useCallback(async () => {
+    if (user) {
+      setLoading(true, authDispatch);
+      await getAffiliationsPackages(user.id.toString(), packageDispatch);
+      setLoading(false, authDispatch);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    loginSubscription();
+  }, [loginSubscription]);
+
+  useEffect(() => {
+    loginSubscriptionParams();
+  }, [loginSubscription]);
+
+  useEffect(() => {
+    handleSearchPackage();
+  }, [handleSearchPackage]);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div>
