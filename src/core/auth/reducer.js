@@ -1,11 +1,5 @@
 import createReducer from "../createReducer";
-import {
-  HANDLE_ERROR,
-  LOADING,
-  SET_USER,
-  SET_USER_SHOPIFY,
-  GET_GUEST,
-} from "./types";
+import { LOADING, SET_USER, SET_USER_SHOPIFY, GET_GUEST, ERROR } from "./types";
 
 export const INITIAL_STATE_AUTH = {
   errorMsn: "",
@@ -50,7 +44,7 @@ const getGuest = (state, action) => {
 };
 
 export default createReducer(INITIAL_STATE_AUTH, {
-  [HANDLE_ERROR]: handleError,
+  [ERROR]: handleError,
   [LOADING]: setLoading,
   [SET_USER]: setUser,
   [SET_USER_SHOPIFY]: setUserShopify,
