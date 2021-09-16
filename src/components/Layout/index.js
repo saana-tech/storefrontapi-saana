@@ -87,7 +87,7 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     loginSubscriptionParams();
-  }, [loginSubscription]);
+  }, [loginSubscriptionParams]);
 
   useEffect(() => {
     handleSearchPackage();
