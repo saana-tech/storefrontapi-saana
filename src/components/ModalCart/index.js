@@ -11,13 +11,17 @@ import {
   //showModalLoginDispatch,
 } from "../../core/global/actions";
 import ProductItem from "./ProductItem";
-import { createCheckoutSchema } from "../../graphql/gql";
+import {
+  createCheckoutSchema,
+  DiscountAutomaticBasic,
+} from "../../graphql/gql";
 import Notification from "../Notification";
 import { AVISO_PRIVACIDAD, TRATAMIENTO_DATOS, TYC } from "../../constants";
 
 const ModalCart = () => {
   const { state, globalDispatch } = useContext(StoreContext);
   const [createCheckout] = useMutation(createCheckoutSchema);
+  const [discountAutomaticBasic] = useMutation(DiscountAutomaticBasic);
 
   const { globalState, packageState } = state;
   const { packages = [] } = packageState;
@@ -27,8 +31,7 @@ const ModalCart = () => {
     showCart,
     checkout, // user, modalLogin
   } = globalState;
-
-  console.log("packageState", afiliation.valid);
+  const valid = afiliation?.valid;
   const [multiCheck, setMultiCheck] = useState({
     check1: false,
     check2: false,
@@ -40,13 +43,19 @@ const ModalCart = () => {
     handleShowCartDispatch(!showCart, globalDispatch);
   };
 
-  const goPay = () => {
+  const goPay = async () => {
     /*    if (!user) {
       handleCloseModal();
       showModalLoginDispatch(!modalLogin, globalDispatch);
       return;
     } */
-    window.open(checkout.webUrl, "_blank");
+
+    const url = await handleActiveDiscount();
+    if (valid) {
+      window.open(url, "_blank");
+    } else {
+      window.open(checkout.webUrl, "_blank");
+    }
     handleCreateCheckout();
   };
 
@@ -78,9 +87,33 @@ const ModalCart = () => {
     }
   }, [multiCheck]);
 
+  const handleActiveDiscount = useCallback(async () => {
+    try {
+      if (checkout && checkout.id) {
+        const { data } = await discountAutomaticBasic({
+          variables: { discountCode: "saanafarma", checkoutId: checkout.id },
+        });
+
+        const webUrl = data.checkoutDiscountCodeApplyV2.checkout.webUrl;
+
+        return webUrl;
+      }
+    } catch (error) {
+      console.log("error:handleActiveDiscount", error);
+    }
+  }, []);
+
+  const calculateDiscount = (value, percentage) => {
+    const descuento = parseInt(value) * percentage;
+
+    return descuento;
+  };
   useEffect(() => {
     handleTyc();
   }, [handleTyc]);
+  useEffect(() => {
+    handleActiveDiscount();
+  }, [handleActiveDiscount]);
 
   return (
     <div className={styles.backdrop}>
@@ -117,13 +150,21 @@ const ModalCart = () => {
               <div>Impuestos</div>
               <div>{util.formatCOP(checkout.totalTax)}</div>
             </div>
+            {valid && (
+              <div className={styles.contItemPay}>
+                <div>Descuento por afiliado</div>
+                <div>5%</div>
+              </div>
+            )}
             <div
               className={styles.contItemPay}
               style={{ border: 0, margin: "1rem 0" }}
             >
               <div>Total</div>
               <div className={styles.priceTotal}>
-                {util.formatCOP(checkout.totalPrice)}
+                {valid
+                  ? util.formatCOP(calculateDiscount(checkout.totalPrice, 0.95))
+                  : util.formatCOP(checkout.totalPrice)}
               </div>
             </div>
             {checkout &&

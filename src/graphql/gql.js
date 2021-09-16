@@ -212,3 +212,24 @@ export const GET_COLLECTIONS = gql`
     }
   }
 `;
+export const DiscountAutomaticBasic = gql`
+  mutation checkoutDiscountCodeApplyV2(
+    $discountCode: String!
+    $checkoutId: ID!
+  ) {
+    checkoutDiscountCodeApplyV2(
+      discountCode: $discountCode
+      checkoutId: $checkoutId
+    ) {
+      checkout {
+        id
+        webUrl
+      }
+      checkoutUserErrors {
+        code
+        field
+        message
+      }
+    }
+  }
+`;
