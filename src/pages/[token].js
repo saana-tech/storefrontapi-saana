@@ -9,15 +9,18 @@ import Section from "../components/Section";
 import Seo from "../components/Seo";
 import Container from "../components/Container";
 import { useRouter } from "next/router";
-import { getUserDispatch, KEY_SECRET } from "../core/auth/actions";
+import { getUserDispatch } from "../core/auth/actions";
 import { StoreContext } from "../core";
+
+const KEY_SECRET = process.env.NEXT_PUBLIC_KEY_SECRET;
+
+console.log("KEY_SECRET", KEY_SECRET);
 
 export default function HomeToken() {
   const { authDispatch } = useContext(StoreContext);
   const router = useRouter();
-  let { token } = router?.query;
+  let { token = null } = router?.query;
 
-  console.log("token", token);
   const GET_COLLECTIONS = gql`
     query collections {
       collections(first: 6) {
@@ -40,11 +43,11 @@ export default function HomeToken() {
     error = null,
   } = useQuery(GET_COLLECTIONS);
 
-  const loginSubscriptionParams = useCallback(() => {
+  const loginSubscriptionParams = useCallback(async () => {
     try {
       if (token) {
         const { id = "" } = jwt.verify(token, KEY_SECRET);
-        getUserDispatch(id, authDispatch);
+        await getUserDispatch(id, authDispatch);
       }
     } catch (error) {
       console.log("error:loginSubscriptionParams", error);
