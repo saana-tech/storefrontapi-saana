@@ -1,5 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { useRouter } from "next/router";
 import jwt from "jsonwebtoken";
 
 import { StoreContext } from "../../core";
@@ -18,6 +19,9 @@ import { getAffiliationsPackages } from "../../core/packages/actions";
 import Loading from "../Loading";
 
 const Layout = ({ children }) => {
+  const router = useRouter();
+  let { t: tokenParams } = router?.query;
+
   const { state, globalDispatch, authDispatch, packageDispatch } =
     useContext(StoreContext);
   const { authState, globalState } = state;
@@ -56,7 +60,18 @@ const Layout = ({ children }) => {
     } catch (error) {
       console.log("error", error);
     }
-  }, [token]);
+  }, [token, tokenParams]);
+
+  const loginSubscriptionParams = useCallback(() => {
+    try {
+      if (tokenParams) {
+        const { id = "" } = jwt.verify(tokenParams, KEY_SECRET);
+        getUserDispatch(id, authDispatch);
+      }
+    } catch (error) {
+      console.log("error:loginSubscriptionParams", error);
+    }
+  }, [tokenParams]);
 
   const handleSearchPackage = useCallback(async () => {
     if (user) {
@@ -69,6 +84,10 @@ const Layout = ({ children }) => {
   useEffect(() => {
     loginSubscription();
   }, [loginSubscription]);
+
+  useEffect(() => {
+    loginSubscriptionParams();
+  }, [loginSubscriptionParams]);
 
   useEffect(() => {
     handleSearchPackage();
