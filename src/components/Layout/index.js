@@ -10,13 +10,11 @@ import NavBar from "../NavBar";
 import Footer from "../Footer";
 import Whatsapp from "../Whatsapp";
 import { handleGeoLocation } from "../../core/global/actions";
-import {
-  getUserDispatch,
-  KEY_SECRET,
-  setLoading,
-} from "../../core/auth/actions";
+import { getUserDispatch, setLoading } from "../../core/auth/actions";
 import { getAffiliationsPackages } from "../../core/packages/actions";
 import Loading from "../Loading";
+
+const KEY_SECRET = process.env.NEXT_PUBLIC_KEY_SECRET;
 
 const Layout = ({ children }) => {
   const router = useRouter();
