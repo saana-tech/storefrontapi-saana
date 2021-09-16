@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const clientAxios = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_URL_BASE,
+  baseURL: "https://saana-api-prod-7xk7iwgpfq-uc.a.run.app/",
 });
 
 clientAxios.defaults.headers.common["Authorization"] =
