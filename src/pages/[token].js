@@ -14,12 +14,10 @@ import { StoreContext } from "../core";
 
 const KEY_SECRET = process.env.NEXT_PUBLIC_KEY_SECRET;
 
-console.log("KEY_SECRET", KEY_SECRET);
-
 export default function HomeToken() {
   const { authDispatch } = useContext(StoreContext);
   const router = useRouter();
-  let { token = null } = router?.query;
+  const { token } = router?.query;
 
   const GET_COLLECTIONS = gql`
     query collections {
@@ -53,6 +51,7 @@ export default function HomeToken() {
       console.log("error:loginSubscriptionParams", error);
     }
   }, [token]);
+
   useEffect(() => {
     loginSubscriptionParams();
   }, [loginSubscriptionParams]);
