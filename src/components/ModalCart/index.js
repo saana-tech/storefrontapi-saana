@@ -16,7 +16,7 @@ import {
   DiscountAutomaticBasic,
 } from "../../graphql/gql";
 import Notification from "../Notification";
-import { AVISO_PRIVACIDAD, TRATAMIENTO_DATOS, TYC } from "../../constants";
+import { TRATAMIENTO_DATOS, TYC } from "../../constants";
 
 const ModalCart = () => {
   const { state, globalDispatch } = useContext(StoreContext);
@@ -33,7 +33,6 @@ const ModalCart = () => {
   } = globalState;
   const valid = afiliation?.valid;
   const [multiCheck, setMultiCheck] = useState({
-    check1: false,
     check2: false,
     check3: false,
   });
@@ -79,8 +78,8 @@ const ModalCart = () => {
   };
 
   const handleTyc = useCallback(() => {
-    const { check1, check2, check3 } = multiCheck;
-    if (check1 && check2 && check3) {
+    const { check2, check3 } = multiCheck;
+    if (check2 && check3) {
       setDisabled(false);
     } else {
       setDisabled(true);
@@ -171,16 +170,6 @@ const ModalCart = () => {
               checkout.lineItems &&
               checkout.lineItems?.edges?.length > 0 && <Notification />}
             <div>
-              <div className={styles.tycPay}>
-                <input
-                  type={"checkbox"}
-                  onChange={() => handleOnChange("check1", !multiCheck.check1)}
-                  checked={multiCheck.check1}
-                />
-                <a onClick={() => util.openWebTab(AVISO_PRIVACIDAD)}>
-                  He leído y acepto el aviso de privacidad
-                </a>
-              </div>
               <div className={styles.tycPay}>
                 <input
                   type={"checkbox"}
