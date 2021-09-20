@@ -166,7 +166,7 @@ export const styleMap = [
 ];
 
 export const TRATAMIENTO_DATOS =
-  "https://firebasestorage.googleapis.com/v0/b/saana-it-solutions.appspot.com/o/NUEVA%20POL%C3%8DTICA%20DE%20TRATAMIENTO%20DE%20INFORMACI%C3%93N%20Y%20DE%20PROTECCI%C3%93N%20DE%20DATOS%20PERSONALES%20(12-05-2021).pdf?alt=media&token=a042d2b3-4ee9-4dcd-b15e-daa863bdc3b7";
+  "https://firebasestorage.googleapis.com/v0/b/saana-consulta.appspot.com/o/legal%2FPOL%C3%8DTICA%20DE%20TRATAMIENTO%20DE%20DATOS%20PERSONALES%20.pdf?alt=media&token=c81cdd40-eb70-4b5a-a5d4-d0aef8973224";
 export const AVISO_PRIVACIDAD =
   "https://firebasestorage.googleapis.com/v0/b/saana-it-solutions.appspot.com/o/AVISO%20DE%20PRIVACIDAD%20CALMM%20SAS%20(11-05-2021).pdf?alt=media&token=66e6d589-ed60-4926-a705-c2b560084359";
 export const TYC =
