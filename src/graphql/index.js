@@ -12,7 +12,7 @@ if (!process.browser) {
 }
 
 const httpLink = createHttpLink({
-  uri: process.env.NEXT_PUBLIC_HTTP_LINK,
+  uri: "https://saana-tech.myshopify.com/api/graphql",
 });
 
 const httpLinkSaana = createHttpLink({
