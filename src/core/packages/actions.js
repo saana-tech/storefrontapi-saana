@@ -14,7 +14,6 @@ export const setLoading = (loading, dispatch) => {
   dispatch({ type: LOADING, payload: loading });
 };
 export const getAffiliationsPackages = async (clientUid, dispatch) => {
-  console.log("clientUid", clientUid);
   const url =
     "https://us-central1-saana-consulta.cloudfunctions.net/clients-getCurrentPackage";
   try {
@@ -22,7 +21,6 @@ export const getAffiliationsPackages = async (clientUid, dispatch) => {
     const { data } = await axios.post(url, {
       clientUid,
     });
-    console.log("getAffiliationsPackages:", data);
     dispatch({
       type: GET_PACKAGES,
       payload: data.affiliations,
