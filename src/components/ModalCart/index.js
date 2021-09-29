@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 
 import util from "../../util";
 import styles from "./ModalCart.module.css";
@@ -17,6 +17,7 @@ import {
 } from "../../graphql/gql";
 import Notification from "../Notification";
 import { TRATAMIENTO_DATOS, TYC } from "../../constants";
+import { queryAffiliationActive } from "../../graphql/auth";
 
 const ModalCart = () => {
   const { state, globalDispatch } = useContext(StoreContext);
@@ -25,21 +26,23 @@ const ModalCart = () => {
       clientName: "shopify",
     },
   });
+  const { data } = useQuery(queryAffiliationActive);
   const [discountAutomaticBasic] = useMutation(DiscountAutomaticBasic, {
     context: {
       clientName: "shopify",
     },
   });
 
-  const { globalState, packageState } = state;
-  const { packages = [] } = packageState;
+  const { globalState } = state;
 
-  const afiliation = packages && packages.length > 0 ? packages[0] : null;
+  const afiliation = data ? data.handleGetAffiliationUser : null;
+
   const {
     showCart,
     checkout, // user, modalLogin
   } = globalState;
-  const valid = afiliation?.valid;
+  const valid = afiliation?.active;
+
   const [multiCheck, setMultiCheck] = useState({
     check2: false,
     check3: false,

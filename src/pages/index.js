@@ -11,7 +11,7 @@ import Container from "../components/Container";
 export default function Home() {
   const GET_COLLECTIONS = gql`
     query collections {
-      collections(first: 6) {
+      collections(first: 5) {
         edges {
           node {
             id

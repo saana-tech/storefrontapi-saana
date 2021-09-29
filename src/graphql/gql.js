@@ -201,7 +201,7 @@ export const checkoutLineItemsUpdateSchema = gql`
 `;
 export const GET_COLLECTIONS = gql`
   query {
-    collections(first: 6) {
+    collections(first: 5) {
       edges {
         node {
           id

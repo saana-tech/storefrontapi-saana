@@ -16,6 +16,7 @@ import {
   loginMutation,
   validateDocumentInput,
 } from "../../graphql/auth";
+import Loading from "../Loading";
 
 //Handle login
 const FormLogin = ({ close }) => {
@@ -34,9 +35,10 @@ const FormLogin = ({ close }) => {
   const [values, setValues] = useState(INITIAL_VALUES);
   const [modeRegister, setModeRegister] = useState(false);
   const [handleError, setHandleError] = useState({ error: false, msn: "" });
-  const [createNewClient] = useMutation(createNewUserGraphQL);
+  const [createNewClient, { loading: loading2 = false }] =
+    useMutation(createNewUserGraphQL);
   const [validateDocument] = useMutation(validateDocumentInput);
-  const [handleLogin] = useMutation(loginMutation);
+  const [handleLogin, { loading = false }] = useMutation(loginMutation);
 
   const onChangeText = (target, value) => {
     setValues({ ...values, [target]: value });
@@ -49,7 +51,7 @@ const FormLogin = ({ close }) => {
       if (values.email === "" || values.password === "") {
         return setHandleError({
           error: true,
-          msn: "Todos los campos son obligatorios, no olvides aceptar términos y condiciones",
+          msn: "Ingrese email o contraseña",
         });
       }
       const { data } = await handleLogin({
@@ -66,6 +68,10 @@ const FormLogin = ({ close }) => {
       setValues(INITIAL_VALUES);
       close();
     } catch (error) {
+      setHandleError({
+        error: true,
+        msn: `${error.message}`,
+      });
       console.log("error", error);
     }
   };
@@ -131,7 +137,7 @@ const FormLogin = ({ close }) => {
       console.log("error", error);
     }
   };
-
+  if (loading || loading2) return <Loading />;
   return (
     <>
       <Error

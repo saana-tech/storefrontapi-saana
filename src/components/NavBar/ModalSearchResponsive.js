@@ -42,7 +42,6 @@ const ModalSearchResponsive = ({ open, close }) => {
     },
   });
 
-  console.log("dataaaaaaaaaa", data);
   const clearInput = () => {
     setValueSearch("");
   };
