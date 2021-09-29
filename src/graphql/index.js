@@ -4,7 +4,7 @@ import { createHttpLink } from "apollo-link-http";
 import { setContext } from "apollo-link-context";
 
 const httpLink = createHttpLink({
-  uri: process.env.NEXT_PUBLIC_HTTP_LINK,
+  uri: "https://saana-tech.myshopify.com/api/graphql",
 });
 
 const authLink = setContext(async (_, { headers }) => {
