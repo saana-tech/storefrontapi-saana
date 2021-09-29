@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import clientAxios from "../../config/axios";
-import { ERROR, LOADING, SET_USER } from "./types";
+import { ERROR, GET_TOKEN, LOADING, SET_USER } from "./types";
 
 export const KEY_SECRET = process.env.NEXT_PUBLIC_KEY_SECRET;
 
@@ -125,5 +125,12 @@ export const singOffDispatch = (dispatch) => {
   dispatch({
     type: SET_USER,
     payload: null,
+  });
+};
+
+export const setToken = (token, dispatch) => {
+  dispatch({
+    type: GET_TOKEN,
+    payload: token,
   });
 };

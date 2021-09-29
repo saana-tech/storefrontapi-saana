@@ -21,6 +21,25 @@ export const TYPE_IDENTIFICATION = [
   },
 ];
 
+export const TYPE_DOCUMENT = [
+  {
+    label: "Seleccione tipo de documento",
+    value: "",
+  },
+  {
+    label: "C.C",
+    value: "Cedula de Ciudadania",
+  },
+  {
+    label: "C.E",
+    value: "Cédula de Extranjería",
+  },
+  {
+    label: "T.I",
+    value: "Tarjeta de Identidad",
+  },
+];
+
 export const VALUES_GUEST = {
   name: "",
   phone: "",

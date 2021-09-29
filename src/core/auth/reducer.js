@@ -1,6 +1,12 @@
 import createReducer from "../createReducer";
-import { LOADING, SET_USER, SET_USER_SHOPIFY, GET_GUEST, ERROR } from "./types";
-
+import {
+  LOADING,
+  SET_USER,
+  SET_USER_SHOPIFY,
+  GET_GUEST,
+  ERROR,
+  GET_TOKEN,
+} from "./types";
 export const INITIAL_STATE_AUTH = {
   errorMsn: "",
   error: false,
@@ -17,7 +23,6 @@ const handleError = (state, action) => {
     errorMsn,
   };
 };
-
 const setLoading = (state, action) => {
   return {
     ...state,
@@ -42,11 +47,19 @@ const getGuest = (state, action) => {
     list_guest: action.payload,
   };
 };
-
+const getToken = (state, action) => {
+  const token = action.payload;
+  localStorage.setItem("token", token);
+  return {
+    ...state,
+    token,
+  };
+};
 export default createReducer(INITIAL_STATE_AUTH, {
   [ERROR]: handleError,
   [LOADING]: setLoading,
   [SET_USER]: setUser,
   [SET_USER_SHOPIFY]: setUserShopify,
   [GET_GUEST]: getGuest,
+  [GET_TOKEN]: getToken,
 });
