@@ -1,18 +1,22 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
-import { useRouter } from "next/router";
 import jwt from "jsonwebtoken";
-
-import { StoreContext } from "../../core";
 import ModalCart from "../ModalCart";
-
 import NavBar from "../NavBar";
 import Footer from "../Footer";
 import Whatsapp from "../Whatsapp";
-import { handleGeoLocation } from "../../core/global/actions";
-import { getUserDispatch, setLoading } from "../../core/auth/actions";
-import { getAffiliationsPackages } from "../../core/packages/actions";
 import Loading from "../Loading";
+import { useRouter } from "next/router";
+import { StoreContext } from "../../core";
+import { handleGeoLocation } from "../../core/global/actions";
+// import { getAffiliationsPackages } from "../../core/packages/actions";
+import { useQuery } from "@apollo/client";
+import {
+  getUserAuth,
+  getUserDispatch,
+  setLoading,
+} from "../../core/auth/actions";
+import { getQueryUser, queryAffiliationActive } from "../../graphql/auth";
 
 const KEY_SECRET = process.env.NEXT_PUBLIC_KEY_SECRET;
 
@@ -20,20 +24,37 @@ const Layout = ({ children }) => {
   const router = useRouter();
   let { t: tokenParams } = router?.query;
 
-  const { state, globalDispatch, authDispatch, packageDispatch } =
-    useContext(StoreContext);
+  const { state, globalDispatch, authDispatch } = useContext(StoreContext);
   const { authState, globalState } = state;
   const { showCart } = globalState;
-  const { user, loading } = authState;
+  const { user, loading, token } = authState;
+  const { data = null, refetch } = useQuery(getQueryUser);
+  // const data2 = useQuery(queryAffiliationActive);
 
-  const [token, setToken] = useState("");
+  // const handleToken = () => {
+  //   setToken(localStorage.getItem("token"));
+  // };
+  // useEffect(() => {
+  //   handleToken();
+  // }, [handleToken]);
 
-  const handleToken = () => {
-    setToken(localStorage.getItem("token"));
-  };
+  const handleSubscriptionUser = useCallback(() => {
+    const user = data?.getUser;
+    if (user) {
+      getUserAuth(user, authDispatch);
+    }
+  }, [data?.getUser]);
+
   useEffect(() => {
-    handleToken();
-  }, [handleToken]);
+    handleSubscriptionUser();
+  }, [handleSubscriptionUser]);
+
+  useEffect(async () => {
+    if (token) {
+      await refetch();
+      handleSubscriptionUser();
+    }
+  }, [token]);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -74,7 +95,7 @@ const Layout = ({ children }) => {
   const handleSearchPackage = useCallback(async () => {
     if (user) {
       setLoading(true, authDispatch);
-      await getAffiliationsPackages(user.id.toString(), packageDispatch);
+      // await getAffiliationsPackages(user._id.toString(), packageDispatch);
       setLoading(false, authDispatch);
     }
   }, [user]);

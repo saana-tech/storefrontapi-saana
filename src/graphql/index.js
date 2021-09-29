@@ -48,8 +48,8 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: ApolloLink.split(
     (operation) => operation.getContext().clientName === "shopify",
-    saanaLinkUnion,
-    shopifyLinkUnion
+    shopifyLinkUnion,
+    saanaLinkUnion
   ),
 });
 

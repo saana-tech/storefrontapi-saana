@@ -123,6 +123,9 @@ const AddAddress = ({ close }) => {
           },
         });
       },
+      context: {
+        clientName: "shopify",
+      },
     }
   );
 

@@ -113,6 +113,9 @@ const Address = () => {
         },
       });
     },
+    context: {
+      clientName: "shopify",
+    },
   });
 
   const handleModalRemove = (paramsAddress) => {

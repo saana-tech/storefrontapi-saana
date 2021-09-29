@@ -6,12 +6,16 @@ import ArrowLeft from "../../../public/static/svg/ArrowLeft";
 import Error from "../Error";
 import { IMG_LOGIN, IMG_REGISTER, TYC } from "../../constants";
 import util from "../../util";
-import { handleLoginDispatch, setToken } from "../../core/auth/actions";
+import { setToken } from "../../core/auth/actions";
 import { StoreContext } from "../../core";
 import { TYPE_DOCUMENT } from "../FormPqr/validateForm";
 import { validateFormRegister } from "../../helper/time";
-import { createNewUserGraphQL, validateDocumentInput } from "../../graphql/gql";
 import { useMutation } from "@apollo/client";
+import {
+  createNewUserGraphQL,
+  loginMutation,
+  validateDocumentInput,
+} from "../../graphql/auth";
 
 //Handle login
 const FormLogin = ({ close }) => {
@@ -31,16 +35,16 @@ const FormLogin = ({ close }) => {
   const [modeRegister, setModeRegister] = useState(false);
   const [handleError, setHandleError] = useState({ error: false, msn: "" });
   const [createNewClient] = useMutation(createNewUserGraphQL);
-  const [validateDocument, { loading }] = useMutation(validateDocumentInput);
+  const [validateDocument] = useMutation(validateDocumentInput);
+  const [handleLogin] = useMutation(loginMutation);
 
   const onChangeText = (target, value) => {
     setValues({ ...values, [target]: value });
   };
 
-  const handleLogin = async (e) => {
+  const handleSubmitLogin = async (e) => {
     e?.preventDefault();
 
-    console.log("values", values);
     try {
       if (values.email === "" || values.password === "") {
         return setHandleError({
@@ -48,17 +52,17 @@ const FormLogin = ({ close }) => {
           msn: "Todos los campos son obligatorios, no olvides aceptar términos y condiciones",
         });
       }
-
-      await handleLoginDispatch(
-        Object.assign(
-          {
+      const { data } = await handleLogin({
+        variables: {
+          input: {
             email: values.email,
             password: values.password,
           },
-          { profile: "USUARIO" }
-        ),
-        authDispatch
-      );
+        },
+      });
+
+      const token = data.authenticationController.token;
+      setToken(token, authDispatch);
       setValues(INITIAL_VALUES);
       close();
     } catch (error) {
@@ -97,7 +101,7 @@ const FormLogin = ({ close }) => {
             input: {
               document: values.id,
               email: values.email,
-              firstName: values.firstName + values.surname,
+              firstName: values.firstName + " " + values.surname,
               password: values.password,
               phone: values.phone,
               role: "cliente",
@@ -155,7 +159,9 @@ const FormLogin = ({ close }) => {
               />
               {/*     <a className={styles.link}>¿Olvido tu contraseña?</a> */}
               <div className={styles.buttons}>
-                <button onClick={() => handleLogin()}>Iniciar sesión</button>
+                <button onClick={() => handleSubmitLogin()}>
+                  Iniciar sesión
+                </button>
                 <button onClick={() => setModeRegister(true)}>
                   Crear cuenta
                 </button>

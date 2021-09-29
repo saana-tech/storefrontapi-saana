@@ -233,20 +233,3 @@ export const DiscountAutomaticBasic = gql`
     }
   }
 `;
-
-export const createNewUserGraphQL = gql`
-  mutation Mutation($input: UserInputClient) {
-    createNewUserClientController(input: $input) {
-      token
-    }
-  }
-`;
-
-export const validateDocumentInput = gql`
-  mutation Mutation($input: ValidateInputDocument) {
-    validateDocumentUser(input: $input) {
-      error
-      message
-    }
-  }
-`;

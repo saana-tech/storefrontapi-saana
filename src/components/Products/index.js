@@ -65,7 +65,11 @@ const Products = ({
       }
     }
   `;
-  const { data = null } = useQuery(GET_PRODUCTS);
+  const { data = null } = useQuery(GET_PRODUCTS, {
+    context: {
+      clientName: "shopify",
+    },
+  });
   let products = data?.collectionByHandle?.products?.edges;
 
   const handleProduct = (product) => {

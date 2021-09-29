@@ -20,8 +20,16 @@ import { TRATAMIENTO_DATOS, TYC } from "../../constants";
 
 const ModalCart = () => {
   const { state, globalDispatch } = useContext(StoreContext);
-  const [createCheckout] = useMutation(createCheckoutSchema);
-  const [discountAutomaticBasic] = useMutation(DiscountAutomaticBasic);
+  const [createCheckout] = useMutation(createCheckoutSchema, {
+    context: {
+      clientName: "shopify",
+    },
+  });
+  const [discountAutomaticBasic] = useMutation(DiscountAutomaticBasic, {
+    context: {
+      clientName: "shopify",
+    },
+  });
 
   const { globalState, packageState } = state;
   const { packages = [] } = packageState;

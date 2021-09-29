@@ -16,7 +16,11 @@ import ProductsTag from "../components/ProductsTag";
 import Container from "../components/Container";
 
 const Product = () => {
-  const [checkoutItemsAdd] = useMutation(checkoutLineItemsAdd);
+  const [checkoutItemsAdd] = useMutation(checkoutLineItemsAdd, {
+    context: {
+      clientName: "shopify",
+    },
+  });
   const router = useRouter();
 
   const { state, globalDispatch } = useContext(StoreContext);

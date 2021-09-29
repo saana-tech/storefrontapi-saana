@@ -29,7 +29,11 @@ export default function Home() {
     data = null,
     loading = false,
     error = null,
-  } = useQuery(GET_COLLECTIONS);
+  } = useQuery(GET_COLLECTIONS, {
+    context: {
+      clientName: "shopify",
+    },
+  });
   return (
     <div>
       <Seo />

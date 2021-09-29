@@ -17,8 +17,16 @@ const ProductItem = ({ product = null }) => {
   const { checkout } = globalState;
   const { variant, quantity } = product;
 
-  const [checkoutLineItemsUpdate] = useMutation(checkoutLineItemsUpdateSchema);
-  const [checkoutProductRemove] = useMutation(checkoutLineItemsRemove);
+  const [checkoutLineItemsUpdate] = useMutation(checkoutLineItemsUpdateSchema, {
+    context: {
+      clientName: "shopify",
+    },
+  });
+  const [checkoutProductRemove] = useMutation(checkoutLineItemsRemove, {
+    context: {
+      clientName: "shopify",
+    },
+  });
 
   const updateProductsCart = async (quantity) => {
     try {

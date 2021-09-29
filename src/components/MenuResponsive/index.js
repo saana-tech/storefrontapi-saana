@@ -19,8 +19,8 @@ const MenuResponsive = ({
   openModalRegister = () => {},
 }) => {
   const { state, globalDispatch } = useContext(StoreContext);
-  const { globalState } = state;
-  const { user } = globalState;
+  const { authState } = state;
+  const { user } = authState;
 
   const router = useRouter();
 
