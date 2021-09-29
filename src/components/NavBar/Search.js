@@ -54,7 +54,11 @@ const Search = () => {
     }
   }
 }`;
-  const { data = null, loading = false } = useQuery(QUERY_PRODUCT);
+  const { data = null, loading = false } = useQuery(QUERY_PRODUCT, {
+    context: {
+      clientName: "shopify",
+    },
+  });
 
   const handleSearchProduct = () => {
     const url = `https://api.whatsapp.com/send?phone=573152738113&text=Estoy%20buscando%20${valueSearch}`;

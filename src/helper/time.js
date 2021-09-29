@@ -24,5 +24,28 @@ const formatMoment = (time) => {
   }
   return null;
 };
+
+export const validateFormRegister = (input) => {
+  switch (input) {
+    case "idType":
+      return "El tipo de documento es obligatorio.";
+    case "id":
+      return "La identificación es obligatoria.";
+    case "phone":
+      return "Ingresa tu numero de celular";
+    case "firstName":
+      return "Ingresa tus nombres";
+    case "surname":
+      return "Ingresa tus apellidos";
+    case "email":
+      return "Ingresa email";
+    case "password":
+      return "Ingresa tu contraseña";
+    case "tyc":
+      return "No olvides aceptar términos y condiciones";
+    default:
+      return "";
+  }
+};
 //let openHour = generateSchedule('09:00', '02:00');
 //openHour('24:00');

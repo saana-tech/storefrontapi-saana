@@ -6,12 +6,12 @@ import styles from "./Error.module.css";
 
 const Error = ({ msn = "", open = false, setHandleError = () => {} }) => {
   const close = () => {
-    setTimeout(() => {
+    setInterval(() => {
       setHandleError({
         error: false,
         msn: "",
       });
-    }, 5000);
+    }, 3000);
   };
   const closeClick = () => {
     setHandleError({

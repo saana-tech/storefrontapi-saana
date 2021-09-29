@@ -1,10 +1,35 @@
-import { ApolloClient } from "@apollo/client";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { createHttpLink } from "apollo-link-http";
+import {
+  ApolloClient,
+  ApolloLink,
+  createHttpLink,
+  InMemoryCache,
+} from "@apollo/client";
 import { setContext } from "apollo-link-context";
+import fetch from "isomorphic-unfetch";
+
+if (!process.browser) {
+  global.fetch = fetch;
+}
 
 const httpLink = createHttpLink({
   uri: "https://saana-tech.myshopify.com/api/graphql",
+});
+
+const httpLinkSaana = createHttpLink({
+  uri: process.env.NEXT_PUBLIC_SERVER_SAANA,
+});
+
+const saanaLink = setContext((_, { headers }) => {
+  const tokenAuth = localStorage.getItem("token");
+  const token = process.env.NEXT_PUBLIC_SERVER_SAANA_TOKEN;
+
+  return {
+    headers: {
+      ...headers,
+      authorization: token,
+      ["x-token"]: tokenAuth ? `Bearer ${tokenAuth}` : "",
+    },
+  };
 });
 
 const authLink = setContext(async (_, { headers }) => {
@@ -16,9 +41,16 @@ const authLink = setContext(async (_, { headers }) => {
   };
 });
 
+const saanaLinkUnion = saanaLink.concat(httpLinkSaana);
+const shopifyLinkUnion = authLink.concat(httpLink);
+
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: authLink.concat(httpLink),
+  link: ApolloLink.split(
+    (operation) => operation.getContext().clientName === "shopify",
+    shopifyLinkUnion,
+    saanaLinkUnion
+  ),
 });
 
 export default client;

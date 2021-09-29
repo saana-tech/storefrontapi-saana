@@ -107,6 +107,9 @@ const SelectAddress = () => {
         },
       });
     },
+    context: {
+      clientName: "shopify",
+    },
   });
 
   const handleDefaultAddAddress = async (id) => {

@@ -29,7 +29,11 @@ import { motion } from "framer-motion";
 
 const NavBar = () => {
   const { state, globalDispatch } = useContext(StoreContext);
-  const [createCheckout] = useMutation(createCheckoutSchema);
+  const [createCheckout] = useMutation(createCheckoutSchema, {
+    context: {
+      clientName: "shopify",
+    },
+  });
 
   const { globalState, authState } = state;
   const { user } = authState;
@@ -39,7 +43,11 @@ const NavBar = () => {
 
   const [showNav, setShowNav] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const { data = null } = useQuery(GET_COLLECTIONS);
+  const { data = null } = useQuery(GET_COLLECTIONS, {
+    context: {
+      clientName: "shopify",
+    },
+  });
 
   const handleOpenCart = () => {
     handleShowCartDispatch(!showCart, globalDispatch);
@@ -151,7 +159,7 @@ const NavBar = () => {
                       className={styles.userName}
                     >
                       <IconUser />
-                      {user.nombre}
+                      <div style={{ marginLeft: 5 }}>{user.firstName}</div>
                     </span>
                   ) : (
                     <button onClick={() => setShowModal(true)}>

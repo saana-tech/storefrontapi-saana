@@ -82,8 +82,6 @@ const FormPqr = () => {
     setValues({ ...values, [target]: value });
   };
   const onChangeTextGuest = (target, value) => {
-    console.log("target", target);
-    console.log("value", value);
     setValuesGuest({ ...valuesGuest, [target]: value });
   };
 

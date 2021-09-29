@@ -9,7 +9,7 @@ import util from "../../util";
 const ModalSearchResponsive = ({ open, close }) => {
   const router = useRouter();
   const [valueSearch, setValueSearch] = useState("");
-  const QUERY_PRODUCT = gql`  {
+  const QUERY_PRODUCT = gql`{
   products(query: "title: ${valueSearch}", first: 10) {
     edges {
       node {
@@ -36,7 +36,12 @@ const ModalSearchResponsive = ({ open, close }) => {
     }
   }
 }`;
-  const { data = null } = useQuery(QUERY_PRODUCT);
+  const { data = null } = useQuery(QUERY_PRODUCT, {
+    context: {
+      clientName: "shopify",
+    },
+  });
+
   const clearInput = () => {
     setValueSearch("");
   };

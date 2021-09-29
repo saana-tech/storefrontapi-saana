@@ -63,7 +63,11 @@ const ProductsTag = ({
         }
     }
   `;
-  const { data = null } = useQuery(GET_PRODUCTS);
+  const { data = null } = useQuery(GET_PRODUCTS, {
+    context: {
+      clientName: "shopify",
+    },
+  });
   let products = data?.products?.edges;
 
   const handleProduct = (product) => {

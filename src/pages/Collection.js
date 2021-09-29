@@ -59,7 +59,11 @@ const Collection = () => {
       }
     }
   `;
-  const { data = null, loading = false } = useQuery(GET_PRODUCTS);
+  const { data = null, loading = false } = useQuery(GET_PRODUCTS, {
+    context: {
+      clientName: "shopify",
+    },
+  });
   const products = data?.collectionByHandle?.products?.edges;
 
   const handleProduct = (product) => {

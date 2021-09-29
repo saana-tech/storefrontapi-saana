@@ -18,9 +18,9 @@ const MenuResponsive = ({
   close = () => {},
   openModalRegister = () => {},
 }) => {
-  const { state, globalDispatch } = useContext(StoreContext);
-  const { globalState } = state;
-  const { user } = globalState;
+  const { state, authDispatch } = useContext(StoreContext);
+  const { authState } = state;
+  const { user } = authState;
 
   const router = useRouter();
 
@@ -33,7 +33,7 @@ const MenuResponsive = ({
   };
 
   const handleSingOff = async () => {
-    signOffDispatch(globalDispatch);
+    signOffDispatch(authDispatch);
     setModalShow(false);
     close(false);
     router.push("/");

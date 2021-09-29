@@ -11,7 +11,7 @@ import Container from "../components/Container";
 export default function Home() {
   const GET_COLLECTIONS = gql`
     query collections {
-      collections(first: 6) {
+      collections(first: 5) {
         edges {
           node {
             id
@@ -29,7 +29,11 @@ export default function Home() {
     data = null,
     loading = false,
     error = null,
-  } = useQuery(GET_COLLECTIONS);
+  } = useQuery(GET_COLLECTIONS, {
+    context: {
+      clientName: "shopify",
+    },
+  });
   return (
     <div>
       <Seo />

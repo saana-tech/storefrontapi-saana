@@ -18,7 +18,6 @@ export const setLoading = (loading, dispatch) => {
 };
 
 export const addRequestDispatch = async (pqr, dispatch) => {
-  console.log("send pqr =>", pqr);
   try {
     setLoading(true, dispatch);
     await db.collection("pqr").doc(pqr.id).set(pqr, { merge: true });
@@ -58,7 +57,6 @@ export const searchPqr = async (idPqr, dispatch) => {
         id: doc.id,
       };
     });
-    console.log("data =>", data);
     if (data?.length > 0) {
       setLoading(false, dispatch);
 

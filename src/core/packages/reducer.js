@@ -1,5 +1,5 @@
 import createReducer from "../createReducer";
-import { ERROR, LOADING, GET_PACKAGES } from "./types";
+import { ERROR, LOADING } from "./types";
 
 export const INITIAL_STATE_PACKAGE = {
   errorMsn: "",
@@ -22,15 +22,8 @@ const setLoading = (state, action) => {
     loading: action.payload,
   };
 };
-const getPackages = (state, action) => {
-  return {
-    ...state,
-    packages: action.payload,
-  };
-};
 
 export default createReducer(INITIAL_STATE_PACKAGE, {
   [ERROR]: handleError,
   [LOADING]: setLoading,
-  [GET_PACKAGES]: getPackages,
 });
