@@ -16,7 +16,7 @@ import {
   getUserDispatch,
   setLoading,
 } from "../../core/auth/actions";
-import { getQueryUser, queryAffiliationActive } from "../../graphql/auth";
+import { getQueryUser } from "../../graphql/auth";
 
 const KEY_SECRET = process.env.NEXT_PUBLIC_KEY_SECRET;
 
@@ -29,7 +29,6 @@ const Layout = ({ children }) => {
   const { showCart } = globalState;
   const { user, loading, token } = authState;
   const { data = null, refetch } = useQuery(getQueryUser);
-  // const data2 = useQuery(queryAffiliationActive);
 
   // const handleToken = () => {
   //   setToken(localStorage.getItem("token"));
