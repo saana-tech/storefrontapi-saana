@@ -19,6 +19,7 @@ const SelectAddress = () => {
   const [showSelect, setShowSelect] = useState(false);
   const [showMaps, setShowMaps] = useState(false);
   const [token, setToken] = useState("");
+  const [city, setCity] = useState("Bogotá");
 
   const addresses = user?.addresses?.edges;
   const defaultAddress = user?.defaultAddress?.address1;
@@ -152,35 +153,20 @@ const SelectAddress = () => {
           onClick={() => setShowSelect(!showSelect)}
         >
           <PinIcon />
-          <span className={styles.defaultAddress}>
-            {defaultAddress ? defaultAddress : "Bogotá"}
-          </span>
+          <span className={styles.defaultAddress}>{city}</span>
           <ArrowDown />
         </div>
         {showSelect && (
           <div className={styles.showSelectAddress}>
             <div className={styles.addressSave}>
-              {addresses && addresses.length > 0 ? (
-                addresses.map(({ node }, index) => {
-                  return (
-                    <a
-                      key={index}
-                      onClick={() => handleDefaultAddAddress(node.id)}
-                    >
-                      {node.address1}
-                    </a>
-                  );
-                })
-              ) : (
-                <span>No hay direcciones</span>
-              )}
+              <a onClick={() => setCity("Medellín")}>{"Medellín"}</a>
             </div>
             <div className={styles.separator} />
-            <div className={styles.btnAdd}>
+            {/*   <div className={styles.btnAdd}>
               <button type={"button"} onClick={() => handleAddAddress()}>
                 Agregar
               </button>
-            </div>
+            </div> */}
           </div>
         )}
       </div>
