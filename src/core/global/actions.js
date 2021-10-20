@@ -9,6 +9,7 @@ import {
   SET_USER,
   HANDLE_MODAL_LOGIN,
   SET_COORDINATES,
+  SET_DELETE_CHECKOUT,
 } from "./types";
 
 export const handleErrorGlobal = (payload, dispatch) => {
@@ -55,6 +56,11 @@ export const signOffDispatch = (dispatch) => {
   dispatch({
     type: SET_USER,
     payload: null,
+  });
+};
+export const checkoutInitialState = (dispatch) => {
+  dispatch({
+    type: SET_DELETE_CHECKOUT,
   });
 };
 export const showModalLoginDispatch = (bool, dispatch) => {

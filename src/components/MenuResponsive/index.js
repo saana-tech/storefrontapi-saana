@@ -11,14 +11,17 @@ import IconServiceLine from "../../../public/static/svg/IconServiceLine";
 import IconCloseWhite from "../../../public/static/svg/IconCloseWhite";
 import styles from "./MenuResponsive.module.css";
 import ModalConfirmation from "../ModalConfirmation";
-import { signOffDispatch } from "../../core/global/actions";
+import {
+  checkoutInitialState,
+  signOffDispatch,
+} from "../../core/global/actions";
 
 const MenuResponsive = ({
   open = false,
   close = () => {},
   openModalRegister = () => {},
 }) => {
-  const { state, authDispatch } = useContext(StoreContext);
+  const { state, authDispatch, globalDispatch } = useContext(StoreContext);
   const { authState } = state;
   const { user } = authState;
 
@@ -34,6 +37,7 @@ const MenuResponsive = ({
 
   const handleSingOff = async () => {
     signOffDispatch(authDispatch);
+    checkoutInitialState(globalDispatch);
     setModalShow(false);
     close(false);
     router.push("/");

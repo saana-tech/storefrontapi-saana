@@ -8,6 +8,7 @@ import {
   SET_USER,
   HANDLE_MODAL_LOGIN,
   SET_COORDINATES,
+  SET_DELETE_CHECKOUT,
 } from "./types";
 
 export const INITIAL_STATE_GLOBAL = {
@@ -71,6 +72,12 @@ const setCoordinates = (state, action) => {
     coordinates: action.payload,
   };
 };
+const checkoutInitialState = (state) => {
+  return {
+    ...state,
+    checkout: { lineItems: { edges: [] } },
+  };
+};
 export default createReducer(INITIAL_STATE_GLOBAL, {
   [HANDLE_ERROR_GLOBAL]: handleError,
   [LOADING_GLOBAL]: setLoading,
@@ -80,4 +87,5 @@ export default createReducer(INITIAL_STATE_GLOBAL, {
   [SET_USER]: setUser,
   [HANDLE_MODAL_LOGIN]: handleModalLogin,
   [SET_COORDINATES]: setCoordinates,
+  [SET_DELETE_CHECKOUT]: checkoutInitialState,
 });

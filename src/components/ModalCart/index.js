@@ -26,7 +26,9 @@ const ModalCart = () => {
       clientName: "shopify",
     },
   });
-  const { data } = useQuery(queryAffiliationActive);
+  const { data } = useQuery(queryAffiliationActive, {
+    fetchPolicy:'no-cache'
+  });
   const [discountAutomaticBasic] = useMutation(DiscountAutomaticBasic, {
     context: {
       clientName: "shopify",
@@ -60,7 +62,7 @@ const ModalCart = () => {
       return;
     } */
 
-    const url = await handleActiveDiscount();
+    const url = await handleActiveDiscount(valid);
     if (valid) {
       window.open(url, "_blank");
     } else {
@@ -97,11 +99,14 @@ const ModalCart = () => {
     }
   }, [multiCheck]);
 
-  const handleActiveDiscount = useCallback(async () => {
+  const handleActiveDiscount = useCallback(async (valid) => {
     try {
       if (checkout && checkout.id) {
         const { data } = await discountAutomaticBasic({
-          variables: { discountCode: "saanafarma", checkoutId: checkout.id },
+          variables: {
+            discountCode: valid ? "saanafarma" : "",
+            checkoutId: checkout.id,
+          },
         });
 
         const webUrl = data.checkoutDiscountCodeApplyV2.checkout.webUrl;
