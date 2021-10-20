@@ -34,7 +34,9 @@ const Product = () => {
     try {
       const res = await checkoutItemsAdd({
         variables: {
-          checkoutId: checkout.id,
+          checkoutId: checkout.id
+            ? checkout.id
+            : "Z2lkOi8vc2hvcGlmeS9DaGVja291dC82Y2ZkMGZiZTdlYzMwMTliMGNmMzU1NDFjZmUzZTYxOT9rZXk9YjA4Zjk4NjhkYTZiZTI1MDZmYzg1YThiNzUzNzc2OTg=",
           lineItems: [
             { variantId: productSelect.variantId, quantity: parseInt(1, 10) },
           ],
