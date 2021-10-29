@@ -25,13 +25,13 @@ Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
 const MyApp = ({ Component, pageProps, router }) => {
-  Sentry.init({
-    dsn: process.env.NEXT_PUBLIC_SENTRY,
-    autoSessionTracking: true,
-    integrations: [new Integrations.BrowserTracing()],
-    tracesSampleRate: 1.0,
-    release: "@saanafarma" + process.env.npm_package_version,
-  });
+  // Sentry.init({
+  //   dsn: process.env.NEXT_PUBLIC_SENTRY,
+  //   autoSessionTracking: true,
+  //   integrations: [new Integrations.BrowserTracing()],
+  //   tracesSampleRate: 1.0,
+  //   release: "@saanafarma" + process.env.npm_package_version,
+  // });
   useEffect(() => {
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", function () {
