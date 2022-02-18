@@ -27,7 +27,7 @@ const ModalCart = () => {
     },
   });
   const { data } = useQuery(queryAffiliationActive, {
-    fetchPolicy:'no-cache'
+    fetchPolicy: "no-cache",
   });
   const [discountAutomaticBasic] = useMutation(DiscountAutomaticBasic, {
     context: {
@@ -56,12 +56,6 @@ const ModalCart = () => {
   };
 
   const goPay = async () => {
-    /*    if (!user) {
-      handleCloseModal();
-      showModalLoginDispatch(!modalLogin, globalDispatch);
-      return;
-    } */
-
     const url = await handleActiveDiscount(valid);
     if (valid) {
       window.open(url, "_blank");

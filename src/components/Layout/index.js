@@ -7,10 +7,10 @@ import Whatsapp from "../Whatsapp";
 import Loading from "../Loading";
 import { StoreContext } from "../../core";
 import { handleGeoLocation } from "../../core/global/actions";
-// import { getAffiliationsPackages } from "../../core/packages/actions";
 import { useQuery } from "@apollo/client";
 import { getUserAuth } from "../../core/auth/actions";
 import { getQueryUser } from "../../graphql/auth";
+import { useRouter } from "next/router";
 
 const Layout = ({ children }) => {
   const { state, globalDispatch, authDispatch } = useContext(StoreContext);
@@ -18,8 +18,11 @@ const Layout = ({ children }) => {
   const { showCart } = globalState;
   const { loading, token } = authState;
   const { data = null, refetch } = useQuery(getQueryUser);
+  const router = useRouter();
 
   const handleSubscriptionUser = useCallback(() => {
+    const token = router?.query?.t;
+    localStorage.setItem("token", token);
     const user = data?.getUser;
     if (user) {
       getUserAuth(user, authDispatch);
