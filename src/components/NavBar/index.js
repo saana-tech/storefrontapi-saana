@@ -15,6 +15,7 @@ import {
   handleCreateCheckoutDispatch,
   handleShowCartDispatch,
   showModalLoginDispatch,
+  signOffDispatch,
 } from "../../core/global/actions";
 import { createCheckoutSchema, GET_COLLECTIONS } from "../../graphql/gql";
 import Modal from "../Modal";
@@ -26,9 +27,10 @@ import Search from "./Search";
 import ModalSearchResponsive from "./ModalSearchResponsive";
 import Container from "../Container";
 import { motion } from "framer-motion";
+import { setToken } from "../../core/auth/actions";
 
 const NavBar = () => {
-  const { state, globalDispatch } = useContext(StoreContext);
+  const { state, globalDispatch, authDispatch } = useContext(StoreContext);
   const [createCheckout] = useMutation(createCheckoutSchema, {
     context: {
       clientName: "shopify",
@@ -43,6 +45,7 @@ const NavBar = () => {
 
   const [showNav, setShowNav] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [showPerfil, setShowPerfil] = useState(false);
   const { data = null } = useQuery(GET_COLLECTIONS, {
     context: {
       clientName: "shopify",
@@ -104,6 +107,7 @@ const NavBar = () => {
             },
           },
         }}
+        onMouseLeave={() => setShowPerfil(false)}
       >
         <Container>
           <header className={styles.header}>
@@ -147,24 +151,49 @@ const NavBar = () => {
                 >
                   <IconMenuBar />
                 </div>
-                <div className={styles.buttonLogin}>
+                <div className={styles.contentProfile}>
                   {user ? (
-                    <span
-                      onClick={() =>
-                        window.open(
-                          "https://www.saana.com.co/Profile",
-                          "_blank"
-                        )
-                      }
-                      className={styles.userName}
+                    <button
+                      className={styles.buttonProfile}
+                      onMouseMove={() => setShowPerfil(true)}
                     >
-                      <IconUser />
-                      <div style={{ marginLeft: 5 }}>{user.firstName}</div>
-                    </span>
-                  ) : (
-                    <button onClick={() => setShowModal(true)}>
-                      Iniciar sesión
+                      <div className={styles.item1}>
+                        <IconUser />
+                      </div>
+                      <h1>{user.firstName}</h1>
                     </button>
+                  ) : (
+                    <div className={styles.buttonLogin}>
+                      <button onClick={() => setShowModal(true)}>
+                        Iniciar sesión
+                      </button>
+                    </div>
+                  )}
+                  {showPerfil && (
+                    <div
+                      className={styles.signOut}
+                      onMouseLeave={() => setShowPerfil(false)}
+                    >
+                      <button
+                        onClick={() =>
+                          window.open(
+                            "https://www.saana.com.co/Profile",
+                            "_blank"
+                          )
+                        }
+                      >
+                        Ir a mi perfil
+                      </button>
+                      <button
+                        onClick={() => {
+                          signOffDispatch(authDispatch),
+                            setToken(undefined, authDispatch),
+                            localStorage.removeItem("token");
+                        }}
+                      >
+                        Cerrar Sesión
+                      </button>
+                    </div>
                   )}
                 </div>
               </div>

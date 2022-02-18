@@ -15,6 +15,7 @@ import {
   checkoutInitialState,
   signOffDispatch,
 } from "../../core/global/actions";
+import { setToken } from "../../core/auth/actions";
 
 const MenuResponsive = ({
   open = false,
@@ -38,6 +39,7 @@ const MenuResponsive = ({
   const handleSingOff = async () => {
     signOffDispatch(authDispatch);
     checkoutInitialState(globalDispatch);
+    setToken(undefined, authDispatch);
     setModalShow(false);
     close(false);
     router.push("/");

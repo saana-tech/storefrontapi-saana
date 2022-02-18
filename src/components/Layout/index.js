@@ -8,7 +8,7 @@ import Loading from "../Loading";
 import { StoreContext } from "../../core";
 import { handleGeoLocation } from "../../core/global/actions";
 import { useQuery } from "@apollo/client";
-import { getUserAuth } from "../../core/auth/actions";
+import { getUserAuth, setToken } from "../../core/auth/actions";
 import { getQueryUser } from "../../graphql/auth";
 import { useRouter } from "next/router";
 
@@ -21,9 +21,10 @@ const Layout = ({ children }) => {
   const router = useRouter();
 
   const handleSubscriptionUser = useCallback(() => {
-    const token = router?.query?.t;
-    localStorage.setItem("token", token);
     const user = data?.getUser;
+    const token = router?.query?.t;
+    setToken(token, authDispatch);
+    localStorage.setItem("token", token);
     if (user) {
       getUserAuth(user, authDispatch);
     }
@@ -37,6 +38,9 @@ const Layout = ({ children }) => {
     if (token) {
       await refetch();
       handleSubscriptionUser();
+    } else {
+      setToken(null, authDispatch);
+      localStorage.removeItem("token");
     }
   }, [token]);
 

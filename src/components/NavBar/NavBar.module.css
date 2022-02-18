@@ -101,6 +101,60 @@
   top: -8px;
   right: -12px;
 }
+.contentProfile {
+  margin-left: 15px;
+  position: relative;
+}
+.buttonProfile {
+  background-color: transparent;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  margin-left: 5px;
+  border-radius: 10px;
+  border: 0.5px solid #314790;
+  cursor: pointer;
+  width: 100px;
+}
+.signOut {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: -1px 2px 5px 0px rgba(87, 87, 87, 0.568);
+  position: absolute;
+  z-index: 99;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  left: -45px;
+}
+.signOut button {
+  font-size: 16px;
+  padding: 20px;
+  border: 0;
+  background-color: transparent;
+  outline: none;
+  margin: 0;
+}
+.signOut button:hover {
+  color: #314790;
+  cursor: pointer;
+}
+.item2 {
+  display: flex;
+  flex: 3;
+  justify-content: center;
+}
+.buttonProfile h1 {
+  font-size: 16px;
+  text-transform: capitalize;
+  font-weight: 400;
+  flex: 3;
+  margin-top: 5px;
+}
 .buttonLogin button {
   width: 136px;
   height: 40px;
