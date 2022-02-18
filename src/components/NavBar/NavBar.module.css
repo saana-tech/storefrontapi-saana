@@ -116,7 +116,7 @@
   border-radius: 10px;
   border: 0.5px solid #314790;
   cursor: pointer;
-  width: 100px;
+  width: 120px;
 }
 .signOut {
   width: 150px;
@@ -129,7 +129,7 @@
   background-color: white;
   margin: 0;
   padding: 0;
-  left: -45px;
+  left: -25px;
 }
 .signOut button {
   font-size: 16px;
@@ -142,6 +142,13 @@
 .signOut button:hover {
   color: #314790;
   cursor: pointer;
+}
+.buttonProfile h1 {
+  color: #000;
+  margin: 10px 0 0 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .item2 {
   display: flex;
